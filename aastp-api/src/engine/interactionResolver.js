@@ -1,7 +1,8 @@
-const interactionRules =
-  require("../data/interactions.json");
+const {repository} = require("@aastp/core-data");
 
 function resolveInteraction(input) {
+
+    const interactionRules = repository.getInteractions;
 
     const rules =
         Object.values(

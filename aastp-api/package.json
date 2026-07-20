@@ -1,5 +1,5 @@
 {
-    "name": "aastp-api",
+    "name": "@aastp/api",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -13,7 +13,8 @@
     "type": "commonjs",
     "dependencies": {
       "cors": "^2.8.6",
-      "express": "^5.2.1"
+      "express": "^5.2.1",
+      "@aastp/core-data": "*"
     },
     "devDependencies": {
       "nodemon": "^3.1.14"

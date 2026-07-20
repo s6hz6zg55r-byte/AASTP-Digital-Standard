@@ -1,0 +1,31 @@
+# Normalize line endings
+* text=auto
+
+# JSON
+*.json text
+
+# JavaScript
+*.js text
+
+# Markdown
+*.md text
+
+# YAML
+*.yml text
+*.yaml text
+
+# Shell scripts
+*.sh text
+
+# Batch files
+*.bat text eol=crlf
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+
+# PDF
+*.pdf binary

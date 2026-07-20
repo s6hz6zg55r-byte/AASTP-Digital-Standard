@@ -1,12 +1,11 @@
-const pesTypes = require("../data/pesTypes.json");
-const esTypes = require("../data/esTypes.json");
+const { repository } = require("@aastp/core-data");
 
 function getPesTypes() {
-    return pesTypes;
+    return repository.getPESTypes;
 }
 
 function getEsTypes() {
-    return esTypes;
+    return repository.getESTypes;
 }
 
 module.exports = {

@@ -11,7 +11,7 @@ function loadJson(filename) {
 
     const filePath = path.join(
         __dirname,
-        "../../src/data",
+        "../../data",
         filename
     );
 
