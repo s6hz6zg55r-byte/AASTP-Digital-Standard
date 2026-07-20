@@ -1,17 +1,13 @@
 const {repository} = require("@aastp/core-data");
 
-const interactions = repository.getInteractions();
-
-console.log(
-    `Loaded ${Object.keys(interactions.interactionRules).length} interaction rules`
-);
+//const interactions = repository.getInteractions();
 
 function resolveDistanceRule(
     ruleId,
     neq
 ) {
 
-    const distanceRules = repository.getDistanceRules;
+    const distanceRules = repository.getDistanceRules();
 
     const rule =
         distanceRules.distanceRules.find(

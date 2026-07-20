@@ -2,11 +2,11 @@ const {repository} = require("@aastp/core-data");
 
 function resolveInteraction(input) {
 
-    const interactionRules = repository.getInteractions;
+    const interactionData = repository.getInteractions();
 
     const rules =
         Object.values(
-            interactionRules.interactionRules
+            interactionData.interactionRules
         );
 
     return rules.find(rule => {
