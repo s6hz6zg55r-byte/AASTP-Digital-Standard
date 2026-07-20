@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0",
+
+  "pesTypes": {
+
+    "ecm": {
+        "id": "ecm",
+        "family": "earth_covered_magazine",
+        "structureClass": "ecm",
+        "construction": null
+    },
+
+    "heavy_wall_solid": {
+        "id": "hwm_solid",
+        "family": "heavy_walled_magazine",
+        "structureClass": "hwm",
+        "construction": {
+            "aperture": false,
+            "barricaded": null,
+            "roofType": "Protective"
+        }
+    },
+
+    "heavy_wall_aperture": {
+        "id": "hwm_aperture",
+        "family": "heavy_walled_magazine",
+        "structureClass": "hwm",
+        "construction": {
+            "aperture": true,
+            "barricaded": null,
+            "roofType": "Protective"
+        }
+    },
+
+    "heavy_wall_light_roof": {
+        "id": "hwm_light",
+        "family": "heavy_walled_magazine",
+        "structureClass": "hwm",
+        "construction": {
+            "aperture": null,
+            "barricaded": null,
+            "roofType": "Light"
+        }
+    },
+
+    "medium_wall_barricaded": {
+        "id": "mwm_barricade",
+        "family": "medium_walled_magazine",
+        "structureClass": "mwm",
+        "construction": {
+            "aperture": null,
+            "barricaded": true,
+            "roofType": null
+        }
+    },
+
+    "medium_wall_unbarricaded": {
+        "id": "mwm_unbarricaded",
+        "family": "medium_walled_magazine",
+        "structureClass": "mwm",
+        "construction": {
+            "aperture": null,
+            "barricaded": false,
+            "roofType": null
+        }
+    },
+
+    "light_barricaded": {
+        "id": "os_barricaded",
+        "family": "light_structure",
+        "structureClass": "os",
+        "construction": {
+            "aperture": null,
+            "barricaded": true,
+            "roofType": null
+        }
+    },
+
+    "light_unbarricaded": {
+        "id": "os_unbarricaded",
+        "family": "light_structure",
+        "structureClass":"os",
+        "construction": {
+            "aperture": null,
+            "barricaded": false,
+            "roofType": null
+        }
+    }
+  }
+}

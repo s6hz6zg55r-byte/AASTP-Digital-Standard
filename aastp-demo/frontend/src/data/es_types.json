@@ -1,0 +1,355 @@
+{
+    "schemaVersion": "1.0",
+
+    "es_types": [
+
+        {
+            "id": "1",
+            "name": "Earth Covered Magazine - 7 Bar",
+            "isExplosivesFacility": true,
+            "structureClass": "ecm",
+            "construction": {
+                "protectionLevel": "7_bar",
+                "headwall": null,
+                "barricaded": null,
+                "roofType": null
+            },
+            "exposure": null,
+            "notes": ""
+        },
+        {
+            "id": "2",
+            "name": "Earth Covered Magazine - 3 Bar",
+            "isExplosivesFacility": true,
+            "structureClass": "ecm",
+            "construction":{
+                "protectionLevel": "3_bar",
+                "headwall": null,
+                "barricaded": null,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": ""
+        },
+        {
+            "id": "3a",
+            "name": "Earth Covered Magazine - Undefined - Headwall",
+            "isExplosivesFacility": true,
+            "structureClass": "ecm",
+            "construction":{
+                "protectionLevel": "undefined",
+                "headwall": true,
+                "barricaded": false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": ""
+        },
+        {
+            "id": "3b",
+            "name": "Earth Covered Magazine - Undefined - Barricade",
+            "isExplosivesFacility": true,
+            "structureClass": "ecm",
+            "construction":{
+                "protectionLevel": "undefined",
+                "headwall": false,
+                "barricaded": true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": ""
+        },
+        {
+            "id": "3c",
+            "name": "Earth Covered Magazine - Undefined",
+            "isExplosivesFacility":true,
+            "structureClass":"ecm",
+            "construction": {
+                "protectionLevel":"undefined",
+                "headwall":false,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "4a",
+            "name": "Heavy Walled Magazine - Protective Roof",
+            "isExplosivesFacility":true,
+            "structureClass":"hwm",
+            "construction": {
+                "protectionLevel": null,
+                "headwall": null,
+                "barricaded": null,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes": ""
+        },
+        {
+            "id": "4b",
+            "name":"Heavy Walled Magazine - Without Protective Roof",
+            "isExplosivesFacility":true,
+            "structureClass":"hwm",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "5a",
+            "name": "Medium Walled Magazine - Barricaded",
+            "isExplosivesFacility":true,
+            "structureClass":"mwm",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "5b",
+            "name": "Medium Walled Magazine",
+            "isExplosivesFacility":true,
+            "structureClass":"mwm",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "6a",
+            "name":"Light Structure or Open Stack - Barricaded",
+            "isExplosivesFacility":true,
+            "structureClass":"os",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded": true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": ""
+        },
+        {
+            "id": "6b",
+            "name": "Light Structure or Open Stack",
+            "isExplosivesFacility":true,
+            "structureClass":"os",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "7a",
+            "name": "Explosives Workshop - Barricaded Protective Roof",
+            "isExplosivesFacility":true,
+            "structureClass":"ew",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "7b",
+            "name": "Explosives Workshop - Barricaded",
+            "isExplosivesFacility":true,
+            "structureClass":"ew",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": "Light"
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id":"7c",
+            "name":"Explosives Workshop",
+            "isExplosivesFacility":true,
+            "structureClass":"ew",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":""
+        },
+        {
+            "id": "8a",
+            "name": "Low Density Thoroughfare",
+            "isExplosivesFacility":false,
+            "structureClass":"road",
+            "construction": null,
+            "exposure": {
+                "level": "low"
+            },
+            "notes":""
+        },
+        {
+            "id": "8b",
+            "name": "Medium Density Thoroughfare",
+            "isExplosivesFacility":false,
+            "structureClass":"road",
+            "construction":null,
+            "exposure": {
+                "level": "medium"
+            },
+            "notes":""
+        },
+       {
+            "id": "8c",
+            "name": "High Density Thoroughfare",
+            "isExplosivesFacility":false,
+            "structureClass":"road",
+            "construction":null,
+            "exposure": {
+                "level": "high"
+            },
+            "notes":""
+        },
+       {
+            "id": "9",
+            "name": "Inhabitied Building",
+            "isExplosivesFacility":false,
+            "structureClass":"IB",
+            "construction":null,
+            "exposure":null,
+            "notes":""
+        },
+       {
+            "id": "10",
+            "name": "Vulnerable Construction",
+            "isExplosivesFacility":false,
+            "structureClass":"vc",
+            "construction":null,
+            "exposure":null,
+            "notes":"See 1.3.1.15 for definition"
+        },
+       {
+            "id": "11a",
+            "name": "Support Staff Office - <20 Personnel",
+            "isExplosivesFacility":false,
+            "structureClass":"spt",
+            "construction":null,
+            "exposure": {
+                "level": "low"
+            },
+            "notes":"Office, non-explosive workshop or canteen with less than 20 explosive support personnel."
+        },
+       {
+            "id": "11b",
+            "name": "Support Staff Office - =>20 Personnel",
+            "isExplosivesFacility":false,
+            "structureClass":"spt",
+            "construction":null,
+            "exposure": {
+                "level": "high"
+            },
+            "notes":"Office, non-explosive workshop or canteen with 20 or more explosive support personnel."
+        },
+        {
+            "id": "12a",
+            "name": "Overhead Power Grid",
+            "isExplosivesFacility":false,
+            "structureClass": "opg",
+            "construction":null,
+            "exposure": {
+                "level": "high"
+            },
+            "notes":"Supergrid network and associated substations."
+        },
+        {
+            "id": "12b",
+            "name":"Overhead Power Grid",
+            "isExplosivesFacility":false,
+            "structureClass":"opg",
+            "construction":null,
+            "exposure": {
+                "level": "medium"
+            },
+            "notes": "Normal network and associated substations."
+        },
+        {
+            "id": "12c",
+            "name": "Overhead Power Grid",
+            "isExplosivesFacility":false,
+            "structureClass":"opg",
+            "construction":null,
+            "exposure": {
+                "level": "low"
+            },
+            "notes": "Minor network and associated substations."
+        },
+        {
+            "id": "13a",
+            "name":"POL Facilities inc Pipelines",
+            "isExplosivesFacility":false,
+            "structureClass":"pol",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes": "Protected or underground"
+        },
+        {
+            "id": "13b",
+            "name": "POL Facilities inc Pipelines",
+            "isExplosivesFacility":false,
+            "structureClass":"pol",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure": {
+                "level": "high"
+            },
+            "notes": "Unprotected, aboveground and vital"
+        },
+        {
+            "id": "13c",
+            "name": "POL Facilities inc Pipelines",
+            "isExplosivesFacility":false,
+            "structureClass":"pol",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure": {
+                "level": "low"
+            },
+            "notes": "Unprotected, aboveground and non-vital"
+        }
+    ]
+}

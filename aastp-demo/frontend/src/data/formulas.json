@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+
+  "formulas": {
+
+    "cube_root": {
+      "name": "Cube Root Distance Formula",
+      "description": "Standard explosive quantity-distance relationship.",
+      "units": {
+        "input": "kg",
+        "output": "m"
+      },
+      "variables": [
+        "coefficient",
+        "neq"
+      ],
+      "expression": "coefficient * pow(neq, 1.0/3.0)"
+    },
+
+    "cube_root_squared": {
+      "name": "Cube Root Squared Formula",
+      "description": "Used for certain fragment and hazard calculations.",
+      "units": {
+        "input": "kg",
+        "output": "m"
+      },
+      "variables": [
+        "coefficient",
+        "neq"
+      ],
+      "expression": "coefficient * pow(neq, 2.0/3.0)"
+    },
+
+    "square_root": {
+      "name": "Square Root Formula",
+      "description": "Used where distance scales with square root of NEQ.",
+      "units": {
+        "input": "kg",
+        "output": "m"
+      },
+      "variables": [
+        "coefficient",
+        "neq"
+      ],
+      "expression": "coefficient * sqrt(neq)"
+    },
+
+    "constant_distance": {
+      "name": "Constant Distance",
+      "description": "Fixed distance independent of NEQ.",
+      "units": {
+        "output": "m"
+      },
+      "variables": [
+        "distance"
+      ],
+      "expression": "distance"
+    }
+  }
+}

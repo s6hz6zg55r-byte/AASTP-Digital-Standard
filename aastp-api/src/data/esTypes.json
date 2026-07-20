@@ -1,0 +1,487 @@
+{
+    "schemaVersion": "1.0.0",
+
+    "metadata": {
+        "dataset": "es_types",
+        "title": "ES Types",
+        "description": "This dataset contains exposure site structures and infrastructure used for explosive quantity-distance calculations.",
+        "version": "0.5.0",
+        "source": {
+            "standard": "AASTP-1",
+            "edition": "Edition D Version 1",
+            "chapter": "Part 1, Chapter 3",
+            "para": "Section 1",
+            "lastUpdated": "2026-07-13"
+        }
+    },
+
+    "es_types": [
+
+        {
+            "id": "ES001",
+            "code": "ECM-7BAR",
+            "name": "Earth Covered Magazine - 7 Bar",
+            "structure": "STR001",
+            "construction": {
+                "protectionLevel": "7_bar",
+                "headwall": null,
+                "barricaded": null,
+                "roofType": null
+            },
+            "exposure": null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES002",
+            "code": "ECM-3BAR",
+            "name": "Earth Covered Magazine - 3 Bar",
+            "structure": "STR001",
+            "construction":{
+                "protectionLevel": "3_bar",
+                "headwall": null,
+                "barricaded": null,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES003A",
+            "code": "ECM-UNDEF-HEAD",
+            "name": "Earth Covered Magazine - Undefined - Headwall",
+            "structure": "STR001",
+            "construction":{
+                "protectionLevel": "undefined",
+                "headwall": true,
+                "barricaded": false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES003B",
+            "code": "ECM-UNDEF-BARR",
+            "name": "Earth Covered Magazine - Undefined - Barricade",
+            "structure": "STR001",
+            "construction":{
+                "protectionLevel": "undefined",
+                "headwall": false,
+                "barricaded": true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES003C",
+            "code": "ECM-UNDEF",
+            "name": "Earth Covered Magazine - Undefined",
+            "structure":"STR001",
+            "construction": {
+                "protectionLevel":"undefined",
+                "headwall":false,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES004A",
+            "code": "HWM-PR",
+            "name": "Heavy Walled Magazine - Protective Roof",
+            "structure":"STR002",
+            "construction": {
+                "protectionLevel": null,
+                "headwall": null,
+                "barricaded": null,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES004B",
+            "code": "HWM",
+            "name":"Heavy Walled Magazine - Without Protective Roof",
+            "structure":"STR002",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES005A",
+            "code": "MWM-B",
+            "name": "Medium Walled Magazine - Barricaded",
+            "structure":"STR003",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES005B",
+            "code": "HWM",
+            "name": "Medium Walled Magazine",
+            "structure":"STR003",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 2, Magazine Design"
+            }
+        },
+        {
+            "id": "ES006A",
+            "code": "OS-B",
+            "name":"Light Structure or Open Stack - Barricaded",
+            "structure":"STR004",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded": true,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes": "",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, Annex 1-A"
+            }
+        },
+        {
+            "id": "ES006B",
+            "code": "OS",
+            "name": "Light Structure or Open Stack",
+            "structure":"STR004",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, Annex 1-A"
+            }
+        },
+        {
+            "id": "ES007A",
+            "code": "EW-B-PR",
+            "name": "Explosives Workshop - Barricaded Protective Roof",
+            "structure":"STR005",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.13"
+            }
+        },
+        {
+            "id": "ES007B",
+            "code": "EW-B",
+            "name": "Explosives Workshop - Barricaded",
+            "structure": "STR005",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":true,
+                "roofType": "Light"
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.13"
+            }
+        },
+        {
+            "id":"ES007C",
+            "code": "EW",
+            "name":"Explosives Workshop",
+            "structure": "STR005",
+            "construction": {
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":false,
+                "roofType": null
+            },
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.13"
+            }
+        },
+        {
+            "id": "ES008A",
+            "code": "PTR-LOW",
+            "name": "Low Density Public Traffic Route",
+            "structure":"STR006",
+            "construction": null,
+            "exposure": {
+                "category": "traffic_density",
+                "level": "low"
+            },
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.15"
+            }
+        },
+        {
+            "id": "ES008B",
+            "code": "PTR-MED",
+            "name": "Medium Density Public Traffic Route",
+            "structure":"STR006",
+            "construction":null,
+            "exposure": {
+                "category": "traffic_density",
+                "level": "medium"
+            },
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.15"
+            }
+        },
+       {
+            "id": "ES008C",
+            "code": "PTR-HIGH",
+            "name": "High Density Public Traffic Route",
+            "structure": "STR006",
+            "construction": null,
+            "exposure": {
+                "category": "traffic_density",
+                "level": "high"
+            },
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.15"
+            }
+        },
+       {
+            "id": "ES009",
+            "code": "IB",
+            "name": "Inhabitied Building",
+            "structure": "STR007",
+            "construction":null,
+            "exposure": null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.16"
+            }
+        },
+       {
+            "id": "ES010",
+            "code": "VC",
+            "name": "Vulnerable Construction",
+            "structure": "STR008",
+            "construction":null,
+            "exposure":null,
+            "notes":"",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Part 1, para 1.3.1.15"
+            }
+        },
+       {
+            "id": "ES011A",
+            "code": "SPT-LOW",
+            "name": "Support Staff Office - <20 Personnel",
+            "structure": "STR009",
+            "construction":null,
+            "exposure": {
+                "category": "occupancy",
+                "level": "low"
+            },
+            "notes":"Office, non-explosive workshop or canteen with less than 20 explosive support personnel.",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Annex 1-A"
+            }
+        },
+       {
+            "id": "ES011B",
+            "code": "SPT-HIGH",
+            "name": "Support Staff Office - =>20 Personnel",
+            "structure": "STR009",
+            "construction":null,
+            "exposure": {
+                "category": "occupancy",
+                "level": "high"
+            },
+            "notes":"Office, non-explosive workshop or canteen with 20 or more explosive support personnel.",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Anenx 1-A"
+            }
+        },
+        {
+            "id": "ES012A",
+            "code": "OPG-LOW",
+            "name": "Overhead Power Grid - Minor",
+            "structure": "STR010",
+            "construction":null,
+            "exposure": {
+                "category": "criticality",
+                "level": "low"
+            },
+            "notes":"Supergrid network and associated substations.",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Annex 1-A, entries 27a-27c"
+            }
+        },
+        {
+            "id": "ES012B",
+            "code": "OPG-MED",
+            "name":"Overhead Power Grid - Normal",
+            "structure": "STR010",
+            "construction": null,
+            "exposure": {
+                "category": "criticality",
+                "level": "medium"
+            },
+            "notes": "Normal network and associated substations.",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Annex 1-A, entries 27a-27c"
+            }
+        },
+        {
+            "id": "ES012C",
+            "code": "OPG-HIGH",
+            "name": "Overhead Power Grid - Critical",
+            "structure": "STR010",
+            "construction":null,
+            "exposure": {
+                "category": "criticality",
+                "level": "high"
+            },
+            "notes": "Minor network and associated substations.",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Annex 1-A, entries 27a-27c"
+            }
+        },
+        {
+            "id": "ES013A",
+            "code": "POL-PROT",
+            "name":"POL Facilities inc Pipelines - Protected",
+            "structure": "STR011",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Protective"
+            },
+            "exposure":null,
+            "notes": "Protected or underground",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Chapter 4"
+            }
+        },
+        {
+            "id": "ES013B",
+            "code": "POL",
+            "name": "POL Facilities inc Pipelines - Unprotected",
+            "structure": "STR011",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure": {
+                "category": "criticality",
+                "level": "low"
+            },
+            "notes": "Unprotected, aboveground and non-vital",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Chapter 4"
+            }
+        },
+        {
+            "id": "ES013C",
+            "code": "POL-VITAL",
+            "name": "POL Facilities inc Pipelines - Critical Unprotected",
+            "structure": "STR011",
+            "construction":{
+                "protectionLevel":null,
+                "headwall":null,
+                "barricaded":null,
+                "roofType": "Light"
+            },
+            "exposure": {
+                "category": "criticality",
+                "level": "high"
+            },
+            "notes": "Unprotected, aboveground and vital",
+            "source": {
+                "document": "AASTP-1",
+                "note": "Chapter 4"
+            }
+        }
+    ]
+}

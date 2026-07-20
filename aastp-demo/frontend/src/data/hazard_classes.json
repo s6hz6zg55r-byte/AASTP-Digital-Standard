@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+
+  "hazardClasses": {
+    "1.1": {
+      "name": "Mass Explosion Hazard",
+      "description": "Substances and articles which have a mass explosion hazard.",
+      "effects": [
+        "blast",
+        "primary_fragments",
+        "secondary_fragments"
+      ]
+    },
+
+    "1.2.1": {
+      "name": "Fragment Producing Hazard",
+      "description": "Explosive substances and articles which have a projection hazard producing dangerous fragments.",
+      "effects": [
+        "primary_fragments"
+      ]
+    },
+
+    "1.2.2": {
+      "name": "Fragment Producing Hazard",
+      "description": "Explosive substances and articles which have a projection hazard without significant blast effects.",
+      "effects": [
+        "primary_fragments"
+      ]
+    },
+
+    "1.2.3": {
+      "name": "Fragment Producing Hazard",
+      "description": "Explosive substances and articles which have a projection hazard with limited fragment range.",
+      "effects": [
+        "primary_fragments"
+      ]
+    },
+
+    "1.3": {
+      "name": "Mass Fire Hazard",
+      "description": "Substances and articles which have a mass fire hazard.",
+      "effects": [
+        "thermal",
+        "fire"
+      ]
+    },
+
+    "1.4": {
+      "name": "Minor Explosion Hazard",
+      "description": "Substances and articles which present no significant hazard beyond the package.",
+      "effects": [
+        "local_effects"
+      ]
+    },
+
+    "1.5": {
+      "name": "Very Insensitive Mass Explosion Hazard",
+      "description": "Very insensitive substances having a mass explosion hazard.",
+      "effects": [
+        "blast",
+        "primary_fragments",
+        "secondary_fragments"
+      ]
+    },
+
+    "1.6": {
+      "name": "Extremely Insensitive Articles",
+      "description": "Extremely insensitive articles which do not have a mass explosion hazard.",
+      "effects": [
+        "local_effects"
+      ]
+    }
+  }
+}

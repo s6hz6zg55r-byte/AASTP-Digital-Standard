@@ -1,0 +1,220 @@
+{
+    "schemaVersion": "1.0",
+    "interactionRules": {
+        "INT001": {
+            "id": "INT001",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "table": 1,
+                    "row": 1,
+                    "column": "rear"
+                }
+            },
+
+            "conditions": {
+                "pesType": ["ecm"],
+                "esType": ["1"],
+                "orientation": {
+                    "pes": "rear",
+                    "es": "rear"
+                }
+            },
+
+            "hazardDivisions": {
+                "1.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "NEQ"
+                },
+
+                "1.2.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.2.3": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.6": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                }
+            }
+
+        },
+        "INT002": {
+            "id": "INT002",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "table": 1,
+                    "row": 1,
+                    "column": "side"
+                }
+            },
+
+            "conditions": {
+                "pesType": ["ecm"],
+                "esType": ["1"],
+                "orientation": {
+                    "pes": "side",
+                    "es": "rear"
+                }
+            },
+
+            "hazardDivisions": {
+                "1.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "NEQ"
+                },
+
+                "1.2.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.2.3": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.6": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                }
+            }
+        },
+        "INT003": {
+            "id": "INT003",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "table": 1,
+                    "row": 1,
+                    "column": "front"
+                }
+            },
+
+            "conditions": {
+                "pesType": ["ecm"],
+                "esType": ["1"],
+                "orientation": {
+                    "pes": "front",
+                    "es": "rear"
+                }
+            },
+
+            "hazardDivisions": {
+                "1.1": {
+                    "distanceRule": "BD04",
+                    "inputBasis": "NEQ"
+                },
+
+                "1.2.1": {
+                    "distanceRule": "BD04",
+                    "inputBasis": "MCE"
+                },
+
+                "1.2.3": {
+                    "distanceRule": "BD04",
+                    "inputBasis": "MCE"
+                },
+
+                "1.6": {
+                    "distanceRule": "BD04",
+                    "inputBasis": "MCE"
+                }
+            }
+
+        },
+        "INT004": {
+            "id": "INT004",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "table": 1,
+                    "row": 2,
+                    "column": "rear"
+                }
+            },
+
+            "conditions": {
+                "pesType": ["ecm"],
+                "esType": ["1"],
+                "orientation": {
+                    "pes": "rear",
+                    "es": "side"
+                }
+            },
+
+            "hazardDivisions": {
+                "1.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "NEQ"
+                },
+
+                "1.2.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.2.3": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.6": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                }
+            }
+
+        },
+        "INT005": {
+            "id": "INT005",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "table": 1,
+                    "row": 2,
+                    "column": "side"
+                }
+            },
+
+            "conditions": {
+                "pesType": ["ecm"],
+                "esType": ["1"],
+                "orientation": {
+                    "pes": "side",
+                    "es": "side"
+                }
+            },
+
+            "hazardDivisions": {
+                "1.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "NEQ"
+                },
+
+                "1.2.1": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.2.3": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                },
+
+                "1.6": {
+                    "distanceRule": "BD03",
+                    "inputBasis": "MCE"
+                }
+            }
+
+        }
+
+    }    
+}

@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "1.0.0",
+  
+  "metadata": {
+        "dataset": "effects",
+        "title": "Effects",
+        "description": "This dataset contains information about various effects associated with explosive events.",
+        "version": "0.5.0",
+        "source": {
+            "standard": "AASTP-1",
+            "edition": "Edition D Version 1",
+            "chapter": "Chapter 1",
+            "para": "1.1.1.2.4",
+            "lastUpdated": "2026-07-13"
+        }
+    },
+  
+  "effects": [
+  
+    {
+      "id": "EFF001",
+      "code": "BLAST",
+      "name": "Blast",
+      "description": "Blast effects are associated with the largest possible explosion in the PES.",
+      "category": "blast_effect",
+      "requiresQD": true,
+      "active": true,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "1.1.1.2.4(a)"
+        }
+      }
+    },
+
+    {
+      "id": "EFF002",
+      "code": "DEBFRG",
+      "name": "Debris and Fragments",
+      "description": "Debris and fragmentation effects are hazardous projections from the munition as primary fragments or debris projected from the munition packaging or the building as it breaks up as a rusult of the explosive event.",
+      "category": "fragment_effect",
+      "requiresQD": true,
+      "active": true,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "1.1.1.2.4(b)"
+        }
+      }
+    },
+
+    {
+      "id": "EFF003",
+      "code": "PROG",
+      "name": "Progressive Event",
+      "description": "The progressive event is a series of detonations or lower order reactions of individual rounds progressing over time (sometimes called the popcorn effect).",
+      "category": "fragment_effect",
+      "requiresQD": false,
+      "active": true,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "1.1.1.2.4(c)"
+        }
+      }
+    },
+
+    {
+      "id": "EFF004",
+      "code": "THERM",
+      "name": "Thermal",
+      "description": "The thermal event is the thermal hazard of a device separate from any blast, debris, or fragment effects",
+      "category": "thermal_effect",
+      "requiresQD": true,
+      "active": true,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "1.1.1.2.4(d)"
+        }
+      }
+    },
+
+    {
+      "id": "EFF005",
+      "code": "FIRE",
+      "name": "Fire",
+      "description": "Fire propagation effects",
+      "category": "fire_effect",
+      "requiresQD": false,
+      "active": false,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "Not currently implemented but reserved for future standard versions"
+        }
+      }
+    },
+
+    {
+      "id": "EFF006",
+      "code": "LOCAL",
+      "name": "Local Effects",
+      "description": "Effects confined to immediate package vicinity",
+      "category": "local_effect",
+      "requiresQD": false,
+      "active": false,
+      "source": {
+        "document": "AASTP-1",
+        "version": "Edition D Version 1",
+        "reference": {
+          "section": "Section I",
+          "para": "Not currently implemented but reserved for future standard versions"
+        }
+      }
+    }
+  ]
+}

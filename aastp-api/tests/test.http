@@ -1,0 +1,12 @@
+POST http://localhost:3001/api/calculate
+Content-Type: application/json
+
+{
+  "pesType": "PES001",
+  "esType": "ES001",
+  "pesOrientation": "front",
+  "esOrientation": "rear",
+  "effect": "EFF001",
+  "hazard": "HD001",
+  "neq": 1000
+}
