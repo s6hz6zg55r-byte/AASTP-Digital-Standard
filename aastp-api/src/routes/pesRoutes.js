@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const referenceService = require("../services/referenceService");
+const repositoryService = require("../services/repositoryService");
 
 router.get("/", (req, res) => {
-    res.json(referenceService.getPesTypes());
+    res.json(repositoryService.getPesTypes());
 });
 
 module.exports = router;

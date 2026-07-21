@@ -2,9 +2,9 @@
     "schemaVersion": "1.0.0",
 
     "metadata": {
-        "dataset": "interaction_dimensions",
-        "title": "Interaction Dimensions",
-        "description": "This dataset defines potential PES and ES interaction dimensions.",
+        "dataset": "orientation_types",
+        "title": "Orientation Types",
+        "description": "This dataset defines potential PES and ES interaction orientations.",
         "version": "0.5.0",
         "source": {
             "standard": "AASTP-1",
@@ -16,8 +16,9 @@
     },
   
   
-    "orientationTypes": {
-        "OR001": {
+    "orientationTypes": [
+        {
+            "id": "OR001",
             "name": "Directional",
             "values": [
                 "front",
@@ -26,11 +27,12 @@
             ]
         },
 
-        "OR002": {
+        {
+            "id": "OR002",
             "name": "NonDirectional",
             "values": [
                 "all"
             ]
         }
-    }
+    ]
 }

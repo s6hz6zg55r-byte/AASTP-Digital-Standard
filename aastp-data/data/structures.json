@@ -22,7 +22,7 @@
         "name": "Earth Covered Magazine",
         "category": "explosives_facility",
         "supportedProperties": {
-          "protectionLevel": true,
+          "ecmProtectionRating": true,
           "headwall": true,
           "barricaded": true,
           "roofType": false,
@@ -38,7 +38,7 @@
         "name": "Heavy Walled Magazine",
         "category": "explosives_facility",
         "supportedProperties": {
-          "protectionLevel": false,
+          "ecmProtectionRating": false,
           "headwall": false,
           "barricaded": false,
           "roofType": true,
@@ -54,7 +54,7 @@
         "name": "Medium Walled Magazine",
         "category": "explosives_facility",
         "supportedProperties": {
-          "protectionLevel": false,
+          "ecmProtectionRating": false,
           "headwall": false,
           "barricaded": true,
           "roofType": false,
@@ -70,7 +70,7 @@
         "name": "Open Stack",
         "category": "explosives_facility",
         "supportedProperties": {
-          "protectionLevel": false,
+          "ecmProtectionRating": false,
           "headwall": false,
           "barricaded": true,
           "roofType": false,
@@ -86,7 +86,7 @@
         "name": "Explosives Workshop",
         "category": "personnel_facility",
         "supportedProperties": {
-          "protectionLevel": false,
+          "ecmProtectionRating": false,
           "headwall": false,
           "barricaded": true,
           "roofType": true,
@@ -161,7 +161,7 @@
         "name": "POL Facilities inc. Pipelines",
         "category": "infrastructure",
         "supportedProperties": {
-          "protectionLevel": false,
+          "ecmProtectionRating": false,
           "headwall": false,
           "barricaded": false,
           "roofType": true,

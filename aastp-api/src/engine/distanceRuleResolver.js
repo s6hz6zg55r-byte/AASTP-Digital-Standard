@@ -1,7 +1,5 @@
 const {repository} = require("@aastp/core-data");
 
-//const interactions = repository.getInteractions();
-
 function resolveDistanceRule(
     ruleId,
     neq

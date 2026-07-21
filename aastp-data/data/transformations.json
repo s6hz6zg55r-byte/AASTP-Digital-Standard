@@ -14,17 +14,23 @@
             "para": "Tables 5-9",
             "lastUpdated": "2026-07-13"
         }
+  },
+
+  "transformations": [
+    {
+      "id": "TR001",
+      "name": "round_up_metre",
+      "expression": "ceil(value)"
     },
-
-  "round_up_metre": {
-    "expression": "ceil(value)"
-  },
-
-  "round_down_metre": {
-    "expression": "floor(value)"
-  },
-
-  "minimum": {
-    "expression": "max(value, limit)"
-  }
+    {
+      "id": "TR002",
+      "name": "round_down_metre",
+      "expression": "floor(value)"
+    },
+    {
+      "id": "TR003",
+      "name": "minimum",
+      "expression": "max(value, limit)"
+    }
+  ]
 }

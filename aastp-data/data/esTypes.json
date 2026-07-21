@@ -23,7 +23,7 @@
             "name": "Earth Covered Magazine - 7 Bar",
             "structure": "STR001",
             "construction": {
-                "protectionLevel": "7_bar",
+                "ecmProtectionRating": "PR001",
                 "headwall": null,
                 "barricaded": null,
                 "roofType": null
@@ -41,7 +41,7 @@
             "name": "Earth Covered Magazine - 3 Bar",
             "structure": "STR001",
             "construction":{
-                "protectionLevel": "3_bar",
+                "ecmProtectionRating": "PR002",
                 "headwall": null,
                 "barricaded": null,
                 "roofType": null
@@ -59,7 +59,7 @@
             "name": "Earth Covered Magazine - Undefined - Headwall",
             "structure": "STR001",
             "construction":{
-                "protectionLevel": "undefined",
+                "ecmProtectionRating": "PR003",
                 "headwall": true,
                 "barricaded": false,
                 "roofType": null
@@ -77,7 +77,7 @@
             "name": "Earth Covered Magazine - Undefined - Barricade",
             "structure": "STR001",
             "construction":{
-                "protectionLevel": "undefined",
+                "ecmProtectionRating": "PR003",
                 "headwall": false,
                 "barricaded": true,
                 "roofType": null
@@ -95,7 +95,7 @@
             "name": "Earth Covered Magazine - Undefined",
             "structure":"STR001",
             "construction": {
-                "protectionLevel":"undefined",
+                "ecmProtectionRating":"PR003",
                 "headwall":false,
                 "barricaded":false,
                 "roofType": null
@@ -113,7 +113,7 @@
             "name": "Heavy Walled Magazine - Protective Roof",
             "structure":"STR002",
             "construction": {
-                "protectionLevel": null,
+                "ecmProtectionRating": null,
                 "headwall": null,
                 "barricaded": null,
                 "roofType": "Protective"
@@ -131,7 +131,7 @@
             "name":"Heavy Walled Magazine - Without Protective Roof",
             "structure":"STR002",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":null,
                 "roofType": "Light"
@@ -149,7 +149,7 @@
             "name": "Medium Walled Magazine - Barricaded",
             "structure":"STR003",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":true,
                 "roofType": null
@@ -167,7 +167,7 @@
             "name": "Medium Walled Magazine",
             "structure":"STR003",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":false,
                 "roofType": null
@@ -185,7 +185,7 @@
             "name":"Light Structure or Open Stack - Barricaded",
             "structure":"STR004",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded": true,
                 "roofType": null
@@ -203,7 +203,7 @@
             "name": "Light Structure or Open Stack",
             "structure":"STR004",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":false,
                 "roofType": null
@@ -221,7 +221,7 @@
             "name": "Explosives Workshop - Barricaded Protective Roof",
             "structure":"STR005",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":true,
                 "roofType": "Protective"
@@ -239,7 +239,7 @@
             "name": "Explosives Workshop - Barricaded",
             "structure": "STR005",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":true,
                 "roofType": "Light"
@@ -257,7 +257,7 @@
             "name":"Explosives Workshop",
             "structure": "STR005",
             "construction": {
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":false,
                 "roofType": null
@@ -429,7 +429,7 @@
             "name":"POL Facilities inc Pipelines - Protected",
             "structure": "STR011",
             "construction":{
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":null,
                 "roofType": "Protective"
@@ -447,7 +447,7 @@
             "name": "POL Facilities inc Pipelines - Unprotected",
             "structure": "STR011",
             "construction":{
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":null,
                 "roofType": "Light"
@@ -468,7 +468,7 @@
             "name": "POL Facilities inc Pipelines - Critical Unprotected",
             "structure": "STR011",
             "construction":{
-                "protectionLevel":null,
+                "ecmProtectionRating":null,
                 "headwall":null,
                 "barricaded":null,
                 "roofType": "Light"
