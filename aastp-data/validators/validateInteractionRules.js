@@ -37,14 +37,14 @@ const constraintIds = buildIdSet(constraints.constraints);
 const validStatuses = new Set(["N_A", "NO_QD"]);
 
 
-for (const [ruleKey, rule] of Object.entries(interactions.interactionRules)) {
+for (const rule of interactions.interaction_rules) {
 
-    // Check 1 - Confirm that the Key matches the ID
+    /* Check 1 - Confirm that the Key matches the ID
     if (ruleKey !== rule.id) {
         errors.push(
             `${ruleKey}: key does not match rule id ${rule.id}`
         );
-    }
+    }*/
 
     // Check 2 - Confirm that the PES for the interaction exists
     if (!pesIds.has(rule.conditions.pesType)) {

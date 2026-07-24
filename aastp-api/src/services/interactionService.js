@@ -1,7 +1,7 @@
 const repositoryService = require("./repositoryService");
 
-function find(request) {
-    validateRequest(request);
+function findApplicableInteraction(request) {
+    //validateRequest(request);
 
     const interaction =
         repositoryService.findInteraction(request);
@@ -17,11 +17,16 @@ function find(request) {
 
 function resolve(request) {
 
-    const interaction = find(request);
+    const interaction = findApplicableInteraction(request);
 
     const effectRules =
         interaction.effects[request.effectId];
 
+    console.log({
+    effect: context.effect,
+    effectId: context.effect?.id,
+    availableEffects: Object.keys(interaction.effects)
+});
     if (!effectRules) {
         throw new Error(
             `Effect '${request.effectId}' is not supported by interaction '${interaction.id}'.`
@@ -29,7 +34,7 @@ function resolve(request) {
     }
 
     const engineeringRule =
-        effectRules.find(rule =>
+        effectRules.findApplicableInteraction(rule =>
             rule.hazard === request.hazardId &&
             (
                 !request.protectionLevelId ||
@@ -83,6 +88,7 @@ function buildResolvedInteraction(
     };
 }
 
+/*
 function validateRequest(request) {
 
     if (!request)
@@ -100,8 +106,8 @@ function validateRequest(request) {
     if (!request.hazardId)
         throw new Error("hazardId is required.");
 }
+*/
 
 module.exports = {
-    find,
     resolve
 };

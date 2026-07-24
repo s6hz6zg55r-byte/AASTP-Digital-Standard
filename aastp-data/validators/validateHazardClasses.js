@@ -24,12 +24,12 @@ function validateHazardClasses(repository = loadRepository()) {
     validateDataset(hazardCategories, errors);
 
     validateUniqueIds(
-        hazardCategories.hazardDivisions,
+        hazardCategories.hazard_divisions,
         errors,
         "Hazard Classes"
     );
 
-    for (const hazard of hazardCategories.hazardDivisions) {
+    for (const hazard of hazardCategories.hazard_divisions) {
 
         validateHazardDivision(
             hazard,
@@ -59,14 +59,14 @@ function validateDataset(
             "Missing metadata"
         );
     }
-    if (!Array.isArray(data.hazardDivisions)) {
+    if (!Array.isArray(data.hazard_divisions)) {
         errors.push(
-            "hazardDivisions must be an array"
+            "hazard_divisions must be an array"
         );
     }
-    if (data.hazardDivisions.length === 0) {
+    if (data.hazard_divisions.length === 0) {
         errors.push(
-            "hazardDivisions array cannot be empty"
+            "hazard_divisions array cannot be empty"
         )
     }
 }

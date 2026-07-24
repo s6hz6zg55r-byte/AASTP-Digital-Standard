@@ -1,83 +1,51 @@
 const { repository } = require("@aastp/core-data");
 
+// Single object lookups
+const findFormulaById = createFinder("formulas");
+const findDistanceRuleById = createFinder("distanceRules");
+const findPesTypeById = createFinder("pesTypes");
+const findEsTypeById = createFinder("esTypes");
+const findStructureById = createFinder("structures");
+const findOrientationTypeById = createFinder("orientationTypes");
+const findHazardById = createFinder("hazardCategories");
+const findEffectById = createFinder("effects");
+const findEcmProtectionRatingById = createFinder("ecmProtectionRatings");
+
+// Collection returns
 function getPesTypes() {
-    return repository.getPESTypes();
+    return repository.getCollection("pesTypes");
 }
-
 function getEsTypes() {
-    return repository.getESTypes();
+    return repository.getCollection("esTypes");
+}
+function getHazardCategories() {
+    return repository.getCollection("hazardCategories");
+}
+function getOrientationTypes() {
+    return repository.getCollection("orientationTypes");
+}
+function getEcmProtectionRatings() {
+    return repository.getCollectin("ecmProtectionRatings");
 }
 
-function findFormulaById(id) {
-    return repository.findById(
-        "formulas", 
-        id
-    );
-}
 
+
+// Domain queries
 function findInteraction(criteria) {
     return repository.findInteraction(criteria);
 }
 
-function findDistanceRuleById(id) {
-    return repository.findById(
-        "distanceRules",
-        id
-    );
-}
-
-function findPesTypeById(id) {
-    return repository.findById(
-        "pesTypes",
-        id
-    )
-}
-
-function findEsTypeById(id) {
-    return repository.findById(
-        "esTypes",
-        id
-    )
-}
-
-function findStructureById(id) {
-    return repository.findById(
-        "structures",
-        id
-    )
-}
-
-function findOrientationTypeById(id) {
-    return repository.findById(
-        "orientationTypes",
-        id
-    )
-}
-
-function findHazardById(id) {
-    return repository.findById(
-        "hazardCategories",
-        id
-    )
-}
-
-function findEffectById(id) {
-    return repository.findById(
-        "effects",
-        id
-    )
-}
-
-function findEcmProtectionRatingById(id) {
-    return repository.findById(
-        "ecmProtectionRatings",
-        id
-    )
+// Helper function
+function createFinder(datasetName) {
+    return id => repository.findById(datasetName, id);
 }
 
 module.exports = {
     getPesTypes,
     getEsTypes,
+    getHazardCategories,
+    getOrientationTypes,
+    getEcmProtectionRatings,
     findFormulaById,
     findInteraction,
     findDistanceRuleById,

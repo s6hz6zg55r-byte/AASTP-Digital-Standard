@@ -57,7 +57,9 @@ function loadLookupMaps(structures, dimensions) {
         structures.structures.map(s => [s.id,s])
     );
 
-    const orientationTypeMap = dimensions.orientationTypes;
+    const orientationTypeMap = new Map(
+        dimensions.orientation_types.map(o => [o.id, o])
+    );
 
     return{
         structureMap,
@@ -100,10 +102,7 @@ function buildActualSignatures(interactions) {
     const duplicates = new Map();
     const errors = [];
 
-    for (const [ruleKey, rule] of Object.entries(
-         interactions.interactionRules)
-        ) {
-
+    for (const rule of interactions.interaction_rules) {
         const signature = [
             rule.conditions.pesType,
             rule.conditions.esType,
@@ -150,8 +149,7 @@ function getOrientations(
         return [];
     }
 
-    const orientationType =
-        orientationTypeMap[structure.orientationType];
+    const orientationType = orientationTypeMap.get(structure.orientationType);
 
     if (!orientationType) {
         return [];
@@ -238,11 +236,11 @@ if (result.unexpected.length > 0) {
 }
 
 console.log(
-    `Expected signatures: ${result.expectedSignatures.size}`
+    `Expected signatures: ${result.stats.expected}`
 );
 
 console.log(
-    `Actual signatures: ${result.actualSignatures.size}`
+    `Actual signatures: ${result.stats.actual}`
 );
 
 console.log(

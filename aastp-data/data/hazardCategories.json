@@ -15,7 +15,7 @@
         }
     },
 
-  "hazardDivisions": [
+  "hazard_divisions": [
     {
       "id": "HD001",
       "code": "1.1",

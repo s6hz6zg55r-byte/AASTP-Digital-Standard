@@ -128,3 +128,11 @@ I would make one small addition that reflects the vision you've described for th
 > The AASTP Project aims to provide an open, traceable and standards-compliant digital implementation of the AASTP explosive safety regulations. By separating the knowledge base from its software implementations, the project enables governments, software developers and standards custodians to build interoperable applications from a common, authoritative source of truth.
 
 That statement explains not just *what* the repository contains, but *why* it exists. I think it sets the tone for the entire project and will help future contributors understand the broader objective beyond the code itself.
+
+| Layer | Convention | Example |
+|--------|------------|---------|
+| JSON data | `snake_case` | `interaction_rules`, `distance_rule`, `hazard_category` |
+| JavaScript | `camelCase` | `interactionRules`, `distanceRule`, `hazardCategory` |
+| Classes | `PascalCase` | `InteractionService`, `AssessmentResolver` |
+| REST endpoints | `kebab-case` | `/distance-rules`, `/hazard-categories` |
+| JSON IDs | UPPERCASE with prefixes | `INT001`, `DR003`, `HC002` |

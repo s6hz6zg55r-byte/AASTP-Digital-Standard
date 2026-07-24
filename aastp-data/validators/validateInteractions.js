@@ -4,10 +4,10 @@ function validateInteractions(repository = loadRepository()) {
   const {interactions} = repository;
   const errors = [];
   const warnings = [];
-  const interactionRules = interactions.interactionRules;
+  const interactionRules = interactions.interaction_rules;
 
-  Object.entries(interactionRules).forEach(
-    ([ruleKey, rule]) => validateInteraction(ruleKey, rule, errors, warnings)
+  interactionRules.forEach(rule =>
+    validateInteraction(rule, errors, warnings)
   );
 
   validateDuplicateIds(interactionRules);
@@ -20,13 +20,15 @@ function validateInteractions(repository = loadRepository()) {
   };
 }
 
-function validateInteraction(ruleKey, rule, errors, warnings) {
+function validateInteraction(rule, errors, warnings) {
+
+  const ruleId = rule.id;
   
-  validateRequiredFields(ruleKey, rule, errors, warnings);
+  validateRequiredFields(ruleId, rule, errors, warnings);
 
-  validateConditions(ruleKey, rule, errors, warnings);
+  validateConditions(ruleId, rule, errors, warnings);
 
-  validateEffects(ruleKey, rule, errors, warnings);
+  validateEffects(ruleId, rule, errors, warnings);
 
 }
 
@@ -189,7 +191,7 @@ function validateDuplicateIds(interactionRules) {
 
   const ids = new Set();
 
-  Object.entries(interactionRules).forEach(
+  for (const rule of interactionRules) (
     ([ruleKey, rule]) => {
 
       if (!rule.id) return;
@@ -211,7 +213,7 @@ function validateDuplicateConditions(interactionRules) {
 
   const conditionMap = new Map();
 
-  Object.entries(interactionRules).forEach(
+  for (const rule of interactionRules) (
     ([ruleKey, rule]) => {
 
       if (!rule.conditions) return;
@@ -235,7 +237,7 @@ function validateDuplicateConditions(interactionRules) {
 
         conditionMap.set(
           signature,
-          ruleKey
+          rule.id
         );
       }
     }

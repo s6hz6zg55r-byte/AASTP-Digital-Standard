@@ -8,7 +8,7 @@ const esTypes = loadJson("esTypes.json");
 
 const structures = loadJson("structures.json");
 
-const interactionDimensions = loadJson("interactionDimensions.json");
+const interactionDimensions = loadJson("orientationTypes.json");
 
 const interactionRules = loadJson("interactions.json");
 
@@ -54,11 +54,11 @@ const effectIds = new Set(
 );
 
 const hazardIds = new Set(
-  hazardCategories.hazardDivisions.map(h => h.id)
+  hazardCategories.hazard_divisions.map(h => h.id)
 );
 
 const distanceRuleIds = new Set(
-  distanceRules.distanceRules.map(r => r.id)
+  distanceRules.distance_rules.map(r => r.id)
 );
 
 const protectionLevelIds = new Set(
@@ -70,7 +70,7 @@ const constraintIds = new Set(
 );
 
 const orientationTypeIds = new Set(
-  Object.keys(interactionDimensions.orientationTypes)
+  Object.keys(interactionDimensions.orientation_types)
 );
 
 /* --------------------------------------------------
@@ -230,12 +230,12 @@ for (const interaction of Object.values(interactionRules.interactionRules)) {
   if (!pesStructure || !esStructure) continue;
 
   const pesOrientationType =
-    interactionDimensions.orientationTypes[
+    interactionDimensions.orientation_types[
       pesStructure.orientationType
     ];
 
   const esOrientationType =
-    interactionDimensions.orientationTypes[
+    interactionDimensions.orientation_types[
       esStructure.orientationType
     ];
 

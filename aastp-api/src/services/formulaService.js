@@ -14,18 +14,18 @@
 
 const repositoryService = require("./repositoryService");
 
-function resolve(interactionDecision) {
+function resolve(resolvedBranch) {
 
-    if (!interactionDecision) {
+    if (!resolvedBranch) {
         throw new Error("InteractionDecision is required.");
     }
 
-    if (!interactionDecision.formulaId) {
+    if (!resolvedBranch.formulaId) {
         throw new Error("InteractionDecision does not contain a formulaId.");
     }
 
-    const formula = repositoryService.getFormula(
-        interactionDecision.formulaId
+    const formula = repositoryService.findFormulaById(
+        resolvedBranch.formulaId
     );
 
     if (!formula) {

@@ -15,7 +15,7 @@
         }
     },
 
-    "ecmProtectionRatings": [
+    "ecm_protection_ratings": [
         {
             "id": "PR001",
             "code": "7BAR",

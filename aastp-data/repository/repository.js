@@ -8,11 +8,11 @@ const DATASETS = {
     },
     distanceRules: {
         file: "distanceRules.json",
-        collection: "distanceRules"
+        collection: "distance_rules"
     },
     ecmProtectionRatings: {
         file: "ecmProtectionRatings.json",
-        collection: "ecmProtectionRatings"
+        collection: "ecm_protection_ratings"
     },
     effects: {
         file: "effects.json",
@@ -28,15 +28,15 @@ const DATASETS = {
     },
     hazardCategories: {
         file: "hazardCategories.json",
-        collection: "hazardDivisions"
+        collection: "hazard_divisions"
     },
     orientationTypes: {
         file: "orientationTypes.json",
-        collection: "orientationTypes"
+        collection: "orientation_types"
     },
     interactions: {
         file: "interactions.json",
-        collection: "interactionrules"
+        collection: "interaction_rules"
     },
     pesTypes: {
         file: "pesTypes.json",
@@ -57,11 +57,18 @@ const DATASETS = {
     
 };
 
-function getDataset(filename) {
-    if (!cache[filename]) {
-        cache[filename] = loadJson(filename);
+function getDataset(name) {
+
+    const config = DATASETS[name];
+
+    if(!config) {
+        throw new Error(`Unknown dataset '${name}'`);
     }
-    return cache[filename];
+
+    if (!cache[name]) {
+        cache[name] = loadJson(config.file);
+    }
+    return cache[name];
 }
 
 function getAvailableDatasets() {
@@ -69,13 +76,13 @@ function getAvailableDatasets() {
 }
 
 function findById(datasetName, id) {
-
+    
     const config = DATASETS[datasetName];
     if (!config) {
         throw new Error(`Unknown dataset '${datasetName}'`);
     }
 
-    const dataset = getDataset(config.file);
+    const dataset = getDataset(datasetName);
 
     const collection = dataset[config.collection];
 
@@ -86,87 +93,92 @@ function findById(datasetName, id) {
     return collection.find(item => item.id === id) || null;
 }
 
+function find(datasetName, predicate) {
+    const collection = getCollection(datasetName);
+
+    const items = Array.isArray(collection)
+        ? collection
+        : Object.values(collection);
+
+    return items.find(predicate) ?? null;
+}
+
 function get(name) {
 
-    const filename = DATASETS[name];
+    return getDataset(name);
+}
 
-    if (!filename) {
-        throw new Error(`Unknown dataset '${name}'`);
-    }
+function getCollection(name) {
 
-    return getDataset(filename);
+    const config = DATASETS[name];
+
+    const dataset = getDataset(name);
+
+    return dataset[config.collection];
 }
 
 function findInteraction(criteria) {
 
-    const dataset = getDataset("interactions.json");
+    return find(
+    "interactions",
+    interaction =>
+        interaction.conditions.pesType === criteria.pesType.id &&
+        interaction.conditions.esType === criteria.esType.id
+    );
 
-    // Convert the object into an array suitable for searching through interactions
-    const interactions = Object.values(dataset.interactionRules);
-
-    return interactions.find(interaction => {
-
-        const conditions = interaction.conditions;
-
-        return (
-            conditions.pesType === criteria.pesType &&
-            conditions.esType === criteria.esType
-        );
-
-    }) || null;
 }
 
 module.exports = {
     getDistanceRules() {
-        return getDataset("distanceRules.json");
+        return get("distance_rules");
     },
 
     getEffects() {
-        return getDataset("effects.json");
+        return get("effects");
     },
 
     getHazardCategories() {
-        return getDataset("hazardCategories.json");
+        return get("hazard_categories");
     },
 
     getESTypes() {
-        return getDataset("esTypes.json");
+        return get("es_types");
     },
 
     getPESTypes() {
-        return getDataset("pesTypes.json");
+        return get("pes_types");
     },
 
     getFormulas() {
-        return getDataset("formulas.json");
+        return get("formulas");
     },
 
     getInteractions() {
-        return getDataset("interactions.json");
+        return get("interactions");
     },
 
     getConstraints() {
-        return getDataset("constraints.json");
+        return get("constraints");
     },
 
     getProtectionLevels() {
-        return getDataset("protectionLevels.json");
+        return get("protection_levels");
     },
 
     getOrientationTypes() {
-        return getDataset("orientationTypes.json");
+        return get("orientation_types");
     },
 
     getStructures() {
-        return getDataset("structures.json");
+        return get("structures");
     },
 
     getTransformations() {
-        return getDataset("transformations.json");
+        return get("transformations");
     },
 
     getEcmProtectionRatings() {
-        return getDataset("ecmProtectionRatings.json");
+        return get("ecm_protection_ratings");
     },
 
     findById,

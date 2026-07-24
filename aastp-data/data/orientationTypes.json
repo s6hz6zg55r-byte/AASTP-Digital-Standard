@@ -16,7 +16,7 @@
     },
   
   
-    "orientationTypes": [
+    "orientation_types": [
         {
             "id": "OR001",
             "name": "Directional",

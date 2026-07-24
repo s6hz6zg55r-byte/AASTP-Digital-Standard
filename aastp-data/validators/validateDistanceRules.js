@@ -33,7 +33,7 @@ function validateDistanceRules(repository = loadRepository()) {
         formulas
     } = repository;
     const validFormulas = buildIdSet(formulas.formulas, "formulas");
-    const rules = distanceRules.distanceRules;
+    const rules = distanceRules.distance_rules;
     
     if (!validateRulesExist(rules, errors)) {
         return {
@@ -81,7 +81,7 @@ function validateDistanceRules(repository = loadRepository()) {
 // Validation Helper. This function confirms that the rules actually exist. Checked
 function validateRulesExist(rules, errors) {
     if (!rules) {
-        errors.push("Missing distanceRules object");
+        errors.push("Missing distance_rules object");
         return false;
     }
     return true;

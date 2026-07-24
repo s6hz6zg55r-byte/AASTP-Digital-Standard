@@ -15,7 +15,7 @@
         }
     },
 
-    "distanceRules": [
+    "distance_rules": [
     {
         "id": "BD01",
         "name": "Blast Distance 1",

@@ -1,3 +1,21 @@
+// ======================================================
+// Valid Assessment Request
+//
+// Required:
+//
+// pesType         String
+// esType          String
+// hazardId        String
+// effectId        String
+// pesOrientation  String
+// esOrientation   String
+//
+// ONE of:
+//
+// neq             Number (>0)
+// distance        Number (>0)
+//
+// ======================================================
 const validationService = require("../src/services/validationService");
 
 const request = {
@@ -8,7 +26,8 @@ const request = {
     hazardId: "HD001",
     effectId: "EFF001",
 
-    neq: 1000,
+    distance: 1000,
+    //neq: 1000,
 
     pesOrientation: "all",
     esOrientation: "front"

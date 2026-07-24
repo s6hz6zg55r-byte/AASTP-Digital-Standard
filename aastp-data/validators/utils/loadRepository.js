@@ -14,7 +14,7 @@ function loadRepository() {
         esTypes: loadJson("esTypes.json"),
         structures: loadJson("structures.json"),
         hazardCategories: loadJson("hazardCategories.json"),
-        interactionDimensions: loadJson("interactionDimensions.json"),
+        interactionDimensions: loadJson("orientationTypes.json"),
 
         //Formula engine
         formulas: loadJson("formulas.json"),
