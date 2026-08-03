@@ -1,17 +1,33 @@
-const { repository } = require("@aastp/core-data");
+import repository from "./repository.js";
 
 // Single object lookups
+
 const findFormulaById = createFinder("formulas");
+
 const findDistanceRuleById = createFinder("distanceRules");
+
 const findPesTypeById = createFinder("pesTypes");
+
 const findEsTypeById = createFinder("esTypes");
+
 const findStructureById = createFinder("structures");
+
 const findOrientationTypeById = createFinder("orientationTypes");
+
 const findHazardById = createFinder("hazardCategories");
+
 const findEffectById = createFinder("effects");
+
 const findEcmProtectionRatingById = createFinder("ecmProtectionRatings");
 
+const findInteractionById = createFinder("interactions");
+
+const findProtectionLevelById = createFinder("protectionLevels");
+
+const findConstraintById = createFinder("constraints");
+
 // Collection returns
+
 function getPesTypes() {
     return repository.getCollection("pesTypes");
 }
@@ -25,10 +41,8 @@ function getOrientationTypes() {
     return repository.getCollection("orientationTypes");
 }
 function getEcmProtectionRatings() {
-    return repository.getCollectin("ecmProtectionRatings");
+    return repository.getCollection("ecmProtectionRatings");
 }
-
-
 
 // Domain queries
 function findInteraction(criteria) {
@@ -40,7 +54,7 @@ function createFinder(datasetName) {
     return id => repository.findById(datasetName, id);
 }
 
-module.exports = {
+export default {
     getPesTypes,
     getEsTypes,
     getHazardCategories,
@@ -55,5 +69,8 @@ module.exports = {
     findOrientationTypeById,
     findHazardById,
     findEffectById,
-    findEcmProtectionRatingById
+    findEcmProtectionRatingById,
+    findInteractionById,
+    findProtectionLevelById,
+    findConstraintById
 };

@@ -1,9 +1,9 @@
-const repository = require("./repositoryService");
+import { repositoryService } from "@aastp/core-data";
+
 const fields = [
     "pesType",
     "esType",
     "hazardId",
-    "effectId",
     "pesOrientation",
     "esOrientation"
 ];
@@ -12,214 +12,275 @@ class ValidationService {
 
     validate(request) {
 
-        const context = {};
-
-        this.validateRequiredFields(request);
-
-        this.validateFieldTypes(request);
-
-        this.validateEmptyStrings(request);
-
-        this.validateAssessmentModel(request, context);
-
-        this.validateNumericValues(request, context);
-
-        //----------------------------------
-        // Validation complete
-        //----------------------------------
-        
-        this.resolveReferences(request, context);
-
-        this.resolveStructures(context);
-
-        this.resolveOrientationTypes(context);
-
-        this.validateOrientationSelections(request, context);
-       
-        return {
+        const context = {
             request,
-            context
+            resolvedEntities: {},
+            interaction: null,
+            assessments: [],
+            governingAssessment: null
         };
+
+        const result = {
+            valid: true,
+            errors: []
+        };
+
+        this.validateRequiredFields(request, result);
+
+        this.validateFieldTypes(request, result);
+
+        this.validateEmptyStrings(request, result);
+
+        this.validateAssessmentModel(request, context, result);
+
+        this.validateNumericValues(request, context, result);
+
+         // This breaks out of developing the scenario context if the data has been assessed as invalid
+        if (result.errors.length > 0) {
+            result.valid = false;
+            result.request = request;
+            result.context = context;
+            
+            return result;      
+        }
+
+        this.buildContext(request, context, result);
+
+        // Set result.valid to false if there is one or more errors
+        result.valid = result.errors.length === 0;
+
+        result.request = request;
+        result.context = context;
+        result.context.request = request;
+       
+        return  result;
+    }
+
+    buildContext(request, context, result) {
+
+        this.resolveReferences(request, context, result);
+
+        if (result.errors.length > 0) {
+            return;
+        }
+
+        this.resolveStructures(context, result);
+
+        if (result.errors.length > 0) {
+            return;
+        }
+
+        this.resolveOrientationTypes(context, result);
+
+        this.validateOrientationSelections(request, context, result);
 
     }
 
-    validateRequiredFields(request) {
+    validateRequiredFields(request, result) {
         for (const field of fields) {
             if (
                 request[field] === undefined ||
                 request[field] === null
             ) {
-                throw new Error(`Missing required field '${field}'`);
+                this.addError(result, field, "MISSING_FIELD", `Missing required field '${field}'`);
             }
         }
     }
 
-    validateFieldTypes(request) {
+    validateFieldTypes(request, result) {
         for (const field of fields) {
-            if (typeof request[field] !== "string") {
-                throw new Error(`'${field}' must be a string`);
+            if (
+                request[field] !== undefined &&
+                request[field] !== null &&
+                typeof request[field] !== "string"
+            ) {
+                this.addError(result, field, "INCORRECT_FIELD_TYPE", `Field '${field}' must be a string`);
             }
         }
     }
 
-    validateEmptyStrings(request) {
+    validateEmptyStrings(request, result) {
         for (const field of fields) {
-            if (request[field].trim() === "") {
-                throw new Error (`'${field}' cannot be empty`);
+            if (typeof request[field] === "string" &&
+                request[field].trim() === "") {
+                this.addError(result, field, "FIELD_EMPTY", `'${field}' cannot be empty`);
             }
         }
     }
 
     // Confirm that either NEQ or Distance has been given and determine the calculation model to be used
-    validateAssessmentModel(request, context) {
+    validateAssessmentModel(request, context, result) {
         const hasNeq = request.neq !== undefined && request.neq !== null;
         const hasDistance = request.distance !== undefined && request.distance !== null;
 
-        if (hasNeq === hasDistance) {
-            throw new Error(
-                "Specify either 'neq' or 'distance', but not both."
-            );
+        if (hasNeq && hasDistance) {
+            this.addError(result, "neq", "BOTH_NEQ_AND_DISTANCE", "Both NEQ and Distance have been given");
+        }
+        if (!hasNeq && !hasDistance) {
+            this.addError(result, "neq", "NEQ_OR_DISTANE_REQUIRED", "Neither NEQ and Distance have been given");
         }
         if (hasNeq && typeof request.neq !== "number") {
-            throw new Error(
-                "NEQ must be a number"
-            );
+            this.addError(result, "neq", "NEQ_NUMBER", "NEQ must be a number");
         }
         if (hasDistance && typeof request.distance !== "number") {
-            throw new Error(
-                "Distance must be a number"
-            );
+            this.addError(result, "distance", "DISTANCE_NUMBER", "Distance must be a number");
         }
-        if (hasNeq) { context.mode = "FORWARD" } 
-        else { context.mode = "REVERSE" }
+        if (hasNeq) { context.resolvedEntities.mode = "FORWARD" } 
+        else { context.resolvedEntities.mode = "REVERSE" }
     }
 
     // Confirm that numbers are positive and greater than 0
-    validateNumericValues(request, context) {
-        switch (context.mode) {
+    validateNumericValues(request, context, result) {
+        switch (context.resolvedEntities.mode) {
             case "FORWARD":
                 if (request.neq <= 0) {
-                    throw new Error(
-                        "NEQ must be greater than zero"
-                    );
+                    this.addError(result, "neq", "NEQ_INVALID", "NEQ must be greater than zero");
                 }
             break;
 
             case "REVERSE":
                 if (request.distance <= 0) {
-                    throw new Error(
-                        "Distance must be greater than zero"
-                    );
+                    this.addError(result, "distance", "DISTANCE_INVALID", "Distance must be greater than zero");
                 };
             break;
             default:
-                throw new Error (
-                    `Unknown assessment mode '${context.mode}'`
-                );
+                this.addError(result, "neq", "ASSESSMENT_MODE", `Unknown assessment mode '${context.resolvedEntities.mode}'`);
         }
     }
 
+
+
     // Confirm that the objects referenced in the request actually exist
-    resolveReferences(request, context) {
-        context.pesType =
+    resolveReferences(request, context, result) {
+        context.resolvedEntities.pesType =
             this.resolve(
-                repository.findPesTypeById(request.pesType),
-                `Unknown PES Type '${request.pesType}'`
+                "pesType",
+                repositoryService.findPesTypeById(request.pesType),
+                "UNKNOWN_PES",
+                `Unknown PES Type '${request.pesType}'`,
+                result
             );
 
-        context.esType =
+        context.resolvedEntities.esType =
             this.resolve(
-                repository.findEsTypeById(request.esType),
-                `Unknown ES Type '${request.esType}'`
+                "esType",
+                repositoryService.findEsTypeById(request.esType),
+                "UNKNOWN_ES",
+                `Unknown ES Type '${request.esType}'`,
+                result
             );
 
 
-        context.hazard =
+        context.resolvedEntities.hazard =
             this.resolve(
-                repository.findHazardById(request.hazardId),
-                `Unknown Hazard '${request.hazardId}'`
-            );
-
-
-        context.effect =
-            this.resolve(
-                repository.findEffectById(request.effectId),
-                `Unknown Effect '${request.effectId}'`
+                "hazardId",
+                repositoryService.findHazardById(request.hazardId),
+                "UNKNOWN_HAZARD",
+                `Unknown Hazard '${request.hazardId}'`,
+                result
             );
 
     }
 
     // Confirm that the structures for the PES and ES exist
-    resolveStructures(context) {
-        context.pesStructure =
+    resolveStructures(context, result) {
+        context.resolvedEntities.pesStructure =
             this.resolve(
-                repository.findStructureById(context.pesType.structure),
-                `Unknown Structure '${context.pesType.structure}'`
+                "pesType.structure",
+                repositoryService.findStructureById(context.resolvedEntities.pesType.structure),
+                "UNKNOWN_STRUCTURE",
+                `Unknown Structure '${context.resolvedEntities.pesType.structure}'`,
+                result
             );
 
-        context.esStructure =
+        context.resolvedEntities.esStructure =
             this.resolve(
-                repository.findStructureById(context.esType.structure),
-                `Unknown Structure '${context.esType.structure}'`
+                "esType.structure",
+                repositoryService.findStructureById(context.resolvedEntities.esType.structure),
+                "UNKNOWN_STRUCTURE",
+                `Unknown Structure '${context.resolvedEntities.esType.structure}'`,
+                result
             );
 
     }
 
-    resolveOrientationTypes(context) {
-        context.pesOrientationType = this.resolve(
-            repository.findOrientationTypeById(
-                context.pesStructure.orientationType
+    resolveOrientationTypes(context, result) {
+        context.resolvedEntities.pesOrientationType = this.resolve(
+            "pesStructure.orientationType",
+            repositoryService.findOrientationTypeById(
+                context.resolvedEntities.pesStructure.orientationType,
+                result
             ),
-            "Unknown PES orientation type"
+            "UNKNOWN_ORIENTATION_TYPE",
+            "Unknown PES orientation type",
+            result
         );
-         context.esOrientationType = this.resolve(
-            repository.findOrientationTypeById(
-                context.esStructure.orientationType
+         context.resolvedEntities.esOrientationType = this.resolve(
+            "esStructure.orientationType",
+            repositoryService.findOrientationTypeById(
+                context.resolvedEntities.esStructure.orientationType,
+                result
             ),
-            "Unknown ES orientation type"
+            "UNKNOWN_ORIENTATION_TYPE",
+            "Unknown ES orientation type",
+            result
         );
     }
 
-    validateOrientationSelections(request, context) {
+    validateOrientationSelections(request, context, result) {
         this.validateOrientation(
             "PES",
             request.pesOrientation,
-            context.pesOrientationType
+            context.resolvedEntities.pesOrientationType,
+            result
         );
 
         this.validateOrientation(
             "ES",
             request.esOrientation,
-            context.esOrientationType
+            context.resolvedEntities.esOrientationType,
+            result
         );
     }
 
-    validateOrientation(site, orientation, definition) {
+    validateOrientation(site, orientation, definition, result) {
+        
+        if (!definition) {
+            return;
+        }
+        
         if (
             !definition.values.includes(orientation)
         ) {
-
-            throw new Error(
-
-                `${site} orientation '${orientation}' is invalid. ` +
-                `Valid values are ${definition.values.join(", ")}`
-
-            );
-
+            const message = `${site} orientation '${orientation}' is invalid. ` +
+                            `Valid values are ${definition.values.join(", ")}`
+            this.addError(result, site, "ORIENTATION_INVALID", message)
         }
 
     }
 
-    resolve(object, message) {
-
+    resolve(field, object, code, message, result) {
         if (!object) {
-            throw new Error(message);
+            this.addError(
+                result, 
+                field, 
+                code,
+                message
+            );
+            return null;
         }
-
         return object;
-
     }
 
+    addError(result, field, code, message) {
+
+        result.errors.push({
+            field,
+            code,
+            message
+        });
+    }
 }
 
-module.exports = new ValidationService();
+//module.exports = new ValidationService();
+export default new ValidationService();

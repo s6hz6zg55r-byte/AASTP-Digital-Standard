@@ -1,9 +1,9 @@
-const repository = require("./repository/repository")
+import packageJson from "./package.json" with { type: "json" };
 
-module.exports = { 
-    repository,
-    metadata: {
-        version: require("./package.json").version
-    } 
+export { default as repository } from "./repository/repository.js";
 
+export { default as repositoryService } from "./repository/repositoryService.js";
+
+export const metadata = {
+    version: packageJson.version
 };

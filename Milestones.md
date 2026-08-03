@@ -463,3 +463,78 @@ Once the core API is stable, I'd consider expanding into capabilities that reinf
 ## My recommendation
 
 One thing I'd add to this roadmap is a milestone **before** writing many endpoints: define the API contract in detail. That means writing down every endpoint, request schema, response schema, error code, and example payload before implementing them. Since you've already invested heavily in robust JSON schemas and a modular rule engine, this specification will become the blueprint for both the implementation and future client applications like the React demonstrator and Excel add-in. It will also make it much easier to keep the API stable as the underlying knowledge base evolves.
+
+
+Context
+   │
+   ▼
+InteractionService
+   │
+   ▼
+context.interaction
+   │
+   ▼
+DistanceRuleService
+   │
+   ▼
+context.distanceRule
+   │
+   ▼
+BranchResolverService
+   │
+   ▼
+context.branch
+   │
+   ▼
+FormulaService
+   │
+   ▼
+context.formula
+   │
+   ▼
+CalculationService
+   │
+   ▼
+Result
+
+context = {
+
+    request,
+
+    mode,
+
+    pesType,
+
+    esType,
+
+    hazard,
+
+    effect,
+
+    interaction,
+
+    distanceRule,
+
+    branch,
+
+    formula,
+
+    calculation,
+
+    transformedResult,
+
+    traceability
+}
+
+Result
+ ├── valid
+ ├── errors
+ ├── request
+ └── context
+        ├── request
+        ├── interaction
+        ├── distanceRule
+        ├── branch
+        ├── formula
+        ├── calculation
+        └── ...

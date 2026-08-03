@@ -118,6 +118,7 @@
       "description": "Less hazardous HD 1.3 items and substances which present a fire hazard but are not classified as propellant explosives.",
       "parentDivision": "1.3",
       "type":"storage_subdivision",
+      "active": true,
       "source": {
         "document": "AASTP-1",
         "paragraph": "Derived from Part 1, Chapter 1, Table 1 and QD framework."

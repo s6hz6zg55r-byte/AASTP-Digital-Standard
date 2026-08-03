@@ -1,22 +1,41 @@
 {
     "name": "@aastp/api",
     "version": "1.0.0",
-    "description": "",
+    "description": "The AASTP API provides a REST interface to the AASTP knowledge engine.",
     "main": "index.js",
     "scripts": {
-      "start": "node src/server.js",
-      "dev": "nodemon src/server.js"
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js",
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+        "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest tests/unit",
+        "test:integration": "NODE_OPTIONS=--experimental-vm-modules jest tests/integration",
+        "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+        "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "type": "commonjs",
+    "type": "module",
     "dependencies": {
-      "cors": "^2.8.6",
-      "express": "^5.2.1",
-      "@aastp/core-data": "*"
+        "@aastp/core-data": "*",
+        "cors": "^2.8.6",
+        "express": "^5.2.1",
+        "mathjs": "^15.2.0"
     },
     "devDependencies": {
-      "nodemon": "^3.1.14"
+        "jest": "^30.4.2",
+        "nodemon": "^3.1.14"
+    },
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "imports": {
+        "#services/*": "./src/services/*.js",
+        "#resolvers/*": "./src/resolvers/*.js",
+        "#engines/*": "./src/engines/*.js",
+        "#evaluators/*": "./src/evaluators/*.js",
+        "#assessments/*": "./src/services/assessments/*.js",
+        "#api/*": "./src/api/*.js"
     }
 }

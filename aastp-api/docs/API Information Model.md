@@ -102,3 +102,52 @@ PesTypeList
 EsTypeList
 ...
 
+src/
+│
+├── data/
+│   ├── hazards.json
+│   ├── distanceRules.json
+│   ├── ...
+│
+├── repositories/
+│   ├── repository.js
+│   └── repositoryService.js
+│
+├── resolvers/
+│   ├── assessmentResolver.js
+│   ├── referenceResolver.js
+│   ├── branchResolver.js
+│   ├── formulaResolver.js
+│   ├── transformationResolver.js
+│   ├── calculationResolver.js
+│   └── ...
+│
+├── validators/
+│   ├── validateDataset.js
+│   ├── validateDistanceRules.js
+│   └── ...
+│
+├── engines/
+│   ├── formulaEngine.js
+│   ├── transformationEngine.js
+│   └── expressionEngine.js
+│
+├── api/
+│   ├── routes/
+│   ├── controllers/
+│   └── middleware/
+│
+├── models/
+│
+├── utils/
+│
+└── index.js
+
+
+const interactionService = require("@services/interactionService");
+const referenceResolver = require("@resolvers/referenceResolver");
+const formulaEngine = require("@engines/formulaEngine");
+const calculateController = require("@api/controllers/calculateController");
+
+const repositoryService = require("@data/repositoryService");
+const repository = require("@data/repository");

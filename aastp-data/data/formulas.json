@@ -22,14 +22,29 @@
       "code": "CUBE_ROOT",
       "name": "Cube Root Distance Formula",
       "description": "Standard explosive quantity-distance relationship.",
-      "solvable": true,
-      "units": {
-        "input": "kg",
-        "output": "m"
+      "solvable": {
+        "forward": true,
+        "reverse": true
+      },
+      "engineeringUnits": {
+        "forward": {
+          "input": "kg",
+          "output": "m"
+        },
+        "reverse": {
+          "input": "m",
+          "output": "kg"
+        }
       },
       "parameters": {
-        "input": "neq",
-        "output": "distance"
+        "forward": {
+          "input": "neq",
+          "output": "distance"
+        },
+        "reverse": {
+          "input": "distance",
+          "output": "neq"
+        } 
       },
       "forwardExpression": "coefficient * pow(neq, 1.0/3.0)",
       "reverseExpression": "pow(distance/coefficient, 3.0)"
@@ -40,14 +55,29 @@
       "code": "CUBE_ROOT_SQUARED",
       "name": "Cube Root Squared Formula",
       "description": "Used for certain fragment and hazard calculations.",
-      "solvable": true,
-      "units": {
-        "input": "kg",
-        "output": "m"
+      "solvable": {
+        "forward": true,
+        "reverse": true
+      },
+      "engineeringUnits": {
+        "forward": {
+          "input": "kg",
+          "output": "m"
+        },
+        "reverse": {
+          "input": "m",
+          "output": "kg"
+        }
       },
       "parameters": {
-        "input": "neq",
-        "output": "distance"
+        "forward": {
+          "input": "neq",
+          "output": "distance"
+        },
+        "reverse": {
+          "input": "distance",
+          "output": "neq"
+        } 
       },
       "forwardExpression": "coefficient * pow(neq, 2.0/3.0)",
       "reverseExpression": "pow(distance/coefficient, 1.5)"
@@ -58,14 +88,29 @@
       "code": "SQUARE_ROOT",
       "name": "Square Root Formula",
       "description": "Used where distance scales with square root of NEQ.",
-      "solvable": true,
-      "units": {
-        "input": "kg",
-        "output": "m"
+      "solvable": {
+        "forward": true,
+        "reverse": true
+      },
+      "engineeringUnits": {
+        "forward": {
+          "input": "kg",
+          "output": "m"
+        },
+        "reverse": {
+          "input": "m",
+          "output": "kg"
+        }
       },
       "parameters": {
-        "input": "neq",
-        "output": "distance"
+        "forward": {
+          "input": "neq",
+          "output": "distance"
+        },
+        "reverse": {
+          "input": "distance",
+          "output": "neq"
+        } 
       },
       "forwardExpression": "coefficient * sqrt(neq)",
       "reverseExpression": "pow(distance/coefficient, 2.0)"
@@ -76,14 +121,21 @@
       "code": "CONSTANT_DISTANCE",
       "name": "Constant Distance",
       "description": "Fixed distance independent of NEQ.",
-      "solvable": false,
-      "units": {
-        "input": "m",
-        "output": "m"
+      "solvable": {
+        "forward": true,
+        "reverse": false
+      },
+      "engineeringUnits": {
+        "forward": {
+          "input": "m",
+          "output": "m"
+        }
       },
       "parameters": {
-        "input": "distance",
-        "output": "distance"
+        "forward": {
+          "input": "distance",
+          "output": "distance"
+        }
       },
       "forwardExpression": "distance"
     },
@@ -92,19 +144,30 @@
       "code": "EXPRESSION",
       "name": "Expression Formula",
       "description": "Used where The expression is detailed in the distanceRules.json.",
-      "solvable": true,
-      "units": {
-        "input": "kg",
-        "output": "m"
+      "solvable": {
+        "forward": true,
+        "reverse": true
+      },
+      "engineeringUnits": {
+        "forward": {
+          "input": "kg",
+          "output": "m"
+        },
+        "reverse": {
+          "input": "m",
+          "output": "kg"
+        }
       },
       "parameters": {
-        "input": "",
-        "output": ""
-      },
-      "forwardExpression": "",
-      "reverseExpression": ""
+        "forward": {
+          "input": "neq",
+          "output": "distance"
+        },
+        "reverse": {
+          "input": "distance",
+          "output": "neq"
+        }
+      }
     }
-
-
   ]
 }

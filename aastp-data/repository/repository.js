@@ -1,4 +1,5 @@
-const loadJson = require("./loadJson");
+import loadJson from "./loadJson.js";
+
 const cache = {};
 
 const DATASETS = {
@@ -57,6 +58,7 @@ const DATASETS = {
     
 };
 
+//This function loads a dataset
 function getDataset(name) {
 
     const config = DATASETS[name];
@@ -71,10 +73,17 @@ function getDataset(name) {
     return cache[name];
 }
 
-function getAvailableDatasets() {
-    return Object.keys(DATASETS);
+//This function returns a collection
+function getCollection(name) {
+
+    const config = DATASETS[name];
+
+    const dataset = getDataset(name);
+
+    return dataset[config.collection];
 }
 
+//This function finds an item by ID
 function findById(datasetName, id) {
     
     const config = DATASETS[datasetName];
@@ -93,6 +102,7 @@ function findById(datasetName, id) {
     return collection.find(item => item.id === id) || null;
 }
 
+//This function performs a generic search
 function find(datasetName, predicate) {
     const collection = getCollection(datasetName);
 
@@ -103,32 +113,29 @@ function find(datasetName, predicate) {
     return items.find(predicate) ?? null;
 }
 
+//This function performs complex repository queries
+function findInteraction(criteria) {
+
+    return find(
+        "interactions",
+        interaction =>
+            interaction.conditions.pesType === criteria.pesType &&
+            interaction.conditions.esType === criteria.esType &&
+            interaction.conditions.orientation.pes === criteria.pesOrientation &&
+            interaction.conditions.orientation.es === criteria.esOrientation
+    );
+}
+
+function getAvailableDatasets() {
+    return Object.keys(DATASETS);
+}
+
 function get(name) {
 
     return getDataset(name);
 }
 
-function getCollection(name) {
-
-    const config = DATASETS[name];
-
-    const dataset = getDataset(name);
-
-    return dataset[config.collection];
-}
-
-function findInteraction(criteria) {
-
-    return find(
-    "interactions",
-    interaction =>
-        interaction.conditions.pesType === criteria.pesType.id &&
-        interaction.conditions.esType === criteria.esType.id
-    );
-
-}
-
-module.exports = {
+export default  {
     getDistanceRules() {
         return get("distance_rules");
     },
@@ -141,13 +148,13 @@ module.exports = {
         return get("hazard_categories");
     },
 
-    getESTypes() {
-        return get("es_types");
-    },
+    //getESTypes() {
+    //    return get("es_types");
+    //},
 
-    getPESTypes() {
-        return get("pes_types");
-    },
+    // getPESTypes() {
+    //    return get("pes_types");
+    //},
 
     getFormulas() {
         return get("formulas");
@@ -181,6 +188,12 @@ module.exports = {
         return get("ecm_protection_ratings");
     },
 
+    getDataset,
+
+    getCollection,
+
+    getAvailableDatasets,
+    
     findById,
 
     findInteraction

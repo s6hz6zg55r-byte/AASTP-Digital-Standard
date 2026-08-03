@@ -13,5 +13,5 @@
   "keywords": [],
   "author": "Chris Harbert",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module"
 }
