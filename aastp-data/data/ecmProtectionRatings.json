@@ -20,7 +20,7 @@
             "id": "PR001",
             "code": "7BAR",
             "name": "7-Bar",
-            "text": "This ECM is constructed to 7-Bar standards",
+            "description": "This ECM is constructed to 7-Bar standards",
             "source": {
                 "document": "AASTP-1",
                 "note": ""
@@ -30,7 +30,7 @@
             "id": "PR002",
             "code": "3BAR",
             "name": "3-Bar",
-            "text": "This ECM is constructed to 3-Bar standards",
+            "description": "This ECM is constructed to 3-Bar standards",
             "source": {
                 "document": "AASTP-1",
                 "note": ""
@@ -40,7 +40,7 @@
             "id": "PR003",
             "code": "UNDEF",
             "name": "Undefined",
-            "text": "This ECM is constructed to an undefined standard.",
+            "description": "This ECM is constructed to an undefined standard.",
             "source": {
                 "document": "AASTP-1",
                 "note": ""

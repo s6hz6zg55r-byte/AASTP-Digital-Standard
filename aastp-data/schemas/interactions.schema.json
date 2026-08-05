@@ -1,10 +1,17 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
+    
     "$id": "https://aastp.org/schemas/interactions.schema.json",
 
-    "title": "Interaction Rules",
+    "title": "Interactions",
 
     "type": "object",
+
+     "required": [
+        "schemaVersion",
+        "metadata",
+        "interaction_rules"
+    ],
 
     "properties": {
         "schemaVersion": {
@@ -15,228 +22,202 @@
             "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
         },
 
-        "interactionRules": {
-            "type": "object",
-            "patternProperties": {
-                "^INT[0-9]{3}$": {
-                    "$ref": "#/$defs/interactionRule"
-                }
-            },
-            "additionalProperties": false
-        }
-    },
+        "interaction_rules": {
+            "type": "array",
 
-    "$defs": {
-        "interactionRule": {
-            "type": "object",
+            "items": {
 
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "pattern": "^INT[0-9]{3}$"
-                },
+                "type": "object",
 
-                "source": {
-                    "$ref": "#/$defs/source"
-                },
+                "required": [
+                    "id",
+                    "source",
+                    "conditions",
+                    "effects"
+                ],
 
-                "conditions": {
-                    "$ref": "#/$defs/conditions"
-                },
-
-                "effects": {
-                    "$ref": "#/$defs/effects"
-                }
-            },
-
-            "required": [
-                "id",
-                "source",
-                "conditions",
-                "effects"
-            ],
-
-            "additionalProperties": false
-        },
-        "source": {
-            "type": "object",
-
-            "properties": {
-                "document": {
-                    "type": "string"
-                },
-
-                "reference": {
-                    "type": "object",
-
-                    "properties": {
-                        "table": {
-                            "type": "integer"
-                        },
-
-                        "row": {
-                            "type": "integer"
-                        },
-
-                        "column": {
-                            "type": "string"
-                        }
+                "properties": {
+                    "id": {
+                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/interactionId"
                     },
-
-                    "required": [
-                        "table",
-                        "row",
-                        "column"
-                    ],
-
-                    "additionalProperties": false
-                }
-            },
-
-            "required": [
-                "document",
-                "reference"
-            ],
-
-            "additionalProperties": false
-        },
-        "conditions": {
-            "type": "object",
-
-            "properties": {
-
-                "pesType": {
-                    "type": "string",
-                    "pattern": "^PES[0-9A-Z]{3}$"
-                },
-
-                "esType": {
-                    "type": "string",
-                    "pattern": "^ES[0-9A-Z]{3}$"
-                },
-
-                "orientation": {
-                    "type": "object",
-
-                    "properties": {
-                        "pes": {
-                            "enum": [
-                                "front",
-                                "side",
-                                "rear"
-                            ]
-                        },
-
-                        "es": {
-                            "enum": [
-                                "front",
-                                "side",
-                                "rear"
-                            ]
-                        }
-                    },
-
-                    "required": [
-                        "pes",
-                        "es"
-                    ],
-
-                    "additionalProperties": false
-                }
-            },
-
-            "required": [
-                "pesType",
-                "esType",
-                "orientation"
-            ],
-
-            "additionalProperties": false
-        },
-        "effects": {
-            "type": "object",
-            "minProperties": 1,
-
-            "patternProperties": {
-                "^EFF[0-9]{3}$": {
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {
-                        "$ref": "#/$defs/effectRule"
-                    }
-                }
-            },
-
-            "additionalProperties": false
-        },
-        "effectRule": {
-            "oneOf": [
-                {
-                    "type": "object",
-                    "properties": {
-                        "hazard": {
-                            "type": "string",
-                            "pattern": "^HD[0-9]{3}$"
-                        },
-                        "status": {
-                            "enum": [
-                                "N_A",
-                                "NO_QD"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "hazard",
-                        "status"
-                    ],
-                    "additionalProperties": false
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "hazard": {
-                            "type": "string",
-                            "pattern": "^HD[0-9]{3}$"
-                        },
-                        "distanceRule": {
-                            "type": "string",
-                            "pattern": "^[A-Z0-9]+$"
-                        },
-                        "inputBasis": {
-                            "enum": [
-                                "NEQ",
-                                "MCE"
-                            ]
-                        },
-                        "protectionLevel": {
-                            "type": "string",
-                            "pattern": "^PL[0-9]{3}$"
-                        },
-                        "constraints": {
-                            "type": "array",
-                            "items": {
+                    "source": {
+                        "type": "object",
+                        "required": [
+                            "document",
+                            "reference"
+                        ],
+                        "properties": {
+                            "document": {
                                 "type": "string",
-                                "pattern": "^CV[0-9]{3}$"
+                                "minLength": 1
+                            },
+                            "reference": {
+                                "type": "object",
+                                "required": [
+                                    "table",
+                                    "row",
+                                    "column"
+                                ],
+                                "properties": {
+                                    "table": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "row": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "column": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                }
                             }
                         }
                     },
-                    "required": [
-                        "hazard",
-                        "distanceRule",
-                        "inputBasis",
-                        "protectionLevel",
-                        "constraints"
-                    ],
-                    "additionalProperties": false
-                }
-            ]
+                    "conditions": {
+                        "type": "object",
+                        "required": [
+                            "pesType",
+                            "esType",
+                            "orientation"
+                        ],
+                        "properties": {
+                            "pesType": {
+                                "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/pesTypeId"
+                            },
+                            "esType": {
+                                "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/esTypeId"
+                            },
+                            "orientation": {
+                                "type": "object",
+                                "required": [
+                                    "pes",
+                                    "es"
+                                ],
+                                "properties": {
+                                    "pes": {
+                                        "enum": [
+                                            "front",
+                                            "side",
+                                            "rear",
+                                            "any"
+                                        ]
+                                    },
+                                    "es": {
+                                        "enum": [
+                                            "front",
+                                            "side",
+                                            "rear",
+                                            "any"
+                                        ]
+                                    }
+                                }
+                            }
+                        }   
+                    },
+                    "effects": {
+                        "type": "object",
+                        "required": [
+                            "EFF001",
+                            "EFF002",
+                            "EFF003",
+                            "EFF004"
+                        ],
+                        "properties": {
+                            "EFF001": {
+                                "$ref": "#/$defs/effectArray"
+                            },
+                            "EFF002": {
+                                "$ref": "#/$defs/effectArray"
+                            },
+                            "EFF003": {
+                                "$ref": "#/$defs/effectArray"
+                            },
+                            "EFF004": {
+                                "$ref": "#/$defs/effectArray"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
         }
     },
-    "required": [
-        "schemaVersion",
-        "metadata",
-        "interactionRules"
-    ],
+    "additionalProperties": false,
 
-    "additionalProperties": false
+    "$defs": {
+        "effectArray": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/effectAssessment"
+            }
+        },
+
+        "effectAssessment": {
+            "type": "object",
+            "oneOf":[
+                { "$ref": "#/$defs/statusAssessment" },
+                { "$ref": "#/$defs/distanceAssessment" }
+            ]
+        },
+
+        "statusAssessment": {
+            "type": "object",
+            "required": [
+                "hazard",
+                "status"
+            ],
+            "properties": {
+                "hazard": {
+                    "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/hazardCategoriesId"
+                },
+                "status": {
+                    "enum": [
+                        "N_A",
+                        "NO_QD"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+
+        "distanceAssessment": {
+            "type": "object",
+            "required": [
+                "hazard",
+                "distanceRule",
+                "inputBasis",
+                "protectionLevel",
+                "constraints"
+            ],
+            "properties": {
+                "hazard": {
+                    "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/hazardCategoriesId"
+                },
+                "distanceRule": {
+                    "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/distanceRuleId"
+                },
+                "inputBasis": {
+                    "enum": [
+                        "NEQ",
+                        "MCE"
+                    ]
+                },
+                "protectionLevel": {
+                    "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/protectionLevelId"
+                },
+                "constraints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/constraintId"
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    }
 }
+

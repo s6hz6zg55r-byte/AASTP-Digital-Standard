@@ -26,6 +26,8 @@ const findProtectionLevelById = createFinder("protectionLevels");
 
 const findConstraintById = createFinder("constraints");
 
+const findTransformationById = createFinder("transformations");
+
 // Collection returns
 
 function getPesTypes() {
@@ -72,5 +74,6 @@ export default {
     findEcmProtectionRatingById,
     findInteractionById,
     findProtectionLevelById,
-    findConstraintById
+    findConstraintById,
+    findTransformationById
 };

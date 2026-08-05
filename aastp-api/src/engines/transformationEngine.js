@@ -1,11 +1,5 @@
 import { AssessmentStatus } from "#services/assessments/assessmentStatus";
 
-const TRANSFORMATIONS = {
-    ROUND_UP_METRE: "round_up_metre",
-    ROUND_DOWN_METRE: "round_down_metre",
-    ROUND_DOWN_10KG: "round_down_10kg"
-};
-
 export function resolve(assessment) {
 
     if (!assessment) {
@@ -69,26 +63,26 @@ function applyTransformations(transformations, rawResult) {
 }
 
 function applyTransformation(transformation, value) {
-    switch (transformation) {
+    switch (transformation.name) {
 
-        case TRANSFORMATIONS.ROUND_UP_METRE:
+        case "round_up_metre":
             return roundUpMetre(value);
 
-        case TRANSFORMATIONS.ROUND_DOWN_METRE:
+        case "round_down_metre":
             return roundDownMetre(value);
 
-        case TRANSFORMATIONS.ROUND_DOWN_10KG:
-            return roundDown10kg(value);
+        case "minimum":
+            return minimum(value);
 
         default:
-            throw new Error(`Unknown transformation '${transformation}'.`);
+            throw new Error(`Unknown transformation '${transformation.id}'.`);
     }
 }
 
 function validateTransformedResult(result, transformation, rawResult) {
     if (!Number.isFinite(result)) {
         throw new Error(
-            `Transformation '${transformation}' resulted in ${result} from input ${rawResult}.`
+            `Transformation '${transformation.id}' resulted in ${result} from input ${rawResult}.`
         );
     }
 

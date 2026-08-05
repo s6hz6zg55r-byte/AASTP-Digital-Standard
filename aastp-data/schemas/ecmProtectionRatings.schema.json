@@ -1,0 +1,83 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "https://aastp.org/schemas/ecmProtectionRatings.schema.json",
+
+    "title": "AASTP ECM Protection Ratings Definitions",
+
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "ecm_protection_ratings"
+    ],
+
+    "properties": {
+
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+
+        "ecm_protection_ratings": {
+            "type": "array",
+
+            "minItems": 1,
+
+            "items": {
+                "type": "object",
+
+                "required": [
+                    "id",
+                    "code",
+                    "name",
+                    "description",
+                    "source"
+                ],
+
+                "properties": {
+
+                    "id": {
+                        "$ref": "./defs/common.schema.json#/$defs/protectionRatingId"
+                    },
+
+                    "code": {
+                        "type": "string",
+                        "pattern": "^([0-9]+BAR|UNDEF)$"
+                    },
+
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+
+                    "description": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+
+                    "source": {
+                        "type": "object",
+                        "required": [
+                            "document",
+                            "note"
+                        ],
+                        "properties": {
+                            "document": {
+                                "type": "string"
+                            },
+                            "note": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+    }
+}

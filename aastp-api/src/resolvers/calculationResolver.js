@@ -336,21 +336,26 @@ function resolveParameters(
 
 }
 
-function resolveTransformations(
-    distanceRule,
-    direction
-) {
+function resolveTransformations(distanceRule, direction) {
 
-    const transformations =
+    const ids =
         distanceRule.transformations?.[direction];
 
-    if (!Array.isArray(transformations)) {
-        throw new Error(
-            `No ${direction} transformations defined for distance rule ${distanceRule.id}.`
-        );
-    }
+    return ids.map(id => {
 
-    return transformations;
+        const transformation =
+            repositoryService.findTransformationById(id);
+
+        if (!transformation) {
+            throw new Error(
+                `Transformation '${id}' not found.`
+            );
+        }
+
+        return transformation;
+
+    });
+
 }
 
 function determineBranchRange(

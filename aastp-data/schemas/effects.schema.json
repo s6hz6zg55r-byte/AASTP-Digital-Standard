@@ -1,0 +1,113 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "https://aastp.org/schemas/effects.schema.json",
+
+    "title": "AASTP Effects",
+
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "effects"
+    ],
+
+    "properties": {
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+        "effects": {
+            "type": "array",
+
+            "minItems": 1,
+
+            "items": {
+                "type": "object",
+
+                "required": [
+                    "id",
+                    "code",
+                    "name",
+                    "description",
+                    "category",
+                    "requiresQD",
+                    "active",
+                    "source"
+                ],
+
+                "properties": {
+
+                    "id": {
+                        "$ref": "./defs/common.schema.json#/$defs/effectId"
+                    },
+                    "code": {
+                        "type": "string",
+                        "pattern": "^[A-Z0-9_]+$"
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "description": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "blast_effect",
+                            "fragment_effect",
+                            "thermal_effect",
+                            "fire_effect",
+                            "local_effect"
+                        ]
+                    },
+                    "requiresQD": {
+                        "type": "boolean"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "source": {
+                        "type": "object",
+                        "required": [
+                            "document",
+                            "version",
+                            "reference"
+                        ],
+                        "properties": {
+                            "document": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "string"
+                            },
+                            "reference": {
+                                "type": "object",
+                                "required": [
+                                    "section",
+                                    "para"
+                                ],
+                                "properties": {
+                                    "section": {
+                                        "type": "string"
+                                    },
+                                    "para": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+    }
+}

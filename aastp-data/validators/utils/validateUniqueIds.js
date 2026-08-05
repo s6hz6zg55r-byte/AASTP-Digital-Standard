@@ -1,5 +1,5 @@
 // The purpose of this function is to confirm that all IDs are unique
-function validateUniqueIds(items, errors, name = "items") {
+export function validateUniqueIds(items, errors, name = "items") {
 
     const ids = new Set();
 
@@ -14,7 +14,3 @@ function validateUniqueIds(items, errors, name = "items") {
         ids.add(item.id);
     }
 }
-
-module.exports = {
-    validateUniqueIds
-};

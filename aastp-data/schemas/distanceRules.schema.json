@@ -10,7 +10,7 @@
   "required": [
     "schemaVersion",
     "metadata",
-    "distanceRules"
+    "distance_rules"
   ],
 
   "properties": {
@@ -23,7 +23,7 @@
       "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
     },
 
-    "distanceRules": {
+    "distance_rules": {
 
         "type": "array",
 
@@ -90,10 +90,17 @@
                                     },
                                     "notes": {"type": "string"},
                                     "when": {
+                                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/branchCondition"
+                                    },
+                                    "formula": {
+                                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/formulaId"
+                                    },
+                                    "parameters": { "type": "object" },
+                                    "result": {
                                         "type": "object",
-                                        "required": ["neq"],
+                                        "required": ["distance"],
                                         "properties": {
-                                            "neq": {
+                                            "distance": {
                                                 "type": "object",
                                                 "properties": {
                                                     "gte": {"type": "number"},
@@ -102,20 +109,13 @@
                                                     "lt": {"type": "number"}
                                                 },
                                                 "additionalProperties": false
-                                            }
-                                        },
-                                        "additionalProperties": false
-                                    },
-                                    "formula": {
-                                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/formulaId"
-                                    },
-                                    "parameters": {
-                                        "type": "object",
-                                        "required": ["coefficient"],
-                                        "properties": {
-                                            "coefficient": {"type": "number"}
+                                            },
+                                            "additionalProperties": false
                                         }
-                                    }
+                                    },
+                                    "forwardExpression": {"type": "string"},
+                                    "reverseExpression": {"type": "string"},
+                                    "additionalProperties": false
                                 },
                                 "additionalProperties": false
                             }
@@ -124,13 +124,26 @@
                     }
                 },
                 "transformations": {
-                    "type": "array",
-                    "items": {"type": "string"}
-                }
-            },
+                    "type": "object",
+                    "required": [
+                        "forward",
+                        "reverse"
+                    ],
+                    "properties": {
+                        "forward": {
+                            "type": "array",
+                            "items": {"type": "string"}
+                        },
+                        "reverse": {
+                            "type": "array",
+                            "items": {"type": "string"}
+                        }
+                    }
+                },
             "additionalProperties": false
+            }
         }
-    }
-  },
+    },
   "additionalProperties": false
+  }
 }

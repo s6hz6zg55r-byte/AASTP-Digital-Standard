@@ -22,6 +22,7 @@
       "code": "CUBE_ROOT",
       "name": "Cube Root Distance Formula",
       "description": "Standard explosive quantity-distance relationship.",
+      "expressionOwner": "formulas",
       "solvable": {
         "forward": true,
         "reverse": true
@@ -55,6 +56,7 @@
       "code": "CUBE_ROOT_SQUARED",
       "name": "Cube Root Squared Formula",
       "description": "Used for certain fragment and hazard calculations.",
+      "expressionOwner": "formulas",
       "solvable": {
         "forward": true,
         "reverse": true
@@ -88,6 +90,7 @@
       "code": "SQUARE_ROOT",
       "name": "Square Root Formula",
       "description": "Used where distance scales with square root of NEQ.",
+      "expressionOwner": "formulas",
       "solvable": {
         "forward": true,
         "reverse": true
@@ -121,6 +124,7 @@
       "code": "CONSTANT_DISTANCE",
       "name": "Constant Distance",
       "description": "Fixed distance independent of NEQ.",
+      "expressionOwner": "formulas",
       "solvable": {
         "forward": true,
         "reverse": false
@@ -144,6 +148,7 @@
       "code": "EXPRESSION",
       "name": "Expression Formula",
       "description": "Used where The expression is detailed in the distanceRules.json.",
+      "expressionOwner": "distanceRules",
       "solvable": {
         "forward": true,
         "reverse": true

@@ -1087,7 +1087,10 @@ describe("engineeringService", () => {
             engineeringService.process(context);
             expect(context.assessments[0].calculation.parameters.coefficient).toEqual(0.5);
             expect(context.assessments[0].calculation.engineeringUnits.input).toEqual("kg");
-            expect(context.assessments[0].calculation.transformations).toEqual(["round_up_metre"]);
+            const transformation = context.assessments[0].calculation.transformations[0];
+            expect(transformation.id).toBe("TR001");
+            expect(transformation.name).toBe("round_up_metre");
+            expect(transformation.expression).toBe("ceil(value)");
         });
     });
 

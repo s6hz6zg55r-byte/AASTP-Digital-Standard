@@ -1,0 +1,57 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "https://aastp.org/schemas/transformations.schema.json",
+
+    "title": "AASTP Transformations",
+
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "transformations"
+    ],
+
+    "properties": {
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+
+        "transformations": {
+            "type": "array",
+
+            "minItems": 1,
+
+            "items": {
+                "type": "object",
+
+                "required": [
+                    "id",
+                    "name",
+                    "expression"
+                ],
+
+                "properties": {
+
+                    "id": {
+                        "$ref": "./defs/common.schema.json#/$defs/transformationsId"
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "expression": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}

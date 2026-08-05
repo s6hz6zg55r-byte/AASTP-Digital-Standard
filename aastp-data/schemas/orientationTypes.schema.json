@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "https://aastp.org/schemas/orientationTypes.schema.json",
+
+    "title": "AASTP Orientation Types Definitions",
+
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "orientation_types"
+    ],
+    
+    "properties": {
+
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+
+        "orientation_types": {
+            "type": "array",
+
+            "minItems": 1,
+
+            "items": {
+                "type": "object",
+
+                "required": [
+                    "id",
+                    "name",
+                    "values"
+                ],
+
+                "properties": {
+
+                    "id": {
+                        "$ref": "./defs/common.schema.json#/$defs/orientationTypeId"
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "values": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "string"
+                        },
+                        "uniqueItems": true
+                    }
+                },
+
+                "additionalProperties": false
+            }
+        }
+    }
+}

@@ -132,7 +132,17 @@
 
     "distanceRuleId": {
       "type": "string",
-      "pattern": "^[A-Z]{2,3}[0-9]{2,3}$"
+      "pattern": "^(BD[0-9]{2}|TD[0-9]{2}|DFD[0-9]{2}|FD[0-9]{2}|P1D[1-4]|P2D[1-4])$"
+    },
+
+    "transformationsId": {
+      "type": "string",
+      "pattern": "^TR[0-9]{3}$"
+    },
+
+    "effectId": {
+      "type": "string",
+      "pattern": "^EFF[0-9]{3}$"
     },
 
     "applicability": {
@@ -194,6 +204,41 @@
         "pattern": "^ES[0-9]{3}[A-Z]?$"
     },
 
+    "pesTypeId": {
+        "type": "string",
+        "pattern": "^PES[0-9]{3}[A-Z]?$"
+    },
+
+    "hazardCategoriesId": {
+        "type": "string",
+        "pattern": "^HD[0-9]{3}$"
+    },
+
+    "protectionRatingId": {
+        "type": "string",
+        "pattern": "^PR[0-9]{3}$"
+    },
+
+    "protectionLevelId": {
+        "type": "string",
+        "pattern": "^PL[0-9]{3}$"
+    },
+
+    "constraintId": {
+        "type": "string",
+        "pattern": "^CV[0-9]{3}$"
+    },
+
+    "orientationTypeId": {
+        "type": "string",
+        "pattern": "^OR[0-9]{3}$"
+    },
+
+    "interactionId": {
+        "type": "string",
+        "pattern": "^INT[0-9]{3}$"
+    },
+
     "branchCondition": {
         "type": "object",
         "required": ["neq"],
@@ -215,14 +260,14 @@
     "supportedProperties": {
         "type": "object",
         "required": [
-            "protectionLevel",
+            "ecmProtectionRating",
             "headwall",
             "barricaded",
             "roofType",
             "aperture"
         ],
         "properties": {
-            "protectionLevel": {"type":"boolean"},
+            "ecmProtectionRating": {"type":"boolean"},
             "headwall": {"type":"boolean"},
             "barricaded": {"type":"boolean"},
             "roofType": {"type":"boolean"},

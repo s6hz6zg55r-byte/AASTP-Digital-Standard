@@ -1,0 +1,84 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "https://aastp.org/schemas/protectionLevels.schema.json",
+
+    "title": "AASTP Protection Levels Definitions",
+
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "protection_levels"
+    ],
+
+    "properties": {
+
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+
+        "protection_levels": {
+            "type": "array",
+
+            "minItems": 1,
+
+            "items": {
+                "type": "object",
+
+                "required": [
+                    "id",
+                    "code",
+                    "name",
+                    "notes",
+                    "source"
+                ],
+
+                "properties": {
+
+                    "id": {
+                        "$ref": "./defs/common.schema.json#/$defs/protectionLevelId"
+                    },
+
+                    "code": {
+                        "type": "string",
+                        "pattern": "^[A-Z0-9_]+$"
+                    },
+
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+
+                    "notes": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+
+                    "source": {
+                        "type": "object",
+                        "required": [
+                            "document",
+                            "para"
+                        ],
+                        "properties": {
+                            "document": {
+                                "type": "string"
+                            },
+                            "para": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+
+                "additionalProperties": false
+            }
+        }
+    }
+}

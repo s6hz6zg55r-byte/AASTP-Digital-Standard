@@ -8,10 +8,15 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "node tests/runTests.js"
+    "test": "node tests/runTests.js",
+    "validate": "node validators/validateRepository.js"
   },
   "keywords": [],
   "author": "Chris Harbert",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
 }

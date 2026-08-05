@@ -137,7 +137,7 @@ function get(name) {
 
 export default  {
     getDistanceRules() {
-        return get("distance_rules");
+        return get("distanceRules");
     },
 
     getEffects() {
@@ -145,16 +145,8 @@ export default  {
     },
 
     getHazardCategories() {
-        return get("hazard_categories");
+        return get("hazardCategories");
     },
-
-    //getESTypes() {
-    //    return get("es_types");
-    //},
-
-    // getPESTypes() {
-    //    return get("pes_types");
-    //},
 
     getFormulas() {
         return get("formulas");
@@ -169,11 +161,11 @@ export default  {
     },
 
     getProtectionLevels() {
-        return get("protection_levels");
+        return get("protectionLevels");
     },
 
     getOrientationTypes() {
-        return get("orientation_types");
+        return get("orientationTypes");
     },
 
     getStructures() {
@@ -185,7 +177,7 @@ export default  {
     },
 
     getEcmProtectionRatings() {
-        return get("ecm_protection_ratings");
+        return get("ecmProtectionRatings");
     },
 
     getDataset,

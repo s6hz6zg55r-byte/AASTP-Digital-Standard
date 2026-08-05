@@ -36,10 +36,10 @@
           "code",
           "name",
           "description",
+          "expressionOwner",
           "solvable",
-          "units",
-          "parameters",
-          "forwardExpression"
+          "engineeringUnits",
+          "parameters"
         ],
 
         "properties": {
@@ -63,26 +63,70 @@
             "minLength": 1
           },
 
-          "solvable": {
-            "type": "boolean"
+          "expressionOwner": {
+            "type": "string",
+            "enum": [
+              "formulas", 
+              "distanceRules"
+            ]
           },
 
-          "units": {
+          "solvable": {
             "type": "object",
-
             "required": [
-              "input",
-              "output"
+              "forward",
+              "reverse"
             ],
-
             "properties": {
+              "forward": {
+                "type": "boolean"
+              },
+              "reverse": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
 
-              "input": {
-                "type": "string"
+          "engineeringUnits": {
+            "type": "object",
+            "properties": {
+              "forward": {
+                "type": "object",
+                "required": [
+                  "input",
+                  "output"
+                ],
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
               },
 
-              "output": {
-                "type": "string"
+              "reverse": {
+                "type": "object",
+                "required": [
+                  "input",
+                  "output"
+                ],
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
               }
             },
 
@@ -92,19 +136,43 @@
           "parameters": {
             "type": "object",
 
-            "required": [
-              "input",
-              "output"
-            ],
-
             "properties": {
 
-              "input": {
-                "type": "string"
+              "forward": {
+                "type": "object",
+                "required": [
+                  "input",
+                  "output"
+                ],
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
               },
 
-              "output": {
-                "type": "string"
+              "reverse": {
+                "type": "object",
+                "required": [
+                  "input",
+                  "output"
+                ],
+                "properties": {
+                  "input": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "output": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
               }
             },
 
@@ -121,6 +189,64 @@
             "minLength": 1
           }
         },
+
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "solvable": {
+                  "required": ["forward"],
+                  "properties": {
+                    "forward": {
+                      "const": true
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "engineeringUnits": {
+                  "required": [
+                    "forward"
+                  ]
+                },
+                "parameters": {
+                  "required": [
+                    "forward"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "solvable": {
+                  "properties": {
+                    "reverse": {
+                      "const": true
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "engineeringUnits": {
+                  "required": [
+                    "reverse"
+                  ]
+                },
+                "parameters": {
+                  "required": [
+                    "reverse"
+                  ]
+                }
+              }
+            }
+          }
+        ],
 
         "additionalProperties": false
       }

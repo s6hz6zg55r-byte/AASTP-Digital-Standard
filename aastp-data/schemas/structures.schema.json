@@ -59,7 +59,15 @@
 
                     "category": {
                         "type": "string",
-                        "minLength": 1
+                        "minLength": 1,
+                        "enum": [
+                            "explosives_facility",
+                            "personnel_facility",
+                            "transport_route",
+                            "vulnerable_structure",
+                            "utility",
+                            "infrastructure"
+                        ]
                     },
 
                     "supportedProperties": {
@@ -68,25 +76,19 @@
                             {"$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/supportedProperties"}
                         ]
                     },
- 
                     "supportedExposure": {
                         "oneOf": [
                             {"const": false},
                             {"$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/supportedExposure"}
                         ]
                     },
-
                     "orientationType": {
-                        "type": "string",
-                        "pattern": "^OR[0-9]{3}$"
+                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/orientationTypeId"
                     }
-              
                 },
-
                 "additionalProperties": false
             }
         }
     },
-
     "additionalProperties": false
 }

@@ -19,23 +19,23 @@
         {
             "id": "CV001",
             "code": "PRI",
-            "category": "manditory",
+            "category": "mandatory",
             "name": "Primary Explosives Restriction",
-            "text": "No primary explosives.",
+            "description": "No primary explosives.",
             "source": {
                 "document": "AASTP-1",
-                "note": "Para 1.3.3.5"
+                "para": "Para 1.3.3.5"
             }
         },
         {
             "id": "CV002",
             "code": "SPA",
-            "category": "manditory",
+            "category": "mandatory",
             "name": "Spall Vulnerability Restriction",
-            "text": "No items vulnerable to spall.",
+            "description": "No items vulnerable to spall.",
             "source": {
                 "document": "AASTP-1",
-                "note": "Para 1.3.5.3"
+                "para": "Para 1.3.5.3"
             }
         },
         {
@@ -43,10 +43,10 @@
             "code": "LOB",
             "category": "advisory",
             "name": "Lobbed Ammunition Consideration",
-            "text": "Effect of lobbed ammunition.",
+            "description": "Effect of lobbed ammunition.",
             "source": {
                 "document": "AASTP-1",
-                "note": "Para 1.3.5.6"
+                "para": "Para 1.3.5.6"
             }
         }
     ]
