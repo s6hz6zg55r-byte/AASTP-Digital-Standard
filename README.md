@@ -269,24 +269,3 @@ Usage, distribution and adoption arrangements will be governed through future pr
 
 
 ---
-
-## Additional recommendation
-
-I would also add a small `CHANGELOG.md` at the root now that the repository has become the authoritative project repository.
-
-Suggested structure:
-
-```text
-CHANGELOG.md
-
-## [Unreleased]
-
-### Added
-- Master Document Index
-- Repository consolidation
-
-### Changed
-- Repository structure aligned with digital architecture
-
-### Fixed
-- Corrected Git repository hierarchy
