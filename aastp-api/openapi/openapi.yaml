@@ -1,135 +1,668 @@
 openapi: 3.1.0
 
 info:
-  title: AASTP Digital Engineering API
-
-  summary: >
-    Versioned REST API providing controlled access to validated
-    AASTP engineering data and governed engineering calculations.
-
-  description: |
-    The AASTP Digital Engineering API provides controlled access to
-    validated engineering data derived from AASTP-1.
-
-    The API provides a stable integration boundary for engineering
-    applications, web clients, mobile applications, document generation
-    and external systems.
-
-    Engineering calculations are performed in accordance with the
-    Engineering Calculation Model and are fully traceable to the
-    underlying engineering rules, formulae and transformations.
-
-  x-engineering-principles:
-    - JSON is the authoritative engineering data source.
-    - Validation precedes publication.
-    - Engineering calculations are governed by the Engineering Calculation Model.
-    - REST is the primary integration boundary.
-
+  title: AASTP REST API
   version: 1.0.0
-
+  description: >
+    REST API providing access to AASTP reference data
+    and quantity-distance assessment services.
   contact:
-    name: AASTP Digital Engineering Project
-
-  license:
-    name: Pending
+    name: AASTP Project
+    email:
+  licence:
+    name: NATO
 
 servers:
+  - url: https://api.aastp.org/api/v1
+    description: Production
 
-  - url: http://localhost:3000/api/v1
-    description: Local development server
-
-  - url: https://demo.aastp.org/api/v1
-    description: Demonstrator
+  - url: https://test.api.aastp.org/api/v1
+    description: Test
 
 tags:
-
-  - name: ES Types
-    description: >
-      Browse and retrieve Exposed Site Types.
-
-  - name: PES Types
-    description: >
-      Browse and retrieve Potential Explosion Site Types.
-
-  - name: Hazard Categories
-    description: >
-      Browse and retrieve Hazard Categories.
-
-  - name: Calculations
-    description: >
-      Perform governed engineering calculations.
-
+  - name: Reference Data
+    description: Static AASTP reference datasets
+  
+  - name: Assessment
+    description: Quantity-distance assessments
+  
   - name: Metadata
-    description: >
-      Retrieve repository metadata and API information.
-
-externalDocs:
-  description: AASTP API Governance Documentation
-  url: ./docs/API_CONTRACT.md
-
-components:
-
-  schemas: 
-
-    ResponseMetadata:
-      $ref: "./components/schemas/responseMetadata.yaml"
-    
-    ExposedSiteTypeCollection:
-
-      $ref: "./components/schemas/exposedSiteTypeCollection.yaml"
-
-    ExposedSiteTypeSummary:
-
-      $ref: "./components/schemas/exposedSiteTypeSummary.yaml"
-          
-
-  responses: {}
-
-  parameters: {}
-
-  examples: {}
-
-  requestBodies: {}
-
-  securitySchemes: {}
+    description: API information
 
 paths:
-  /es-types:
+
+  /pes-types:
 
     get:
 
-      tags:
-        - ES Types
+      summary: Retrieve all PES Types
 
-      summary: Retrieve Exposed Site Types
-
-      description: |
-        Retrieves the collection of Exposed Site Types (ES Types)
-        defined within the authoritative AASTP engineering repository.
-
-        The endpoint returns summary information for each
-        Exposed Site Type suitable fo browsing and selection.
+      description: >
+        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
       
-      operationId: getExposedSiteTypes
+      operationId: getPesTypes
 
+      tags: 
+        - Reference Data
+      
       responses:
 
         "200":
 
-          description: >
-            Successfully retrieved the collection of
-            Exposed Site Types.
+          description: Successful response
 
           content:
-
             application/json:
-
               schema:
 
-                $ref: "#/components/schemas/ExposedSiteTypeCollection"
+  /pes-types/{id}:
 
-        "500":
-          $ref: "#/components/responses/InternalServerError"
+    get:
 
-        "default":
-          $ref: "#/components/responses/UnexpectedError"
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+  
+  /es-types:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:  
+
+  /es-types/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /hazard-categories:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /hazard-categories/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /structures:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /structures/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /protection-levels:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /protection-levels/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /interaction-rules/:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /interaction-rules/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /distance-rules:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /distance-rules/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /constraints:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /constraints/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /formulas:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /formulas/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /transformations:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /transformations/{id}:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Reference Data
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /assessment:
+
+    get:
+
+      summary: 
+
+      description: >
+        Description
+      
+      operationId:
+
+      tags: 
+        - Assessment
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /health:
+
+    get:
+
+      summary: Retrieve all PES Types
+
+      description: >
+        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
+      
+      operationId: getPesTypes
+
+      tags: 
+        - Metadata
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /version:
+
+    get:
+
+      summary: Retrieve all PES Types
+
+      description: >
+        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
+      
+      operationId: getPesTypes
+
+      tags: 
+        - Metadata
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+  /datasets:
+
+    get:
+
+      summary: Retrieve all PES Types
+
+      description: >
+        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
+      
+      operationId: getPesTypes
+
+      tags: 
+        - Metadata
+      
+      responses:
+
+        "200":
+
+          description: Successful response
+
+          content:
+            application/json:
+              schema:
+
+components:
+
+  schemas:
+
+    ResponseEnvelope:
+      type: object
+      properties:
+        data:
+          description: Payload returned by the request.
+
+    ErrorResponse:
+      type: object
+      properties:
+        httpStatus:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
+        authority:
+          $ref: "#/components/schemas/Authority"
+        traceId:
+          type: string
+
+    Metadata:
+      type: object
+      properties:
+        data:
+          description: Payload returned by the request.
+
+    ReferenceObject:
+      type: object
+      properties:
+        data:
+          description: Payload returned by the request.
+
+    DomainObjects:
+      type: object
+      properties:
+        data:
+          description: Payload returned by the request.
+
+    Authority:
+      type: object
+      properties:
+        standard:
+          type: string
+        edition:
+          type: string
+        reference:
+          type: string
+
+  responses:
+
+  parameters:
+
+  examples:
+
+  securitySchemes:

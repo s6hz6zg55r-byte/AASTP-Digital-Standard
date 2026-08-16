@@ -548,8 +548,8 @@ CalculationResult
 │   ├── Constraint references
 │   └── Transformation references
 └── TraceabilityReferences
-    ├── PES referencee
-    ├── ES reference    
+    ├── PES reference
+    ├── ES reference   
     └── Calculation references
 ```
 The conceptual model identifies the engineering information required to represent a governed calculation outcome. It does not prescribe a public JSON representation or implementation structure.
@@ -828,123 +828,402 @@ Where an inverse calculation pathway is not defined, the Engineering Service sha
 
 ### 12.2 Approved inverse methods
 
+An inverse calculation method shall only be applied where the applicable governed data release explicitly defines an approved inverse calculation pathway.
 
+An approved inverse method shall identify:
+- the authoritative input quantity to which the inverse method applies;
+- the resulting engineering quantity to be calculated;
+- the governing formula, rule or approved calculation method;
+- any constraints, applicability conditions or domain limitations; and
+- any required transformations or processing steps.
 
+The Engineering Service shall apply the approved inverse method using the same governed resource resolution, calculation context and execution sequence applied to other calculation pathways.
 
+An inverse method shall not be generated automatically from a forward calculation definition unless the generation process itself is an approved and governed capability.
 
+Where a forward calculation pathway exists but no approved inverse method exists, the Engineering Service shall not perform an inverse calculation.
 
+The Engineering Service shall preserve traceability between the inverse method applied and the authoritative engineering resources that define the relationship.
 
+### 12.3 Inverse calculation constraints and validation
 
+An inverse calculation shall be executed only within the defined applicability domain of the approved inverse method.
 
-## 12. Reverse Calculation Path
+The Engineering Service shall validate that:
+- the authoritative input value is within the supported domain of the inverse method;
+- required constraints and applicability conditions are satisfied;
+- the inverse method produces an engineering outcome that satisfies the defined applicability, constraint and result validation requirements; and
+- the resulting Calculation Result satisfies applicable result constraints.
 
-Reverse calculation determines the maximum permitted NEQ from a supplied separation distance.
+Where an inverse method produces multiple possible solutions, the Engineering Service shall apply only the selection criteria explicitly defined by the governed calculation method.
 
-1. Receive a Calculation Request through the unified calculation operation, containing an authoritative input that the service determines requires the reverse path (normally distance where supported by the authoritative method).
-2. Validate request shape, identifiers, orientations, value, unit and Execution Context.
-3. Resolve the served validated data release and calculation method version.
-4. Resolve the ES/PES interaction, applicable distance rule, inverse formula or approved inverse method, constraints and transformations.
-5. Convert the input to the canonical calculation unit where required.
-6. Execute the governed inverse calculation and apply constraints and transformations in their defined order.
-7. Convert and format the output only after the canonical result is established.
-8. Return the result, effective context and engineering traceability; otherwise return a governed validation or resolution failure.
+The Engineering Service shall not:
+- select an arbitrary solution where multiple valid outcomes exist;
+- extrapolate beyond the approved domain of an inverse method;
+- disregard constraints defined by the governing calculation resource;
+- use inverse calculations to overcome limitations in the authoritative data model; or
+- return a Calculation Result where the inverse solution cannot be established with sufficient engineering confidence.
 
-Reverse calculation shall be offered only where the authoritative data defines an inverse calculation or an approved inverse method. The service shall not assume that every forward rule is safely invertible.
+Any conversion, transformation or rounding applied during an inverse calculation shall follow the same governed sequencing and traceability requirements established for other 
+calculation pathways.
+
+Failure to satisfy inverse calculation constraints shall prevent calculation completion and shall be handled using the applicable governed error semantics.
 
 ## 13. Validation Rules
 
-The calculation service shall validate the following before calculation execution.
+Validation ensures that the Engineering Service performs calculations only against information that is structurally valid, engineering-consistent and supported by the governed calculation model.
 
-| Validation area | Rule |
-|---|---|
-| Request shape | The request shall conform to the published unified calculation-request OpenAPI schema. |
-| Calculation direction | The service shall determine direction from the submitted authoritative calculation-driving input and unit. A request with no unambiguous, supported direction shall fail validation or applicability checks. |
-| Identifiers | ES type, PES type and hazard category identifiers shall exist in the resolved repository version. |
-| Orientations | Each supplied orientation shall be valid for its selected entity; where required, it shall be present. |
-| Context | Any subsequently contracted repository version, national profile, language or unit selection shall be recognised and permitted. Unsupported context members are rejected as defined by the Error Code Registry. |
-| Values | Known values shall be numeric, finite, positive and within any applicable controlled limits. |
-| Units | Input units shall be recognised and convertible to the canonical calculation unit without loss of engineering meaning. |
-| Rule resolution | The selected scenario and context shall resolve to one unambiguous, applicable governed calculation path. |
-| Inverse capability | A request determined to require an inverse calculation shall resolve to an approved inverse method. |
+Validation shall be applied throughout the calculation lifecycle and shall establish confidence that:
+- the supplied engineering information can be interpreted correctly;
+- the Engineering Scenario represents a valid engineering problem;
+- the Internal Calculation Context contains only resolved and applicable information; and
+- the resulting Calculation Result satisfies applicable outcome constraints.
 
-Validation shall fail closed. The service shall not select an arbitrary rule, silently change an invalid orientation, or apply an unapproved conversion. Public failures shall use the Error Code Registry; private diagnostic detail shall not disclose implementation internals.
+Validation activities shall support, but remain distinct from, the Engineering Assurance Framework. Validation establishes whether a specific calculation operation is valid; assurance establishes confidence that the broader engineering service remains accurate, controlled and sustainable.
 
-## 14. MVP Scope
+Validation outcomes shall use the governed error semantics defined by the Error Code Registry where calculation execution cannot proceed.
 
-The MVP implements the smallest coherent calculation capability required for the demonstrator:
+### 13.1 Validation principles
 
-- one unified calculation request binding with calculation direction determined from the authoritative input value and unit;
-- forward calculation from NEQ to required separation distance;
-- reverse calculation from distance to maximum permitted NEQ, only where supported by authoritative data;
-- Structure-led selection and resolution of ES type, PES type and orientations through governed repository entities;
-- response provenance containing the served `dataVersion`, `apiVersion`, `validationStatus` and `calculationMethodVersion`;
-- approved calculation units and governed traceability identifiers; and
-- validation and stable public error handling consistent with API governance.
+The Engineering Service shall validate information at each stage of the calculation lifecycle before progressing to subsequent processing stages.
 
-National tailoring, multiple languages, non-metric presentation, profile selection, alternative calculation options, batch calculation, persistence and scenario comparison are outside MVP scope. Their fields may be reserved but shall not be accepted as operational capabilities until governed and implemented.
+Validation shall be performed against authoritative engineering definitions, governed constraints and applicable calculation requirements.
 
-## 15. Future Extension Points
+Validation shall:
+- occur before information is used for calculation execution;
+- distinguish invalid information from valid information that is outside calculation applicability;
+- preserve traceability of validation outcomes;
+- prevent unresolved or inconsistent engineering information from entering calculation execution; and
+- avoid introducing engineering interpretation not defined by the governed calculation model.
 
-- **National profiles:** approved profile identifiers, applicability rules, profile provenance and conflict-resolution policy.
-- **Localisation:** language negotiation, translated narrative references and multilingual validation messages.
-- **Units:** approved conversion catalogue, display precision rules and declared conversion provenance.
-- **Additional chapters and rule families:** new scenario dimensions and calculation domains without changing existing Chapter 1 meanings.
-- **Batch and comparative calculations:** controlled collections of independent scenarios with per-result traceability.
-- **Saved scenarios and reproducibility:** immutable request/result records tied to a repository release and profile.
-- **Explainability:** optional, governed intermediate-value narratives that do not reveal internal implementation structures.
-- **Conformance:** machine-testable model schemas, reference test vectors and profile conformance suites.
+Validation shall not modify authoritative engineering information or silently correct invalid inputs. Where correction, normalisation or conversion is required, it shall occur only through governed processes with defined traceability.
 
-Every extension shall preserve the separation between Engineering Scenario, Execution Context and Calculation Result. A new field that changes engineering meaning shall be assessed as a model versioning change, not treated as presentation metadata.
+### 13.2 Engineering input validation
 
-## 16. Risks
+Engineering input validation shall establish whether the supplied authoritative input is suitable for use within the governed calculation process.
+
+Validation shall confirm that:
+- the required authoritative input has been provided;
+- the input quantity is compatible with the intended calculation pathway;
+- the supplied value conforms to applicable engineering constraints;
+- the supplied unit is valid for the identified quantity;
+- any required input conversion to the canonical calculation representation can be performed; and
+- the resulting canonical input is suitable for calculation execution.
+
+Where input conversion is required, the Engineering Service shall perform the conversion during validation before the input enters the calculation process.
+
+Input validation shall preserve traceability between:
+- the original supplied value and unit;
+- the approved conversion or transformation applied;
+- the resulting canonical calculation input; and
+- the subsequent Calculation Result.
+
+The Engineering Service shall not:
+- silently modify invalid engineering inputs;
+- substitute missing values;
+- apply undocumented assumptions;
+- infer engineering intent from ambiguous inputs; or
+- accept values outside defined constraints without an approved governing mechanism.
+
+Where engineering input validation fails, the Engineering Service shall not construct a calculation pathway or produce a Calculation Result.
+
+Input constraints, including minimum, maximum and boundary conditions, shall be defined by the applicable governed engineering resource and shall not be independently implemented by the Engineering Service.
+
+### 13.3 Calculation context validation
+
+Calculation context validation shall establish whether the resolved Internal Calculation Context is complete, consistent and suitable for calculation execution.
+
+Validation shall confirm that:
+- the Engineering Scenario has been successfully established;
+- required PES and ES resources have been resolved;
+- the applicable interaction has been identified;
+- the applicable calculation pathway has been determined;
+- required rules, formulae, constraints and transformations are available;
+- all referenced engineering resources are present within the applicable governed data release; and
+- the resolved context is internally consistent with the governing engineering model.
+
+Calculation context validation shall ensure that:
+- no unresolved engineering selections remain;
+- no conflicting resource relationships exist;
+- no unsupported calculation assumptions have been introduced; and
+- no information outside the governed engineering model has been used to establish applicability or execution behaviour.
+
+The Engineering Service shall not execute a calculation where the Internal Calculation Context:
+- cannot be established completely;
+- contains ambiguous engineering relationships;
+- references unavailable or invalid resources;
+- applies a calculation method outside its defined applicability conditions; or
+- cannot provide sufficient traceability to the governing engineering resources.
+
+Where calculation context validation fails, the Engineering Service shall return the applicable governed failure outcome and shall not produce a Calculation Result.
+
+Once calculation context validation has completed successfully, the validated Internal Calculation Context shall remain unchanged for the duration of calculation execution. Any change affecting engineering meaning shall require revalidation before calculation proceeds.
+
+### 13.4 Result validation
+
+Result validation shall establish whether the calculated engineering outcome satisfies the applicable requirements for a valid Calculation Result.
+
+Validation shall confirm that:
+- the calculation completed using the validated Internal Calculation Context;
+- the resulting quantity and unit correspond to the applicable calculation pathway;
+- the result conforms to applicable engineering constraints;
+- all required transformations have been applied in the governed sequence;
+- the result remains traceable to the authoritative input and governed calculation resources; and
+- the Calculation Result contains sufficient information to support engineering interpretation and assurance.
+
+Result validation shall not modify the calculated engineering outcome or introduce additional engineering assumptions.
+
+Where representation transformations are applied after calculation, validation shall ensure that:
+- the canonical engineering result remains preserved;
+- conversion and formatting operations do not alter engineering meaning; and
+- any applied transformations remain traceable.
+
+The Engineering Service shall not return a Calculation Result where the calculated outcome:
+- fails applicable result constraints;
+- cannot be traced to the governing calculation pathway;
+- has been affected by an uncontrolled transformation; or
+- cannot be demonstrated to represent the approved engineering calculation outcome.
+
+Where result validation fails, the Engineering Service shall return the applicable governed failure outcome and shall not represent the calculation as a valid engineering result.
+
+## 14. MVP Scope and Future Extension Points
+
+The Engineering Calculation Model defines an extensible architecture intended to support the long-term digital evolution of AASTP engineering services.
+
+The MVP implementation shall provide a controlled and demonstrable calculation capability while preserving the architectural foundations required for future expansion.
+
+Features identified as future extensions shall not be implemented by introducing uncontrolled changes to the engineering model. Future capabilities shall be introduced through governed changes to the data model, validation framework, service interfaces and supporting documentation.
+
+The distinction between MVP capability and future extension shall ensure that immediate implementation remains achievable while maintaining compatibility with future digital engineering requirements.
+
+### 14.1 MVP calculation capability
+
+The MVP Engineering Service shall demonstrate the ability to:
+- consume an authoritative governed data release;
+- validate engineering inputs;
+- establish a valid Engineering Scenario;
+- construct and validate an Internal Calculation Context;
+- determine an applicable calculation pathway;
+- execute approved calculation methods;
+- generate traceable Calculation Results; and
+- provide governed failure outcomes where calculation cannot be completed.
+
+MVP capability shall prioritise correctness, traceability and assurance over breadth of functionality.
+
+The MVP shall not require implementation of future extension capabilities unless they are necessary to demonstrate the core Engineering Service architecture.
+
+### 14.2 Deferred capabilities
+
+The following capabilities are recognised as future extensions to the Engineering Service and are outside the scope of the MVP implementation.
+
+Deferred capabilities shall not require uncontrolled modification of the Engineering Calculation Model and shall be introduced through governed extension processes.
+
+**Extended engineering data capability**
+
+Future implementations may support:
+- expanded AASTP chapter coverage beyond the initial implementation scope;
+- additional engineering entities, relationships and calculation methods;
+- enhanced engineering knowledge representation; and
+- broader integration of narrative and supporting engineering information.
+
+**National tailoring and localisation**
+
+Future implementations may support:
+- controlled national tailoring profiles;
+- approved deviations from baseline AASTP requirements;
+- national calculation methods where authorised;
+- language-specific representations; and
+- jurisdiction-specific output requirements.
+
+**Enhanced calculation services**
+
+Future implementations may support:
+- additional calculation pathways;
+- expanded inverse calculation capability;
+- automated generation of engineering tables and reports;
+- batch calculation services; and
+- integration with external engineering systems.
+
+**Deployment and operational capability**
+
+Future implementations may support:
+- offline calculation environments;
+- nationally hosted instances;
+- distributed service deployments;
+- enhanced user interfaces and visualisation; and
+- integration with enterprise engineering platforms.
+
+**Engineering assurance and governance capability**
+
+Future implementations may support:
+- enhanced validation reporting;
+- automated assurance evidence generation;
+- formal release authentication workflows;
+- extended audit capability; and
+- integration with broader digital engineering governance frameworks.
+
+**Engineering assurance and conformance capability**
+
+Future implementations may support:
+- machine-testable conformance models;
+- reference calculation test vectors;
+- profile conformance suites;
+- reproducibility records;
+- automated assurance evidence generation;
+- extended validation reporting; and
+- formal release verification workflows.
+
+Deferred capabilities shall preserve the principles established within this model, including authoritative data ownership, traceability, validation, interoperability and controlled evolution.
+
+Future extensions shall be introduced only where the required terminology, data structures, validation requirements and governance arrangements have been defined.
+
+### 14.3 Future extension principles
+
+Future extensions to the Engineering Service shall preserve the architectural principles established within this model and shall be introduced through controlled governance processes.
+
+Future extensions shall:
+- preserve the separation between authoritative engineering data, engineering calculation logic and service implementation;
+- maintain the authoritative status of governed data releases;
+- extend existing governed structures rather than introduce parallel engineering models;
+- maintain backwards compatibility wherever practical;
+- preserve traceability between engineering inputs, calculation methods and resulting outcomes;
+- maintain validation and assurance requirements appropriate to the capability being introduced;
+- define required terminology, data structures and governance arrangements before implementation; and
+- undergo appropriate engineering assessment before adoption into an authoritative service release.
+
+Future extensions shall not:
+- duplicate authoritative engineering information;
+- introduce undocumented engineering rules;
+- bypass established validation mechanisms;
+- alter existing calculation outcomes without controlled approval;
+- require consumers to interpret authoritative engineering data independently where a governed service capability exists; or
+- create incompatible representations of existing engineering concepts.
+
+New capabilities shall be introduced as controlled extensions of the Engineering Service architecture rather than independent solutions.
+
+National extensions, including tailoring profiles and jurisdiction-specific requirements, shall be implemented through governed extension mechanisms and shall not modify the baseline authoritative engineering model.
+
+## 15. Risks
+
+The Engineering Calculation Model introduces a controlled digital representation of AASTP engineering processes. The principal risks relate not only to software implementation, but also to preservation of engineering authority, traceability, reproducibility and governance.
+
+Risks shall be managed through the architectural principles, validation controls and governance processes established within this specification and related governance artefacts.
 
 | Risk | Control |
 |---|---|
-| Ambiguous or incomplete rule resolution | Require exactly one governed calculation path; fail closed where none or more than one applies. |
-| Results cannot be reproduced after data changes | Return and retain repository version, profile and stable basis identifiers. |
-| National tailoring changes an answer without visibility | Make profile selection explicit, approved and traceable in every result. |
-| Unit conversion introduces a safety-relevant discrepancy | Calculate canonically; apply controlled conversions and record output units and transformations. |
-| Public clients depend on internal repository structure | Expose stable engineering identifiers and models, not file paths or internal records. |
-| An inverse calculation is mathematically or operationally invalid | Permit it only where the authoritative data provides an approved inverse method. |
-| Over-expansion delays the demonstrator | Limit implementation to the MVP while retaining additive extension points. |
+| Ambiguous or incomplete engineering resource resolution | Require Structure-led resource selection, authoritative PES and ES resolution, and a single valid calculation pathway. The Engineering Service shall fail closed where applicability cannot be established. |
+| Calculation results cannot be reproduced after data or rule changes | Associate results with the applicable validated data release, calculation basis references and required provenance information. |
+| National tailoring modifies engineering outcomes without visibility | Require explicit approved national profiles, controlled applicability rules and traceable profile identification in resulting calculations. |
+| Unit conversion or transformation introduces engineering discrepancy | Perform calculations using canonical engineering representations, apply controlled conversions and preserve conversion and transformation traceability. |
+| Consumers become dependent on internal implementation structures | Expose stable engineering identifiers and governed representations rather than repository paths, indexes or internal execution objects. |
+| Inverse calculation produces an invalid or misleading engineering outcome | Permit inverse calculations only where an approved inverse method exists within the governed data release and applicable constraints are satisfied. |
+| Future extensions introduce incompatible engineering interpretations | Require controlled extension mechanisms, terminology definition, schema governance and engineering assessment before adoption. |
+| MVP scope expansion delays demonstration of the core Engineering Service concept | Maintain a clear MVP boundary and introduce additional capability only through controlled extension processes. |
+| Calculation logic becomes duplicated between software and authoritative data | Maintain the authoritative JSON data layer as the source of engineering rules, formulae, constraints and transformations. |
+| Validation provides confidence in individual calculations but not long-term service assurance | Maintain separation between operational validation and the Engineering Assurance Framework, including evidence generation and governance processes. |
 
-## 17. Acceptance Criteria
+## 16. Acceptance Criteria
 
-This specification is ready to govern MVP implementation when:
+The Engineering Calculation Model shall be considered acceptable when it demonstrates that governed engineering calculations can be performed consistently, traceably and reproducibly through the digital Engineering Service architecture.
 
-- the model separates Engineering Scenario, Execution Context, Internal Calculation Context and Calculation Result;
-- calculation direction is determined unambiguously from the authoritative input value and unit and agrees with the API Contract;
-- Structure-led selection and resolution precede the resolved ES/PES references in the Calculation Request;
-- required scenario fields and their validation rules are defined;
-- required version and validation provenance is returned on every result;
-- all calculation results include stable engineering-basis identifiers and provenance references where available;
-- failure conditions are delegated to the registered API error model;
-- MVP exclusions are explicit; and
-- the API Contract and OpenAPI description can represent the public request and result without exposing internal calculation context.
+Acceptance shall focus on the integrity of the engineering model, the correctness of calculation execution, the traceability of resulting outcomes and the ability to evolve the service through controlled governance processes.
 
-## 18. Glossary
+Acceptance criteria shall apply to the Engineering Calculation Model and its implementation capability. Detailed software verification procedures, test cases and deployment acceptance activities shall be defined separately.
+
+### 16.1 Engineering model acceptance
+
+The Engineering Calculation Model shall demonstrate that:
+- authoritative engineering data is represented using governed structures;
+- Engineering Scenarios can be uniquely established from supplied inputs and resolved resources;
+- PES and ES relationships are explicitly represented and traceable;
+- calculation applicability can be determined without reliance on undocumented engineering assumptions;
+- authoritative calculation inputs are clearly identified; and
+- calculation pathways can be resolved using governed engineering resources.
+
+### 16.2 Calculation execution acceptance
+
+The Engineering Service shall demonstrate that governed calculations can be executed consistently and correctly using the approved calculation pathways defined within the Engineering Calculation Model.
+
+Calculation execution acceptance shall confirm that:
+- validated engineering inputs are converted into the canonical calculation representation before execution;
+- the applicable calculation pathway is determined from the validated Engineering Scenario and Internal Calculation Context;
+- only approved rules, formulae, constraints and transformations are applied;
+- calculation transformations are executed in the governed sequence;
+- representation transformations are applied only after establishment of the canonical engineering result;
+- inverse calculations are performed only where approved inverse methods exist;
+- unsupported or invalid calculation pathways produce governed failure outcomes; and
+- equivalent engineering inputs, calculation context and governed data releases produce consistent Calculation Results.
+
+Calculation execution acceptance shall demonstrate that the Engineering Service executes the governed engineering model rather than introducing independent calculation logic or undocumented assumptions.
+
+Where calculation execution cannot be completed in accordance with the governed calculation pathway, the service shall fail predictably and shall not return an incomplete or misleading Calculation Result.
+
+### 16.3 Traceability and assurance acceptance
+
+The Engineering Service shall demonstrate that Calculation Results are traceable to the engineering information and governed resources used to produce them.
+
+Traceability and assurance acceptance shall confirm that:
+- the authoritative calculation input can be identified;
+- the resolved Engineering Scenario and Internal Calculation Context can be identified and reviewed;
+- the applicable governed data release can be identified;
+- the calculation pathway, rules, formulae, constraints and transformations applied can be determined;
+- validation outcomes associated with the calculation process are available;
+- the resulting Calculation Result can be distinguished from unsuccessful or incomplete calculation attempts; and
+- equivalent engineering inputs, governed resources and execution conditions produce reproducible outcomes.
+
+The Engineering Service shall preserve sufficient evidence to support engineering review, verification activities and future assurance processes.
+
+Traceability information shall support confidence in the engineering outcome without requiring consumers to access or interpret internal implementation structures.
+
+Detailed assurance processes, evidence requirements and ongoing service confidence measures shall be defined through the Engineering Assurance Framework.
+
+### 16.4 Compatibility and extension acceptance
+
+The Engineering Calculation Model shall demonstrate that future capability can be introduced through controlled extensions while preserving existing engineering meaning, compatibility and governance.
+
+Compatibility and extension acceptance shall confirm that:
+- authoritative engineering identifiers remain stable wherever practical;
+- existing calculation pathways continue to produce consistent outcomes unless a controlled engineering change has been approved;
+- extensions modify or add governed structures rather than creating parallel engineering models;
+- future capabilities can be introduced without requiring consumers to depend on internal implementation details;
+- changes to authoritative data, calculation methods or representations can be assessed through controlled governance processes; and
+- existing validation, traceability and assurance mechanisms remain applicable as capability expands.
+
+The Engineering Service shall support controlled evolution of the Engineering Calculation Model through additive extension wherever practical.
+
+Where a future change requires modification of an existing engineering concept, the change shall be subject to appropriate engineering assessment, compatibility review and controlled release processes.
+
+## 17. Glossary
 
 | Term | Definition |
 |---|---|
 | AASTP | Allied Ammunition Storage and Transport Publication. |
+| Authoritative calculation input | The single engineering quantity, value and unit supplied by the consumer that forms the basis for determining the applicable calculation pathway. The authoritative calculation input does not define the calculation method or guarantee that a calculation applies. |
 | Canonical unit | The controlled unit used internally for calculation before any output conversion or formatting. |
+| Calculation applicability | The determination that an approved calculation pathway exists for a resolved Engineering Scenario and Internal Calculation Context. |
+| Calculation pathway | The governed set of engineering resources, rules, formulae, constraints and transformations required to execute an approved calculation for a resolved Engineering Scenario. |
 | Calculation Request | Public model through which a client submits one Engineering Scenario and optional Execution Context. |
-| Calculation Result | Public model containing a calculated engineering outcome, effective context and traceability. |
-| Engineering Scenario | Technology-neutral description of the ES, PES, hazard category, orientations and known engineering value that define a calculation problem. |
-| Execution Context | Controlled information that selects the repository/profile or result representation without redefining the scenario. |
+| Calculation Result | The governed engineering outcome produced by the Engineering Service after successful execution of an approved calculation pathway, together with the traceability information required for review, assurance and reproducibility. |
+| Canonical calculation representation | The controlled engineering representation used during calculation execution after validation and conversion of supplied inputs. It provides a consistent basis for applying governed rules, formulae, constraints and transformations. |
+| Engineering Assurance Framework | The governance framework that establishes how confidence is maintained and demonstrated in the accuracy, traceability, integrity and sustainability of the digital Engineering Service. |
+| Engineering Scenario | The technology-neutral representation of the engineering problem, including the resolved PES and ES resources, orientations, Hazard Category and authoritative calculation input. |
+| Execution Context | Controlled contextual information that may affect engineering resource resolution, calculation applicability or approved representation without changing the identity of the Engineering Scenario. |
 | ES | Exposed Site. |
 | Forward calculation | Calculation of required separation distance from a supplied NEQ. |
-| Internal Calculation Context | Non-public resolved object used by the calculation engine. |
+| Internal Calculation Context | The non-public resolved engineering state constructed from the validated Calculation Request, established Engineering Scenario and governed data release. It contains the information required to determine applicability and execute an approved calculation pathway while remaining traceable to authoritative resources. |
 | NEQ | Net Explosive Quantity. |
 | PES | Potential Explosion Site. |
 | National profile | An approved national tailoring of the governed standard or repository, identified and applied explicitly. |
 | Reverse calculation | Calculation of maximum permitted NEQ from a supplied separation distance. |
 | Structure | A public engineering resource that defines the construction and exposure dimensions and orientation type applicable to engineering resource selection. |
-| Traceability | Information that identifies the controlled rules, formulae, transformations, references and context used to derive a result. |
+| Traceability | The controlled relationship between the authoritative input, Engineering Scenario, Internal Calculation Context, governed calculation pathway, applied resources and resulting Calculation Result. |
+| Transformation | A governed operation applied to an engineering value, either as part of calculation execution or representation processing. Transformations shall preserve traceability and engineering meaning. |
+| Validated data release | A controlled release of authoritative engineering data that has passed applicable validation controls and is approved for use by the Engineering Service. |
 
-## 19. Document History
+## 18. Document History
 
 | Date | Version | Change | Author / approval |
 |---|---|---|---|
+| 2026-08-16 | 0.3.0 | Major revision of the Engineering Calculation Model. Established the Engineering Scenario, Execution Context and Internal Calculation Context separation; introduced Structure-led resource resolution; formalised input-led calculation direction determination; defined canonical calculation representation, validation lifecycle, inverse calculation governance, MVP boundaries, future extension principles, risk controls and acceptance criteria. | Draft |
 | 2026-08-10 | 0.2.0 | Aligned with API Contract v0.3.1: introduced Structure-led selection before calculation, replaced operation-selected direction with input-led direction determination through the unified calculation service, and corrected ES/PES terminology. | Draft |
 | Pre-2026-08-10 | 0.1.0 | Initial governed engineering calculation model. | Draft |
