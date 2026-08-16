@@ -1,0 +1,169 @@
+{
+
+  "schemaVersion": "1.0.0",
+
+  "metadata": {
+        "dataset": "resource_resolution_rules",
+        "title": "Resource Resolution Rules",
+        "description": "This dataset contains definitions for various resource resolution rules.",
+        "version": "0.5.0",
+        "source": {
+            "standard": "AASTP-1",
+            "edition": "Edition D Version 1",
+            "chapter": "Part 1, Annex 1-A",
+            "para": "Tables 5-9",
+            "lastUpdated": "2026-07-13"
+        }
+  },
+
+  "rules": [
+    {
+      "id": "RR001",
+      "status": "approved",
+      "appliesTo": {
+        "datasetId": "es_types",
+        "resourceType": "es_type",
+        "context": {
+          "structureId": "STR001"
+        }
+      },
+      "when": {
+        "all": [
+          {
+            "property": "construction.ecmProtectionRating",
+            "operator": "equals",
+            "value": "PR003"
+          },
+          {
+            "property": "construction.headwall",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "property": "construction.barricaded",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "outcome": {
+        "type": "redundant_parameter",
+        "canonicalAssignments": [
+          {
+            "property": "construction.barricaded",
+            "value": false
+          }
+        ],
+        "canonicalTargetId": "ES003A"
+      },
+      "governance": {
+        "rationale": "Where an undefined Earth Covered Magazine has both a headwall and barricade, the headwall takes precedence. Barricaded is therefore redundant for resource resolution and is canonicalised to false.",
+        "source": "<approved source reference>",
+        "effectiveFrom": "2026-08-11"
+      }
+    },
+    {
+      "id": "RR002",
+      "status": "approved",
+      "appliesTo": {
+        "datasetId": "es_types",
+        "resourceType": "es_type",
+        "context": {
+          "structureId": "STR005"
+        }
+      },
+      "when": {
+        "all": [
+          {
+            "property": "structure",
+            "operator": "equals",
+            "value": "STR005"
+          },
+          {
+            "property": "construction.barricaded",
+            "operator": "equals",
+            "value": false
+          },
+          {
+            "property": "construction.roofType",
+            "operator": "type_is",
+            "value": "string"
+          }
+        ]
+      },
+      "outcome": {
+        "type": "redundant_parameter",
+        "canonicalAssignments": [
+          {
+            "property": "construction.roofType",
+            "value": null
+          }
+        ],
+        "canonicalTargetId": "ES007C"
+      },
+      "governance": {
+        "rationale": "Where an undefined Explosives Workshop has no barricade, the roof is therefore redundant for resource resolution and is canonicalised to null.",
+        "source": "<approved source reference>",
+        "effectiveFrom": "2026-08-11"
+      }
+    },
+    {
+      "id": "RR003",
+      "status": "approved",
+      "appliesTo": {
+        "datasetId": "es_types",
+        "resourceType": "es_type",
+        "context": {
+          "structureId": "STR011"
+        }
+      },
+      "when": {
+        "all": [
+          {
+            "property": "structure",
+            "operator": "equals",
+            "value": "STR011"
+          },
+          {
+            "property": "construction.roofType",
+            "operator": "equals",
+            "value": "Protective"
+          },    
+          {
+            "any": [
+              {
+                "property": "exposure.level",
+                "operator": "type_is",
+                "value": "string"
+              },
+              {
+                "property": "exposure.category",
+                "operator": "type_is",
+                "value": "string"
+              }
+            ]
+          }
+        ]
+      },
+      "outcome": {
+        "type": "redundant_parameter",
+        "canonicalAssignments": [
+          {
+            "property": "exposure.category",
+            "value": false
+          },
+          {
+            "property": "exposure.level",
+            "value": false
+          }
+        ],
+        "canonicalTargetId": "ES013A"
+      },
+      "governance": {
+        "rationale": "Where a POL facility is protected (i.e. underground), the exposure category and level are therefore redundant for resource resolution and are canonicalised to false.",
+        "source": "<approved source reference>",
+        "effectiveFrom": "2026-08-11"
+      }
+    }
+  ]
+}

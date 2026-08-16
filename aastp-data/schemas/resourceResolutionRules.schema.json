@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    
+    "$id": "https://aastp.org/schemas/resourceResolutionRules.schema.json",
+    
+    "title": "AASTP Resource Resolution Rules Schema",
+    
+    "description": "Defines the structure of governed resource resolution rules used to canonicalise exceptional engineering resource configurations.",
+    
+    "type": "object",
+
+    "required": [
+        "schemaVersion",
+        "metadata",
+        "rules"
+    ],
+
+
+    "properties": {
+        "schemaVersion": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/schemaVersion"
+        },
+
+        "metadata": {
+            "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/metadata"
+        },
+
+        "rules": {
+            "type": "array",
+            "items": {
+                "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/rule"
+            }
+        }
+    },
+
+    "additionalProperties": false,
+
+    "$defs": {}
+
+}

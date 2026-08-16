@@ -38,7 +38,7 @@
                 ],
                 "properties": {
                     "id": {
-                        "$ref": "./defs/common.schema.json#/$defs/hazardCategoriesId"
+                        "$ref": "https://aastp.org/schemas/defs/common.schema.json#/$defs/hazardCategoriesId"
                     },
                     "code": {
                         "type": "string",
@@ -65,10 +65,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": [
-                            "hazard_division",
-                            "storage_subdivision"
-                        ]
+                        "minLength": 1
                     },
                     "active": {
                         "type": "boolean"
@@ -77,14 +74,14 @@
                         "type": "object",
                         "required": [
                             "document",
-                            "paragraph"
+                            "para"
                         ],
                         "properties": {
                             "document": {
                                 "type": "string",
                                 "minLength": 1
                             },
-                            "paragraph": {
+                            "para": {
                                 "type": "string",
                                 "minLength": 1
                             }
@@ -102,10 +99,7 @@
                         "minItems": 1,
                         "items": {
                             "type": "string",
-                            "enum": [
-                                "NEQ",
-                                "MCE"
-                            ]
+                            "minLength": 1
                         }
                     }
                 },

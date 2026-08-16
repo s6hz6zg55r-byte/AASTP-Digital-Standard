@@ -1,0 +1,50 @@
+# =============================================================================
+# Exposed Site Exposure Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the exposure characteristics applicable to an Exposed Site Type.
+#
+# Used by
+# -------
+# - Exposed Site Type schemas
+# - Engineering calculation request schemas
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Defines the exposure category and level applicable to an Exposed Site Type.
+  Exposure values may be represented by an approved engineering term or
+  explicitly indicate that exposure is not applicable to the particular
+  Exposed Site Type.
+
+properties:
+
+  category:
+    type:
+      - string
+      - boolean
+      - "null"
+    description: >
+      Category used to classify the exposure characteristic of the Exposed
+      Site Type. A value of false indicates that exposure category does not
+      apply to the particular Exposed Site Type.
+    example: "criticality"
+
+  level:
+    type:
+      - string
+      - boolean
+      - "null"
+    description: >
+      Level within the applicable exposure category for the Exposed Site Type.
+      A value of false indicates that exposure level does not apply to the
+      particular Exposed Site Type.
+    example: "high"
+
+required:
+  - category
+  - level

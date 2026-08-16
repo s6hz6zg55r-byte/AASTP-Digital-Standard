@@ -33,7 +33,8 @@ export function resolve(context) {
     context.assessments =
         createAssessments(
             context.request, 
-            context.interaction
+            context.interaction,
+            context.resolvedEntities.mode
         );
 
     return context;
@@ -43,17 +44,17 @@ export function resolve(context) {
  * Creates one assessment for each engineering effect
  * that has an outcome matching the requested hazard.
  */
-function createAssessments(request, interaction) {
+function createAssessments(request, interaction, mode) {
 
     const assessments = [];
     for (const [effectId, outcomes] of Object.entries(interaction.effects)) {
-        if (!request.explosiveHazard) {
+        if (!request.hazardId) {
             throw new Error(
-                "assessmentResolver requires request.explosiveHazard"
+                "assessmentResolver requires request.hazardId"
             );
         }
         const matchingOutcome = outcomes.find(
-            outcome => outcome.hazard === request.explosiveHazard
+            outcome => outcome.hazard === request.hazardId
         );
 
         if (!matchingOutcome) {
@@ -64,7 +65,8 @@ function createAssessments(request, interaction) {
                 request,
                 interaction,
                 effectId,
-                outcome: matchingOutcome
+                outcome: matchingOutcome,
+                direction: mode.toLowerCase()
             });
         assessment.result.status =
             resolveAssessmentStatus(matchingOutcome);

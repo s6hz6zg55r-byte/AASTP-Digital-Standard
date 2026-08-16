@@ -1,0 +1,48 @@
+# =============================================================================
+# Response Metadata Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines metadata accompanying successful API responses.
+#
+# Used by
+# -------
+# - Repository collection responses
+# - Repository entity responses
+# - Engineering calculation responses
+#
+# =============================================================================
+type: object
+
+description: >
+  Metadata describing an API response and the authoritative engineering
+  repository from which its data was derived.
+
+properties:
+
+  repositoryVersion:
+    type: string
+    description: >
+      Version of the authoritative AASTP engineering repository used to
+      produce the response.
+    example: "AASTP-1 Edition 3"
+
+  generatedAt:
+    type: string
+    format: date-time
+    description: >
+      UTC timestamp indicating when the API response was generated.
+    example: "2026-08-10T08:35:14Z"
+
+  itemCount:
+    type: integer
+    description: >
+      Number of resources contained within the response data element when
+      the response represents a collection.
+    example: 12
+    minimum: 0
+
+required:
+  - repositoryVersion
+  - generatedAt

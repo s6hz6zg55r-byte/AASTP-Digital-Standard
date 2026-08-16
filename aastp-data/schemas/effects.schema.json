@@ -59,13 +59,7 @@
                     },
                     "category": {
                         "type": "string",
-                        "enum": [
-                            "blast_effect",
-                            "fragment_effect",
-                            "thermal_effect",
-                            "fire_effect",
-                            "local_effect"
-                        ]
+                        "minLength": 1
                     },
                     "requiresQD": {
                         "type": "boolean"
@@ -77,31 +71,14 @@
                         "type": "object",
                         "required": [
                             "document",
-                            "version",
-                            "reference"
+                            "para"
                         ],
                         "properties": {
                             "document": {
                                 "type": "string"
                             },
-                            "version": {
+                            "para": {
                                 "type": "string"
-                            },
-                            "reference": {
-                                "type": "object",
-                                "required": [
-                                    "section",
-                                    "para"
-                                ],
-                                "properties": {
-                                    "section": {
-                                        "type": "string"
-                                    },
-                                    "para": {
-                                        "type": "string"
-                                    }
-                                },
-                                "additionalProperties": false
                             }
                         },
                         "additionalProperties": false

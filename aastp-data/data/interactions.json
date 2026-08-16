@@ -21,6 +21,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 1,
                     "column": "a"
@@ -141,6 +142,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 1,
                     "column": "b"
@@ -252,6 +254,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 1,
                     "column": "c"
@@ -373,6 +376,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 2,
                     "column": "a"
@@ -492,6 +496,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 2,
                     "column": "b"
@@ -611,6 +616,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 2,
                     "column": "c"
@@ -740,6 +746,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 3,
                     "column": "a"
@@ -860,6 +867,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 3,
                     "column": "b"
@@ -1031,6 +1039,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 3,
                     "column": "c"
@@ -1162,6 +1171,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 4,
                     "column": "a"
@@ -1282,6 +1292,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 4,
                     "column": "b"
@@ -1402,6 +1413,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 4,
                     "column": "c"
@@ -1530,6 +1542,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 5,
                     "column": "a"
@@ -1650,6 +1663,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 5,
                     "column": "b"
@@ -1769,6 +1783,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 5,
                     "column": "c"
@@ -1898,6 +1913,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 6,
                     "column": "a"
@@ -2018,6 +2034,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 6,
                     "column": "b"
@@ -2133,6 +2150,7 @@
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 6,
                     "column": "c"
@@ -2261,12 +2279,202 @@
         },
 
 
+        {
+            "id": "INT999",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "type": "table_entry",
+                    "table": 2,
+                    "row": 9,
+                    "column": "d"
+                }
+            },
 
+            "conditions": {
+                "pesType": "PES001",
+                "esType": "ES003A",
+                "orientation": {
+                    "pes": "rear",
+                    "es": "rear"
+                }
+            },
+
+            "effects": {
+                "EFF001": [
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD09",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD04",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    }
+                ],
+                "EFF002": [
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD09",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD04",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    },
+
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": []
+                    },
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD04",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV001","CV002"]
+                    }
+                ],
+                "EFF003": [
+                    {
+                        "hazard": "HD002",
+                        "status": "N_A"
+                    },
+
+                    {
+                        "hazard": "HD003",
+                        "status": "N_A"
+                    }
+                ],
+                "EFF004": [
+                    {
+                        "hazard": "HD004",
+                        "status": "NO_QD"
+                    },
+                    {
+                        "hazard": "HD005",
+                        "distanceRule": "FD25",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL001",
+                        "constraints": []                    
+                    },
+                    {
+                        "hazard": "HD005",
+                        "distanceRule": "FD10",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": []                    
+                    },
+                    {
+                        "hazard": "HD006",
+                        "status": "NO_QD"
+                    },
+                    {
+                        "hazard": "HD009",
+                        "status": "NO_QD"
+                    }              
+                ]
+            }
+
+        },
+        
+ 
+ 
+ 
         {
             "id": "INT055",
             "source": {
                 "document": "AASTP-1",
                 "reference": {
+                    "type": "table_entry",
                     "table": 1,
                     "row": 19,
                     "column": "a"
@@ -2391,6 +2599,127 @@
                         "inputBasis": "NEQ",
                         "protectionLevel": "PL001",
                         "constraints": []
+                    }              
+                ]
+            }
+
+        },
+
+        {
+            "id": "INT126",
+            "source": {
+                "document": "AASTP-1",
+                "reference": {
+                    "type": "table_entry",
+                    "table": 2,
+                    "row": 9,
+                    "column": "d"
+                }
+            },
+
+            "conditions": {
+                "pesType": "PES002A",
+                "esType": "ES003A",
+                "orientation": {
+                    "pes": "all",
+                    "es": "rear"
+                }
+            },
+
+            "effects": {
+                "EFF001": [
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD07",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    }
+                ],
+                "EFF002": [
+                    {
+                        "hazard": "HD001",
+                        "distanceRule": "BD07",
+                        "inputBasis": "NEQ",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD002",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD004",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    },
+
+                    {
+                        "hazard": "HD009",
+                        "distanceRule": "BD07",
+                        "inputBasis": "MCE",
+                        "protectionLevel": "PL002",
+                        "constraints": ["CV003"]
+                    }
+                ],
+                "EFF003": [
+                    {
+                        "hazard": "HD002",
+                        "status": "N_A"
+                    },
+
+                    {
+                        "hazard": "HD003",
+                        "status": "N_A"
+                    }
+                ],
+                "EFF004": [
+                    {
+                        "hazard": "HD004",
+                        "status": "NO_QD"
+                    },
+                    {
+                        "hazard": "HD005",
+                        "status": "NO_QD"                    
+                    },
+                    {
+                        "hazard": "HD006",
+                        "status": "NO_QD"
+                    },
+                    {
+                        "hazard": "HD009",
+                        "status": "NO_QD"
                     }              
                 ]
             }

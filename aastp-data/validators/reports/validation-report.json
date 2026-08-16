@@ -1,0 +1,1187 @@
+{
+  "reportVersion": "1.0",
+  "metadata": {
+    "generatedAt": "2026-08-13T09:31:38.340Z",
+    "validatorVersion": "1.0",
+    "datasetVersion": "unknown"
+  },
+  "summary": {
+    "status": "FAIL",
+    "totals": {
+      "status": "FAIL",
+      "validators": 30,
+      "passed": 29,
+      "failed": 1,
+      "errors": 3,
+      "warnings": 2
+    },
+    "layers": {
+      "1": {
+        "status": "PASS",
+        "validators": 15,
+        "passed": 15,
+        "failed": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      "2": {
+        "status": "FAIL",
+        "validators": 15,
+        "passed": 14,
+        "failed": 1,
+        "errors": 3,
+        "warnings": 2
+      }
+    }
+  },
+  "layers": [
+    {
+      "layer": 1,
+      "anchor": "level1",
+      "name": "Schema Validation",
+      "summary": {
+        "status": "PASS",
+        "validators": 15,
+        "passed": 15,
+        "failed": 0,
+        "errors": 0,
+        "warnings": 0
+      },
+      "validators": [
+        {
+          "id": "VAL-L1-CV-001",
+          "name": "Constraints Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "constraintsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-DR-001",
+          "name": "Distance Rule Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "distanceRulesChecked": 59
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-PR-001",
+          "name": "ECM Protection Ratings Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "ecmProtectionRatingsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-EF-001",
+          "name": "Effects Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "effectsChecked": 6
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-ES-001",
+          "name": "ES Types Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "esTypesChecked": 27
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-FM-001",
+          "name": "Formula Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "formulasChecked": 5
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-HC-001",
+          "name": "Hazard Categories Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "hazardCategoriesChecked": 9
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-INT-001",
+          "name": "Interaction Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "interactionsChecked": 19
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-OR-001",
+          "name": "Orientation Types Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "orientationTypesChecked": 2
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-PES-001",
+          "name": "PES Types Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "pesTypesChecked": 8
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-PL-001",
+          "name": "Protection Levels Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "protectionLevelsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-RPPS-001",
+          "name": "Resource Property Semantics",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "resourcePropertySemanticsChecked": 7
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-RRR-001",
+          "name": "Resource Resolution Rules Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "resourceResolutionRulesChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-ST-001",
+          "name": "Structures Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "structuresChecked": 11
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L1-TR-001",
+          "name": "Transformation Schema",
+          "layer": 1,
+          "status": "PASS",
+          "statistics": {
+            "transformationsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "layer": 2,
+      "anchor": "level2",
+      "name": "Repository Validation",
+      "summary": {
+        "status": "FAIL",
+        "validators": 15,
+        "passed": 14,
+        "failed": 1,
+        "errors": 3,
+        "warnings": 2
+      },
+      "validators": [
+        {
+          "id": "VAL-L2-CV-001",
+          "name": "Constraint Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "constraintsChecked": 3,
+            "uniqueIdsChecked": 3,
+            "uniqueCodesChecked": 3,
+            "uniqueNamesChecked": 3,
+            "definitionsChecked": 3,
+            "controlledVocabularyChecked": 3,
+            "sourceReferencesChecked": 3,
+            "repositoryConsistencyChecks": 1,
+            "uniqueDescriptionsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-REF-001",
+          "name": "Repository Reference Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "structuresChecked": 11,
+            "pesTypesChecked": 8,
+            "esTypesChecked": 27,
+            "interactionsChecked": 0,
+            "effectsChecked": 76,
+            "hazardsChecked": 278,
+            "constraintsChecked": 152,
+            "distanceRulesChecked": 181,
+            "protectionLevelsChecked": 181,
+            "ecmProtectionRatingsChecked": 0,
+            "engineeringDefinitionsChecked": 278,
+            "hazardDefinitionsChecked": 278
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-DR-001",
+          "name": "Distance Rule Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "distanceRulesChecked": 59,
+            "branchesChecked": 118,
+            "formulaReferencesChecked": 118,
+            "transformationReferencesChecked": 59,
+            "branchCoverageChecked": 59,
+            "branchContinuityChecked": 59,
+            "branchOverlapChecked": 59,
+            "branchOrderingChecked": 59,
+            "transformationArraysChecked": 118,
+            "transformationDefinitionsChecked": 59
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-EF-001",
+          "name": "Effects Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "repositoryObjectsChecked": 6,
+            "identifiersChecked": 6,
+            "codesChecked": 6,
+            "namesChecked": 6,
+            "effectDefinitionsChecked": 6,
+            "descriptionsChecked": 6,
+            "requiresQDChecked": 6,
+            "activeFlagsChecked": 6,
+            "effectCategoriesChecked": 6,
+            "traceabilityRecordsChecked": 6,
+            "sourceDocumentsChecked": 6,
+            "sourceParagraphsChecked": 6,
+            "engineeringDefinitionsChecked": 6,
+            "duplicateDefinitionsDetected": 0
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-ES-001",
+          "name": "ES Types Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "esTypesChecked": 27,
+            "uniqueIdsChecked": 27,
+            "uniqueNamesChecked": 27,
+            "definitionsChecked": 27,
+            "constructionDefinitionsChecked": 17,
+            "exposureDefinitionsChecked": 11,
+            "structureReferencesChecked": 27,
+            "constructionApplicabilityChecked": 27,
+            "exposureApplicabilityChecked": 27,
+            "constructionDiscriminatorsChecked": 68,
+            "exposureDiscriminatorsChecked": 22,
+            "constructionValuesChecked": 12,
+            "exposureCategoriesChecked": 10,
+            "exposureLevelsChecked": 10,
+            "traceabilityRecordsChecked": 27,
+            "sourceDocumentsChecked": 27,
+            "sourceParasChecked": 27,
+            "engineeringDefinitionsChecked": 27,
+            "duplicateDefinitionsDetected": 0
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-FM-001",
+          "name": "Formula Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "formulasChecked": 5,
+            "formulaSolvabilityChecked": 5,
+            "forwardSolvabilityChecked": 5,
+            "reverseSolvabilityChecked": 5,
+            "engineeringUnitsChecked": 5,
+            "forwardEngineeringUnitsChecked": 5,
+            "reverseEngineeringUnitsChecked": 4,
+            "parameterContractsChecked": 5,
+            "forwardParameterContractsChecked": 5,
+            "reverseParameterContractsChecked": 4,
+            "engineeringExpressionsChecked": 5,
+            "forwardExpressionsChecked": 4,
+            "reverseExpressionsChecked": 3,
+            "formulaConsistencyChecked": 5
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-HC-001",
+          "name": "Hazard Categories Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "repositoryObjectsChecked": 9,
+            "identifiersChecked": 9,
+            "codesChecked": 9,
+            "namesChecked": 9,
+            "hazardDefinitionsChecked": 9,
+            "descriptionsChecked": 9,
+            "parentDefinitionsChecked": 9,
+            "activeFlagsChecked": 9,
+            "hazardCategoryTypesChecked": 9,
+            "parentDivisionsChecked": 9,
+            "effectReferencesChecked": 17,
+            "supportedQuantityBasisChecked": 12,
+            "traceabilityRecordsChecked": 9,
+            "sourceDocumentsChecked": 9,
+            "sourceParagraphsChecked": 9
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-INT-001",
+          "name": "Interactions Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "repositoryObjectsChecked": 19,
+            "identifiersChecked": 19,
+            "interactionsChecked": 19,
+            "effectDefinitionsChecked": 76,
+            "hazardDefinitionsChecked": 278,
+            "traceabilityRecordsChecked": 19,
+            "hazardOutcomesChecked": 278,
+            "constraintReferencesChecked": 152
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-OR-001",
+          "name": "Orientation Types Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "orientationTypesChecked": 2,
+            "uniqueIdsChecked": 2,
+            "uniqueNamesChecked": 2,
+            "definitionsChecked": 2,
+            "valuesChecked": 4,
+            "traceabilityChecked": 1,
+            "repositoryConsistencyChecked": 1,
+            "uniqueValueSetsChecked": 2
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-PES-001",
+          "name": "PES Types Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "repositoryObjectsChecked": 8,
+            "identifiersChecked": 8,
+            "namesChecked": 8,
+            "definitionsChecked": 8,
+            "constructionDefinitionsChecked": 8,
+            "structureReferencesChecked": 8,
+            "constructionApplicabilityChecked": 8,
+            "constructionDiscriminatorsChecked": 24,
+            "roofTypesChecked": 3,
+            "traceabilityRecordsChecked": 8,
+            "sourceDocumentsChecked": 8,
+            "sourceParagraphsChecked": 8,
+            "engineeringDefinitionsChecked": 8,
+            "duplicateDefinitionsDetected": 0
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-PL-001",
+          "name": "Protection Levels Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "protectionLevelsChecked": 3,
+            "uniqueIdsChecked": 3,
+            "uniqueCodesChecked": 3,
+            "uniqueNamesChecked": 3,
+            "definitionsChecked": 3,
+            "sourceReferencesChecked": 3,
+            "repositoryConsistencyChecked": 1,
+            "uniqueNotesChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-RPPS-001",
+          "name": "Resource Property Semantics Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "semanticDefinitionsChecked": 7,
+            "propertyIdentifiersChecked": 7,
+            "rolesChecked": 7,
+            "derivationSourcesChecked": 1,
+            "propertyReferencesChecked": 7
+          },
+          "errors": [],
+          "warnings": []
+        },
+        {
+          "id": "VAL-L2-RRR-001",
+          "name": "Resource Resolution Rules Repository Integrity",
+          "layer": 2,
+          "status": "FAIL",
+          "statistics": {
+            "repositoryObjectsChecked": 3,
+            "identifiersChecked": 3,
+            "rulesChecked": 3,
+            "conditionGroupsChecked": 4,
+            "predicatesChecked": 10,
+            "outcomesChecked": 3,
+            "canonicalAssignmentsChecked": 4,
+            "datasetReferencesChecked": 3,
+            "resourceTypeReferencesChecked": 3,
+            "structureReferencesChecked": 3,
+            "propertyReferencesChecked": 14,
+            "controlledValuesChecked": 11,
+            "canonicalAssignmentContextChecks": 4,
+            "canonicalTargetsChecked": 3,
+            "canonicalConfigurationsChecked": 3,
+            "propertyApplicabilityChecks": 14,
+            "traceabilityRecordsChecked": 3,
+            "rationalesChecked": 3,
+            "sourceReferencesChecked": 3,
+            "effectiveDatesChecked": 3,
+            "rulePairsChecked": 3,
+            "duplicateRulesChecked": 3,
+            "overlapPairsChecked": 0,
+            "overlapsDetected": 0,
+            "ambiguousPairsChecked": 0,
+            "ambiguousResolutionsDetected": 0,
+            "exactMatchAlternativesChecked": 1,
+            "exactMatchConflictsDetected": 0,
+            "canonicalResolutionChecks": 3,
+            "nonUniqueCanonicalResolutionsDetected": 0,
+            "redundantRulePairsChecked": 0,
+            "redundantRulesDetected": 0,
+            "ruleReachabilityChecks": 3,
+            "unreachableRulesDetected": 0,
+            "selectionSemanticsChecks": 8,
+            "informationalPredicatesDetected": 1
+          },
+          "errors": [
+            {
+              "code": "Approved Rule Contains Placeholder Governance Data.",
+              "location": "RR001",
+              "message": "Approved Resolution Rule contains placeholder governance data."
+            },
+            {
+              "code": "Approved Rule Contains Placeholder Governance Data.",
+              "location": "RR002",
+              "message": "Approved Resolution Rule contains placeholder governance data."
+            },
+            {
+              "code": "Approved Rule Contains Placeholder Governance Data.",
+              "location": "RR003",
+              "message": "Approved Resolution Rule contains placeholder governance data."
+            }
+          ],
+          "warnings": [
+            {
+              "code": "Informational Property Used in Selection Condition.",
+              "location": "RR003",
+              "message": "Informational Resource Property 'exposure.category' is used as a Resolution Rule matching condition."
+            }
+          ]
+        },
+        {
+          "id": "VAL-L2-ST-001",
+          "name": "Structures Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "structuresChecked": 11,
+            "uniqueIdsChecked": 11,
+            "uniqueCodesChecked": 11,
+            "uniqueNamesChecked": 11,
+            "definitionsChecked": 11,
+            "supportedPropertiesChecked": 30,
+            "supportedExposureChecked": 8,
+            "relationshipsChecked": 11,
+            "categoryReferencesChecked": 11,
+            "orientationTypeReferencesChecked": 11,
+            "traceabilityChecked": 1,
+            "repositoryConsistencyChecked": 1,
+            "uniqueEngineeringDefinitionsChecked": 10
+          },
+          "errors": [],
+          "warnings": [
+            {
+              "code": "Duplicate Structure Definitions.",
+              "location": "STR004",
+              "message": "Structure 'Open Stack' has an identical engineering definition to 'Medium Walled Magazine'."
+            }
+          ]
+        },
+        {
+          "id": "VAL-L2-TR-001",
+          "name": "Transformation Repository Integrity",
+          "layer": 2,
+          "status": "PASS",
+          "statistics": {
+            "transformationsChecked": 3,
+            "uniqueIdsChecked": 3,
+            "uniqueNamesChecked": 3,
+            "expressionsChecked": 3,
+            "expressionSyntaxChecked": 3,
+            "functionContractsChecked": 3,
+            "repositoryConsistencyChecked": 1,
+            "uniqueExpressionsChecked": 3
+          },
+          "errors": [],
+          "warnings": []
+        }
+      ]
+    }
+  ],
+  "components": {
+    "reportSummary": {
+      "component": "COMP002",
+      "status": "FAIL",
+      "validators": 30,
+      "passed": 29,
+      "failed": 1,
+      "errors": 3,
+      "warnings": 2
+    },
+    "validationLevelSummary": {
+      "component": "COMP003",
+      "layers": [
+        {
+          "layer": 1,
+          "anchor": "level1",
+          "name": "Schema Validation",
+          "summary": {
+            "status": "PASS",
+            "validators": 15,
+            "passed": 15,
+            "failed": 0,
+            "errors": 0,
+            "warnings": 0
+          },
+          "validators": [
+            {
+              "id": "VAL-L1-CV-001",
+              "name": "Constraints Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "constraintsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-DR-001",
+              "name": "Distance Rule Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "distanceRulesChecked": 59
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-PR-001",
+              "name": "ECM Protection Ratings Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "ecmProtectionRatingsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-EF-001",
+              "name": "Effects Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "effectsChecked": 6
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-ES-001",
+              "name": "ES Types Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "esTypesChecked": 27
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-FM-001",
+              "name": "Formula Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "formulasChecked": 5
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-HC-001",
+              "name": "Hazard Categories Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "hazardCategoriesChecked": 9
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-INT-001",
+              "name": "Interaction Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "interactionsChecked": 19
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-OR-001",
+              "name": "Orientation Types Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "orientationTypesChecked": 2
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-PES-001",
+              "name": "PES Types Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "pesTypesChecked": 8
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-PL-001",
+              "name": "Protection Levels Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "protectionLevelsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-RPPS-001",
+              "name": "Resource Property Semantics",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "resourcePropertySemanticsChecked": 7
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-RRR-001",
+              "name": "Resource Resolution Rules Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "resourceResolutionRulesChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-ST-001",
+              "name": "Structures Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "structuresChecked": 11
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L1-TR-001",
+              "name": "Transformation Schema",
+              "layer": 1,
+              "status": "PASS",
+              "statistics": {
+                "transformationsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            }
+          ]
+        },
+        {
+          "layer": 2,
+          "anchor": "level2",
+          "name": "Repository Validation",
+          "summary": {
+            "status": "FAIL",
+            "validators": 15,
+            "passed": 14,
+            "failed": 1,
+            "errors": 3,
+            "warnings": 2
+          },
+          "validators": [
+            {
+              "id": "VAL-L2-CV-001",
+              "name": "Constraint Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "constraintsChecked": 3,
+                "uniqueIdsChecked": 3,
+                "uniqueCodesChecked": 3,
+                "uniqueNamesChecked": 3,
+                "definitionsChecked": 3,
+                "controlledVocabularyChecked": 3,
+                "sourceReferencesChecked": 3,
+                "repositoryConsistencyChecks": 1,
+                "uniqueDescriptionsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-REF-001",
+              "name": "Repository Reference Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "structuresChecked": 11,
+                "pesTypesChecked": 8,
+                "esTypesChecked": 27,
+                "interactionsChecked": 0,
+                "effectsChecked": 76,
+                "hazardsChecked": 278,
+                "constraintsChecked": 152,
+                "distanceRulesChecked": 181,
+                "protectionLevelsChecked": 181,
+                "ecmProtectionRatingsChecked": 0,
+                "engineeringDefinitionsChecked": 278,
+                "hazardDefinitionsChecked": 278
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-DR-001",
+              "name": "Distance Rule Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "distanceRulesChecked": 59,
+                "branchesChecked": 118,
+                "formulaReferencesChecked": 118,
+                "transformationReferencesChecked": 59,
+                "branchCoverageChecked": 59,
+                "branchContinuityChecked": 59,
+                "branchOverlapChecked": 59,
+                "branchOrderingChecked": 59,
+                "transformationArraysChecked": 118,
+                "transformationDefinitionsChecked": 59
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-EF-001",
+              "name": "Effects Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "repositoryObjectsChecked": 6,
+                "identifiersChecked": 6,
+                "codesChecked": 6,
+                "namesChecked": 6,
+                "effectDefinitionsChecked": 6,
+                "descriptionsChecked": 6,
+                "requiresQDChecked": 6,
+                "activeFlagsChecked": 6,
+                "effectCategoriesChecked": 6,
+                "traceabilityRecordsChecked": 6,
+                "sourceDocumentsChecked": 6,
+                "sourceParagraphsChecked": 6,
+                "engineeringDefinitionsChecked": 6,
+                "duplicateDefinitionsDetected": 0
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-ES-001",
+              "name": "ES Types Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "esTypesChecked": 27,
+                "uniqueIdsChecked": 27,
+                "uniqueNamesChecked": 27,
+                "definitionsChecked": 27,
+                "constructionDefinitionsChecked": 17,
+                "exposureDefinitionsChecked": 11,
+                "structureReferencesChecked": 27,
+                "constructionApplicabilityChecked": 27,
+                "exposureApplicabilityChecked": 27,
+                "constructionDiscriminatorsChecked": 68,
+                "exposureDiscriminatorsChecked": 22,
+                "constructionValuesChecked": 12,
+                "exposureCategoriesChecked": 10,
+                "exposureLevelsChecked": 10,
+                "traceabilityRecordsChecked": 27,
+                "sourceDocumentsChecked": 27,
+                "sourceParasChecked": 27,
+                "engineeringDefinitionsChecked": 27,
+                "duplicateDefinitionsDetected": 0
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-FM-001",
+              "name": "Formula Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "formulasChecked": 5,
+                "formulaSolvabilityChecked": 5,
+                "forwardSolvabilityChecked": 5,
+                "reverseSolvabilityChecked": 5,
+                "engineeringUnitsChecked": 5,
+                "forwardEngineeringUnitsChecked": 5,
+                "reverseEngineeringUnitsChecked": 4,
+                "parameterContractsChecked": 5,
+                "forwardParameterContractsChecked": 5,
+                "reverseParameterContractsChecked": 4,
+                "engineeringExpressionsChecked": 5,
+                "forwardExpressionsChecked": 4,
+                "reverseExpressionsChecked": 3,
+                "formulaConsistencyChecked": 5
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-HC-001",
+              "name": "Hazard Categories Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "repositoryObjectsChecked": 9,
+                "identifiersChecked": 9,
+                "codesChecked": 9,
+                "namesChecked": 9,
+                "hazardDefinitionsChecked": 9,
+                "descriptionsChecked": 9,
+                "parentDefinitionsChecked": 9,
+                "activeFlagsChecked": 9,
+                "hazardCategoryTypesChecked": 9,
+                "parentDivisionsChecked": 9,
+                "effectReferencesChecked": 17,
+                "supportedQuantityBasisChecked": 12,
+                "traceabilityRecordsChecked": 9,
+                "sourceDocumentsChecked": 9,
+                "sourceParagraphsChecked": 9
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-INT-001",
+              "name": "Interactions Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "repositoryObjectsChecked": 19,
+                "identifiersChecked": 19,
+                "interactionsChecked": 19,
+                "effectDefinitionsChecked": 76,
+                "hazardDefinitionsChecked": 278,
+                "traceabilityRecordsChecked": 19,
+                "hazardOutcomesChecked": 278,
+                "constraintReferencesChecked": 152
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-OR-001",
+              "name": "Orientation Types Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "orientationTypesChecked": 2,
+                "uniqueIdsChecked": 2,
+                "uniqueNamesChecked": 2,
+                "definitionsChecked": 2,
+                "valuesChecked": 4,
+                "traceabilityChecked": 1,
+                "repositoryConsistencyChecked": 1,
+                "uniqueValueSetsChecked": 2
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-PES-001",
+              "name": "PES Types Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "repositoryObjectsChecked": 8,
+                "identifiersChecked": 8,
+                "namesChecked": 8,
+                "definitionsChecked": 8,
+                "constructionDefinitionsChecked": 8,
+                "structureReferencesChecked": 8,
+                "constructionApplicabilityChecked": 8,
+                "constructionDiscriminatorsChecked": 24,
+                "roofTypesChecked": 3,
+                "traceabilityRecordsChecked": 8,
+                "sourceDocumentsChecked": 8,
+                "sourceParagraphsChecked": 8,
+                "engineeringDefinitionsChecked": 8,
+                "duplicateDefinitionsDetected": 0
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-PL-001",
+              "name": "Protection Levels Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "protectionLevelsChecked": 3,
+                "uniqueIdsChecked": 3,
+                "uniqueCodesChecked": 3,
+                "uniqueNamesChecked": 3,
+                "definitionsChecked": 3,
+                "sourceReferencesChecked": 3,
+                "repositoryConsistencyChecked": 1,
+                "uniqueNotesChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-RPPS-001",
+              "name": "Resource Property Semantics Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "semanticDefinitionsChecked": 7,
+                "propertyIdentifiersChecked": 7,
+                "rolesChecked": 7,
+                "derivationSourcesChecked": 1,
+                "propertyReferencesChecked": 7
+              },
+              "errors": [],
+              "warnings": []
+            },
+            {
+              "id": "VAL-L2-RRR-001",
+              "name": "Resource Resolution Rules Repository Integrity",
+              "layer": 2,
+              "status": "FAIL",
+              "statistics": {
+                "repositoryObjectsChecked": 3,
+                "identifiersChecked": 3,
+                "rulesChecked": 3,
+                "conditionGroupsChecked": 4,
+                "predicatesChecked": 10,
+                "outcomesChecked": 3,
+                "canonicalAssignmentsChecked": 4,
+                "datasetReferencesChecked": 3,
+                "resourceTypeReferencesChecked": 3,
+                "structureReferencesChecked": 3,
+                "propertyReferencesChecked": 14,
+                "controlledValuesChecked": 11,
+                "canonicalAssignmentContextChecks": 4,
+                "canonicalTargetsChecked": 3,
+                "canonicalConfigurationsChecked": 3,
+                "propertyApplicabilityChecks": 14,
+                "traceabilityRecordsChecked": 3,
+                "rationalesChecked": 3,
+                "sourceReferencesChecked": 3,
+                "effectiveDatesChecked": 3,
+                "rulePairsChecked": 3,
+                "duplicateRulesChecked": 3,
+                "overlapPairsChecked": 0,
+                "overlapsDetected": 0,
+                "ambiguousPairsChecked": 0,
+                "ambiguousResolutionsDetected": 0,
+                "exactMatchAlternativesChecked": 1,
+                "exactMatchConflictsDetected": 0,
+                "canonicalResolutionChecks": 3,
+                "nonUniqueCanonicalResolutionsDetected": 0,
+                "redundantRulePairsChecked": 0,
+                "redundantRulesDetected": 0,
+                "ruleReachabilityChecks": 3,
+                "unreachableRulesDetected": 0,
+                "selectionSemanticsChecks": 8,
+                "informationalPredicatesDetected": 1
+              },
+              "errors": [
+                {
+                  "code": "Approved Rule Contains Placeholder Governance Data.",
+                  "location": "RR001",
+                  "message": "Approved Resolution Rule contains placeholder governance data."
+                },
+                {
+                  "code": "Approved Rule Contains Placeholder Governance Data.",
+                  "location": "RR002",
+                  "message": "Approved Resolution Rule contains placeholder governance data."
+                },
+                {
+                  "code": "Approved Rule Contains Placeholder Governance Data.",
+                  "location": "RR003",
+                  "message": "Approved Resolution Rule contains placeholder governance data."
+                }
+              ],
+              "warnings": [
+                {
+                  "code": "Informational Property Used in Selection Condition.",
+                  "location": "RR003",
+                  "message": "Informational Resource Property 'exposure.category' is used as a Resolution Rule matching condition."
+                }
+              ]
+            },
+            {
+              "id": "VAL-L2-ST-001",
+              "name": "Structures Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "structuresChecked": 11,
+                "uniqueIdsChecked": 11,
+                "uniqueCodesChecked": 11,
+                "uniqueNamesChecked": 11,
+                "definitionsChecked": 11,
+                "supportedPropertiesChecked": 30,
+                "supportedExposureChecked": 8,
+                "relationshipsChecked": 11,
+                "categoryReferencesChecked": 11,
+                "orientationTypeReferencesChecked": 11,
+                "traceabilityChecked": 1,
+                "repositoryConsistencyChecked": 1,
+                "uniqueEngineeringDefinitionsChecked": 10
+              },
+              "errors": [],
+              "warnings": [
+                {
+                  "code": "Duplicate Structure Definitions.",
+                  "location": "STR004",
+                  "message": "Structure 'Open Stack' has an identical engineering definition to 'Medium Walled Magazine'."
+                }
+              ]
+            },
+            {
+              "id": "VAL-L2-TR-001",
+              "name": "Transformation Repository Integrity",
+              "layer": 2,
+              "status": "PASS",
+              "statistics": {
+                "transformationsChecked": 3,
+                "uniqueIdsChecked": 3,
+                "uniqueNamesChecked": 3,
+                "expressionsChecked": 3,
+                "expressionSyntaxChecked": 3,
+                "functionContractsChecked": 3,
+                "repositoryConsistencyChecked": 1,
+                "uniqueExpressionsChecked": 3
+              },
+              "errors": [],
+              "warnings": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

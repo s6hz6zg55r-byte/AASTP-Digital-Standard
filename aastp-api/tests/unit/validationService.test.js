@@ -58,7 +58,7 @@ describe("ValidationService", () => {
 
             expect(result.valid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].code).toBe("MISSING_FIELD");
+            expect(result.errors[0].code).toBe("RESOURCE_SELECTION_REQUIRED");
 
         });
 
@@ -71,7 +71,7 @@ describe("ValidationService", () => {
 
             expect(result.valid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].code).toBe("MISSING_FIELD");
+            expect(result.errors[0].code).toBe("RESOURCE_SELECTION_REQUIRED");
 
         });
 

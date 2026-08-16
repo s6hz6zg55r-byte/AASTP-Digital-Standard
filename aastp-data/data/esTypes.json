@@ -434,7 +434,10 @@
                 "barricaded":null,
                 "roofType": "Protective"
             },
-            "exposure":null,
+            "exposure":{
+                "category": false,
+                "level": false
+            },
             "notes": "Protected or underground",
             "source": {
                 "document": "AASTP-1",

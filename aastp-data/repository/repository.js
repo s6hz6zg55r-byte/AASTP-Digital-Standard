@@ -47,6 +47,14 @@ const DATASETS = {
         file: "protectionLevels.json",
         collection: "protection_levels"
     },
+    resourcePropertySemantics: {
+        file: "resourcePropertySemantics.json",
+        collection: "property_semantics"
+    },
+    resourceResolutionRules: {
+        file: "resourceResolutionRules.json",
+        collection: "rules"
+    },
     structures: {
         file: "structures.json",
         collection: "structures"
@@ -71,6 +79,15 @@ function getDataset(name) {
         cache[name] = loadJson(config.file);
     }
     return cache[name];
+}
+
+//This function returns repository metadata
+function getMetadata(name) {
+
+    const dataset = getDataset(name);
+
+    return dataset.metadata;
+
 }
 
 //This function returns a collection
@@ -183,6 +200,8 @@ export default  {
     getDataset,
 
     getCollection,
+
+    getMetadata,
 
     getAvailableDatasets,
     

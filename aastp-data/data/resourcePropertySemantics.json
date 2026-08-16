@@ -1,0 +1,50 @@
+{
+    "schemaVersion": "1.0.0",
+
+    "metadata": {
+        "dataset": "resourcePropertySemantics",
+        "title": "Resource Property Semantics",
+        "description": "Defines the semantic role of resource properties used during engineering resource selection.",
+        "version": "1.0.0",
+        "source": {
+            "standard": "Digital AASTP Engineering Model",
+            "edition": "1.0",
+            "chapter": "N/A",
+            "para": "N/A",
+            "lastUpdated": "2026-08-12"
+        }
+    },
+
+    "property_semantics": [
+        {
+            "property": "construction.ecmProtectionRating",
+            "role": "selectable"
+        },
+        {
+            "property": "construction.headwall",
+            "role": "selectable"
+        },
+        {
+            "property": "construction.barricaded",
+            "role": "selectable"
+        },
+        {
+            "property": "construction.roofType",
+            "role": "selectable"
+        },
+        {
+            "property": "construction.aperture",
+            "role": "selectable"
+        },
+        {
+            "property": "exposure.category",
+            "role": "informational",
+            "derivedFrom": "exposure"
+        },
+        {
+            "property": "exposure.level",
+            "role": "selectable"
+            
+        }
+    ]
+}

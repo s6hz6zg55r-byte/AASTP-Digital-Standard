@@ -1,4 +1,4 @@
-const validationService = require("../src/services/validationService");
+const validationService = require("../../src/services/validationService");
 const assessmentResolver = require("../src/services/assessmentResolver");
 
 describe("Assessment Resolver", () => {

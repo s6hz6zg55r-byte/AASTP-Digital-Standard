@@ -1,4 +1,4 @@
-const interactionService = require("../src/services/interactionService");
+const interactionService = require("../../src/services/interactionService");
 const distanceRuleService = require("../src/services/distanceRuleService");
 const branchResolverService = require("../src/services/branchResolverService");
 

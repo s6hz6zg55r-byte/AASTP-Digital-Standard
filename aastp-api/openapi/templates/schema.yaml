@@ -1,0 +1,33 @@
+# =============================================================================
+# Filename Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the structure of a Filename entity.
+#
+# Used by
+# -------
+# - 
+# - 
+# - 
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Clear statement of the concept represented by this schema.
+
+properties:
+  
+  propertyName:
+    type: string
+    format:
+    description: >
+      Clear statement of the concept represented by this property.
+    example: "Example Value"
+    default:
+
+required:
+  - propertyName

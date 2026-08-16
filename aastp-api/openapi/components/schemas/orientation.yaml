@@ -1,0 +1,48 @@
+# =============================================================================
+# Orientation Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the orientation options applicable to an engineering resource.
+#
+# Used by
+# -------
+# - Exposed Site Type schemas
+# - Potential Explosion Site Type schemas
+# - Engineering calculation request schemas
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Defines the orientation type and the valid orientation values applicable
+  to an engineering resource.
+
+properties:
+
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the orientation type.
+    example: "Directional"
+
+  values:
+    type: array
+    description: >
+      Orientation values permitted for the associated engineering resource.
+    items:
+      type: string
+    example:
+      - "front"
+      - "side"
+      - "rear"
+
+required:
+  - id
+  - name
+  - values

@@ -26,7 +26,7 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.2.1"
+        "para": "1.2.1.2.1"
       },
       "effects": [
         "EFF001",
@@ -45,7 +45,7 @@
       "active":true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.2.2(b)(1)"
+        "para": "1.2.1.2.2(b)(1)"
       },
       "effects": [
         "EFF001",
@@ -58,14 +58,14 @@
     {
       "id": "HD003",
       "code": "1.2.2",
-      "name": "Fragment Producing Hazard",
+      "name": "Projection Hazard (Less Hazardous)",
       "description": "Explosive substances and articles which have a projection hazard without significant blast effects.",
       "parentDivision":"1.2",
       "type":"storage_subdivision",
       "active":true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.2.2(b)(2)"
+        "para": "1.2.1.2.2(b)(2)"
       },
       "effects": [
         "EFF003"
@@ -76,14 +76,14 @@
     {
       "id": "HD004",
       "code": "1.2.3",
-      "name": "Fragment Producing Hazard",
+      "name": "Insensitive Munition Projection Hazard",
       "description": "Explosive substances and articles which have a projection hazard with limited fragment range.",
       "parentDivision":"1.2",
       "type":"storage_subdivision",
       "active":true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.2.2(c)"
+        "para": "1.2.1.2.2(c)"
       },
       "effects": [
         "EFF001",
@@ -103,7 +103,7 @@
       "active":true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "Derived from Part 1, Chapter 1, Table 1 and QD framework."
+        "para": "Derived from Part 1, Chapter 1, Table 1 and QD framework."
       },
       "effects": [
         "EFF004"
@@ -121,7 +121,7 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "Derived from Part 1, Chapter 1, Table 1 and QD framework."
+        "para": "Derived from Part 1, Chapter 1, Table 1 and QD framework."
       },
       "effects": [
         "EFF004"
@@ -139,7 +139,7 @@
       "active":false,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.1.1(d)"
+        "para": "1.2.1.1.1(d)"
       },
       "effects": [
         "EFF006"
@@ -157,7 +157,7 @@
       "active":false,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.1.1(e)"
+        "para": "1.2.1.1.1(e)"
       },
       "effects": [
         "EFF001",
@@ -176,7 +176,7 @@
       "active":true,
       "source": {
         "document": "AASTP-1",
-        "paragraph": "1.2.1.1.1(f)"
+        "para": "1.2.1.1.1(f)"
       },
       "effects": [
         "EFF001",

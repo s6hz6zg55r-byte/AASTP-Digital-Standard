@@ -270,8 +270,8 @@
             "ecmProtectionRating": {"type":"boolean"},
             "headwall": {"type":"boolean"},
             "barricaded": {"type":"boolean"},
-            "roofType": {"type":"boolean"},
-            "aperture": {"type":"boolean"}
+            "roofType": {"type": ["boolean", "null"]},
+            "aperture": {"type": ["boolean", "null"]}
         },
         "additionalProperties": false
     },
@@ -292,6 +292,281 @@
     "genericId": {
       "type": "string",
       "minLength": 1
+    },
+
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "appliesTo": {
+          "$ref": "#/$defs/appliesTo"
+        },
+        "when": {
+          "$ref": "#/$defs/conditionGroup"
+        },
+        "outcome": {
+          "$ref": "#/$defs/outcome"
+        },
+        "governance": {
+          "$ref": "#/$defs/governance"
+        }
+      },
+
+      "required": [
+        "id",
+        "status",
+        "appliesTo",
+        "when",
+        "outcome",
+        "governance"
+      ]
+    },
+
+    "appliesTo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "datasetId": {
+          "type": "string"
+        },
+
+        "resourceType": {
+          "type": "string"
+        },
+
+        "context": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/scalarValue"
+          }
+        }
+      },
+
+      "required": [
+        "datasetId",
+        "resourceType"
+      ]
+    },
+
+    "scalarValue": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+
+    "predicate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/equalsPredicate"
+        },
+        {
+          "$ref": "#/$defs/typePredicate"
+        }
+      ]
+    },
+
+    "equalsPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "operator": {
+          "const": "equals"
+        },
+        "value": {
+          "$ref": "#/$defs/scalarValue"
+        }
+      },
+
+      "required": [
+        "property",
+        "operator",
+        "value"
+      ]
+    },
+
+    "typePredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "operator": {
+          "const": "type_is"
+        },
+        "value": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "property",
+        "operator",
+        "value"
+      ]
+    },
+
+    "conditionGroup": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "all": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/conditionNode"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "any": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/conditionNode"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ]
+        }
+      ]
+    },
+
+    "conditionNode": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/predicate"
+        },
+        {
+          "$ref": "#/$defs/conditionGroup"
+        }
+      ]
+    },
+
+    "outcome": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/canonicalOutcome"
+        },
+        {
+          "$ref": "#/$defs/undefinedOutcome"
+        }
+      ]
+    },
+
+    "canonicalOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "redundant_parameter",
+            "non_applicable_parameter",
+            "canonicalisation"
+          ]
+        },
+        "canonicalAssignments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/assignment"
+          }
+        },
+        "canonicalTargetId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "canonicalAssignments",
+        "canonicalTargetId"
+      ]
+    },
+
+    "undefinedOutcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "undefined_configuration"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+
+        "value": {
+          "$ref": "#/$defs/scalarValue"
+        }
+      },
+
+      "required": [
+        "property",
+        "value"
+      ]
+    },
+
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effectiveFrom": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "rationale",
+        "source",
+        "effectiveFrom"
+      ]
     }
+
   }
 }

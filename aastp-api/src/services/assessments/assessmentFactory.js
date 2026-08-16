@@ -15,6 +15,8 @@ function create(options = {}) {
 
     assessment.type = options.type ?? null;
 
+    assessment.direction = options.direction ?? null;
+
     assessment.request = options.request ?? null;
 
     assessment.interaction = options.interaction ?? null;

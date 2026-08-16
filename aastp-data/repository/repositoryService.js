@@ -46,6 +46,14 @@ function getEcmProtectionRatings() {
     return repository.getCollection("ecmProtectionRatings");
 }
 
+function getResourceResolutionRules() {
+    return repository.getCollection("resourceResolutionRules");
+}
+
+function getResourcePropertySemantics() {
+    return repository.getCollection("resourcePropertySemantics");
+}
+
 // Domain queries
 function findInteraction(criteria) {
     return repository.findInteraction(criteria);
@@ -62,6 +70,8 @@ export default {
     getHazardCategories,
     getOrientationTypes,
     getEcmProtectionRatings,
+    getResourceResolutionRules,
+    getResourcePropertySemantics,
     findFormulaById,
     findInteraction,
     findDistanceRuleById,

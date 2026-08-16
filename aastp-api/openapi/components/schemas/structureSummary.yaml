@@ -1,0 +1,52 @@
+# =============================================================================
+# Structure Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the summary representation of a Structure used when browsing
+# available engineering structure types.
+#
+# Used by
+# -------
+# - Structure collection responses
+# - Structure selection interfaces
+# - Repository browsing clients
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Summary representation of a Structure containing the stable identifier,
+  engineering code, human-readable name and category required for repository
+  browsing and selection.
+
+properties:
+
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code identifying the Structure.
+    example: "ECM"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Structure.
+    example: "Earth Covered Magazine"
+
+  category:
+    type: string
+    description: >
+      Engineering category used to classify the Structure.
+    example: "explosives_facility"
+
+required:
+  - id
+  - code
+  - name
+  - category

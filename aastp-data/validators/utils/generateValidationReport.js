@@ -49,71 +49,149 @@
  * -----------------------------------------------------------------------------
  */
 
-export function generateValidationReport(results) {
-    const grouped = new Map();
-    for (const result of results) {
-        const layer = result.validator.layer;
-        if (!grouped.has(layer)) {
-            grouped.set(layer, []);
-        }
-        grouped.get(layer).push(result);
-    }
+import fs from "node:fs";
 
-    const layers =
-        [...grouped.keys()].sort(
-            (a, b) => a - b
-        );
+import { renderMarkdownValidationReport } 
+    from "./renderMarkdownValidationReport.js";
 
-    let validatorCount = 0;
-    let passedCount = 0;
-    let failedCount = 0;
-    let warningCount = 0;
-    let errorCount = 0;
+import { renderPdfValidationReport } 
+    from "./renderPdfValidationReport.js";
+
+import { buildValidationReport } 
+    from "./buildValidationReport.js";
+
+import { buildValidationReportComponents } 
+    from "./buildValidationReportComponents.js";
+
+import { VALIDATION_RESULT_STATUS }
+    from "../../constants/validationConstants.js";
+
+const DEFAULT_REPORT_PATH = "./reports/validation-report.json";
+const DEFAULT_MARKDOWN_REPORT_PATH = "./reports/validation-report.md";
+const DEFAULT_PDF_REPORT_PATH = "./reports/validation-report.pdf";
+
+export function generateValidationReport(
+    results,
+    options = {}
+) {
+    const report = buildValidationReport(results)
+    
+    const presentation = buildValidationReportComponents(report);
+
+    renderConsoleValidationReport(report);
+
+    renderJsonValidationReport(
+        report,
+        options.jsonPath ?? DEFAULT_REPORT_PATH
+    );
+
+    renderMarkdownValidationReport(
+        report,
+        options.markdownPath ?? DEFAULT_MARKDOWN_REPORT_PATH
+    );
+
+    renderPdfValidationReport(
+        report,
+        DEFAULT_PDF_REPORT_PATH
+    );
+
+    return report;
+}
+
+
+function renderConsoleValidationReport(report) {
 
     console.log("");
+
     console.log("========================================");
     console.log("AASTP Validation Report");
     console.log("========================================");
 
-    for (const layer of layers) {
-        const validators =
-            grouped
-                .get(layer)
-                .sort(
-                    (a, b) =>
-                        a.validator.id.localeCompare(
-                            b.validator.id
-                        )
+
+    for (const layer of report.layers) {
+
+
+        console.log("");
+
+        console.log("----------------------------------------");
+
+        console.log(
+            `Layer ${layer.layer}: ${layer.name}`
+        );
+
+        console.log("----------------------------------------");
+
+
+        console.log(
+            `Status    : ${layer.summary.status}`
+        );
+
+        console.log(
+            `Validators: ${layer.summary.validators}`
+        );
+
+        console.log(
+            `Passed    : ${layer.summary.passed}`
+        );
+
+        console.log(
+            `Failed    : ${layer.summary.failed}`
+        );
+
+        console.log(
+            `Errors    : ${layer.summary.errors}`
+        );
+
+        console.log(
+            `Warnings  : ${layer.summary.warnings}`
+        );
+
+
+        for (
+            const validator of layer.validators
+        ) {
+
+
+            console.log("");
+
+
+            if (
+                validator.status === VALIDATION_RESULT_STATUS.PASS
+            ) {
+
+                console.log(
+                    `✓ ${validator.id}`
                 );
 
-        console.log("");
-        console.log(`Layer ${layer}`);
-        console.log("----------------------------------------");
-        console.log("");
-
-        for (const result of validators) {
-
-            validatorCount++;
-
-            if (result.passed) {
-                passedCount++;
-                console.log(`✓ ${result.validator.id}`);
             }
             else {
-                failedCount++;
-                console.log(`✗ ${result.validator.id}`);
+
+                console.log(
+                    `✗ ${validator.id}`
+                );
+
             }
 
-            console.log(`  ${result.validator.name}`);
 
-            if (result.errors.length > 0) {
+            console.log(
+                `  ${validator.name}`
+            );
+
+
+            if (
+                validator.errors.length > 0
+            ) {
 
                 console.log("");
-                console.log("  Errors");
 
-                for (const error of result.errors) {
+                console.log(
+                    "  Errors"
+                );
 
-                    errorCount++;
+
+                for (
+                    const error of validator.errors
+                ) {
 
                     console.log(
                         `    ${error.code}`
@@ -126,42 +204,150 @@ export function generateValidationReport(results) {
                     console.log(
                         `      ${error.message}`
                     );
+
                 }
+
             }
 
-            if (result.warnings.length > 0) {
+
+            if (
+                validator.warnings.length > 0
+            ) {
+
                 console.log("");
-                console.log("  Warnings");
-                for (const warning of result.warnings) {
-                    warningCount++;
-                    console.log(`    ${warning.code}`);
-                    console.log(`      ${warning.location}`);
-                    console.log(`      ${warning.message}`);
+
+                console.log(
+                    "  Warnings"
+                );
+
+
+                for (
+                    const warning of validator.warnings
+                ) {
+
+                    console.log(
+                        `    ${warning.code}`
+                    );
+
+                    console.log(
+                        `      ${warning.location}`
+                    );
+
+                    console.log(
+                        `      ${warning.message}`
+                    );
+
                 }
+
             }
+
         }
+
     }
 
+
     console.log("");
+
     console.log("========================================");
-    console.log(`Validators : ${validatorCount}`);
-    console.log(`Passed     : ${passedCount}`);
-    console.log(`Failed     : ${failedCount}`);
-    console.log(`Errors     : ${errorCount}`);
-    console.log(`Warnings   : ${warningCount}`);
+
+    console.log("Overall Summary");
+
     console.log("========================================");
+
+
+    console.log(
+        `Status     : ${report.summary.status}`
+    );
+
+    console.log(
+        `Validators  : ${report.summary.totals.validators}`
+    );
+
+    console.log(
+        `Passed      : ${report.summary.totals.passed}`
+    );
+
+    console.log(
+        `Failed      : ${report.summary.totals.failed}`
+    );
+
+    console.log(
+        `Errors      : ${report.summary.totals.errors}`
+    );
+
+    console.log(
+        `Warnings    : ${report.summary.totals.warnings}`
+    );
+
+    console.log(
+        "========================================");
 
 }
 
-function renderConsoleValiationReport(results) {}
+function renderHtmlValidationReport(results) {}
 
-function renderMarkdownValiationReport(results) {}
 
-function renderHtmlValiationReport(results) {}
+/**
+ * =============================================================================
+ * renderJsonValidationReport
+ * =============================================================================
+ *
+ * Purpose
+ * -------
+ * Writes a ValidationReport object to a JSON assurance report file.
+ *
+ * Inputs
+ * ------
+ * report
+ *      ValidationReport object.
+ *
+ * outputPath
+ *      Destination file path.
+ *
+ * Outputs
+ * -------
+ * JSON validation report file.
+ *
+ * Dependencies
+ * ------------
+ * Node.js filesystem module.
+ *
+ * Failure Modes
+ * -------------
+ * - Invalid output path.
+ * - Unable to write file.
+ *
+ * Future Extension Points
+ * -----------------------
+ * - Report signing.
+ * - Report metadata.
+ * - Digital assurance records.
+ *
+ * =============================================================================
+ */
 
-function renderPdfValiationReport(results) {}
 
-function renderJsonValiationReport(results) {}
+
+export function renderJsonValidationReport(
+    report,
+    outputPath
+) {
+
+    const json =
+        JSON.stringify(
+            report,
+            null,
+            2
+        );
+
+
+    fs.writeFileSync(
+        outputPath,
+        json,
+        "utf8"
+    );
+
+}
 
 /*
 ===============================================================================

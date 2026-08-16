@@ -267,3 +267,63 @@ We'll probably need to introduce artificial errors to test them all.
 . Every statistics field produced by each validator
 . Definition
 . Reporting purposes
+
+- The following validator design principles have been developed:
+. Each validator should answer a single engineering question.
+
+. Each validation phase should answer a single validation question.
+
+. Engineering knowledge belongs in governed constants or repository data.
+
+. Validators should validate engineering rules, not define them.
+
+. Shared helpers should only be introduced where they materially improve clarity, consistency or maintainability.
+
+. Repository complexity should reflect engineering complexity.
+
+. Reference repositories should remain simple.
+
+. Engineering repositories should explicitly model engineering behaviour.
+
+. Validation should progress from:
+    Structure
+        ↓
+    Completeness
+        ↓
+    Syntax
+        ↓
+    Engineering Semantics
+        ↓
+    Repository Consistency
+
+- Overview and concept behind two types of Level 2 Validators
+Layer 2 Validator Types
+Reference Repository Validators
+Reference repository validators assure the integrity of repositories that define engineering concepts rather than engineering behaviour. Their primary purpose is to ensure that reference data is complete, uniquely identifiable, traceable to the source publication and internally consistent. Typical examples include Protection Levels, Constraints, Orientation Types and ES/PES Types.
+Typical validation progression:
+Repository Structure
+        ↓
+Engineering Definitions
+        ↓
+Controlled Vocabulary (where applicable)
+        ↓
+Engineering Traceability
+        ↓
+Repository Consistency
+Engineering Repository Validators
+Engineering repository validators assure repositories that define engineering logic or calculations. In addition to repository integrity, they validate engineering behaviour, calculation definitions, parameter contracts and relationships with other engineering repositories. Typical examples include Distance Rules, Formulas, Effects and Interactions.
+Typical validation progression:
+Repository Structure
+        ↓
+Engineering Definitions
+        ↓
+Engineering Behaviour
+        ↓
+Engineering References
+        ↓
+Engineering Consistency
+        ↓
+Repository Consistency
+
+- The following concept should be incorporated into this governance document:
+Engineering validators should be designed to expose ambiguities in the engineering model rather than simply identify syntactic errors. Where a validator highlights an inconsistency between the model and the data, the preferred outcome is to improve the engineering model or repository rather than weaken the validation rules, unless a genuine business requirement for flexibility exists.

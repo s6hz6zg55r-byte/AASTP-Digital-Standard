@@ -16,7 +16,7 @@
  *
  * This validator does NOT validate:
  * - Repository integrity
- * - Formula engineering consistency
+ * - Engineering resolution consistency
  * - Cross-repository references
  *
  * =============================================================================

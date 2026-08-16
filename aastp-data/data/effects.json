@@ -27,11 +27,7 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "1.1.1.2.4(a)"
-        }
+        "para": "1.1.1.2.4(a)"
       }
     },
 
@@ -45,12 +41,9 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "1.1.1.2.4(b)"
+        "para": "1.1.1.2.4(b)"
         }
-      }
+      
     },
 
     {
@@ -63,11 +56,7 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "1.1.1.2.4(c)"
-        }
+        "para": "1.1.1.2.4(c)"
       }
     },
 
@@ -81,11 +70,7 @@
       "active": true,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "1.1.1.2.4(d)"
-        }
+        "para": "1.1.1.2.4(d)"
       }
     },
 
@@ -99,11 +84,7 @@
       "active": false,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "Not currently implemented but reserved for future standard versions"
-        }
+        "para": "Not currently implemented but reserved for future standard versions"
       }
     },
 
@@ -117,11 +98,7 @@
       "active": false,
       "source": {
         "document": "AASTP-1",
-        "version": "Edition D Version 1",
-        "reference": {
-          "section": "Section I",
-          "para": "Not currently implemented but reserved for future standard versions"
-        }
+        "para": "Not currently implemented but reserved for future standard versions"
       }
     }
   ]

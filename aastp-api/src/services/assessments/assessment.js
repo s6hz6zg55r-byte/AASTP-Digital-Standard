@@ -16,6 +16,8 @@ export default function createAssessment() {
 
         type: null,
 
+        direction: null,
+
         interaction: null,
 
         effectId: null,

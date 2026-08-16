@@ -5,74 +5,80 @@
  *
  * Responsibilities
  * ----------------
- * - Validate incoming requests.
+ * - Validate and normalise incoming requests.
+ * - Resolve authoritative PES and ES resources.
  * - Resolve the applicable interaction.
- * - Create assessment objects.
- * - Resolve engineering references.
- * - Execute engineering calculations.
- * - Return the completed assessment.
+ * - Execute the engineering assessment pipeline.
+ * - Return the completed assessment context.
  *
- * This service intentionally contains no engineering logic.
- * It simply orchestrates the assessment pipeline.
+ * This service contains no engineering logic.
+ * It orchestrates the validated service pipeline.
  */
 
-import validationService from "#services/validationService";
-import interactionService from "#services/interactionService";
+import validationService
+    from "#services/validationService";
 
-import assessmentResolver from "#resolvers/assessmentResolver";
-import referenceResolver from "#resolvers/referenceResolver";
+import interactionService
+    from "#services/interactionService";
 
-import engineeringService from "#services/engineeringService";
+import * as engineeringService
+    from "#services/engineeringService";
+
 
 function process(request) {
 
-    //--------------------------------------------------------------
-    // Stage 1
-    // Validate the incoming request.
-    //--------------------------------------------------------------
+    /*
+    --------------------------------------------------------------------------
+    Stage 1
+    Validate and normalise request
+    --------------------------------------------------------------------------
+    */
 
-    const result = validationService.validate(request);
+    const result =
+        validationService.validate(
+            request
+        );
+
 
     if (!result.valid) {
         return result;
     }
 
-    const { context } = result;
 
-    //--------------------------------------------------------------
-    // Stage 2
-    // Resolve the applicable interaction.
-    //--------------------------------------------------------------
+    const { context } =
+        result;
 
-    interactionService.process(context);
 
-    //--------------------------------------------------------------
-    // Stage 3
-    // Create assessment objects.
-    //--------------------------------------------------------------
+    /*
+    --------------------------------------------------------------------------
+    Stage 2
+    Resolve interaction
+    --------------------------------------------------------------------------
+    */
 
-    assessmentResolver.process(context);
+    interactionService.process(
+        context
+    );
 
-    //--------------------------------------------------------------
-    // Stage 4
-    // Resolve engineering references.
-    //--------------------------------------------------------------
 
-    context.assessments.forEach(assessment => {
-        referenceResolver.resolve(assessment);
-    });
+    /*
+    --------------------------------------------------------------------------
+    Stage 3
+    Execute engineering pipeline
+    --------------------------------------------------------------------------
+    */
 
-    //--------------------------------------------------------------
-    // Stage 5
-    // Execute the engineering pipeline.
-    //--------------------------------------------------------------
+    engineeringService.process(
+        context
+    );
 
-    engineeringService.process(context);
 
-    //--------------------------------------------------------------
-    // Stage 6
-    // Return the completed assessment.
-    //--------------------------------------------------------------
+    /*
+    --------------------------------------------------------------------------
+    Stage 4
+    Return completed result
+    --------------------------------------------------------------------------
+    */
 
     return {
         valid: true,
@@ -81,6 +87,7 @@ function process(request) {
     };
 
 }
+
 
 export default {
     process

@@ -140,18 +140,34 @@
                 "properties": {
 
                   "category": {
-                    "enum": [
-                      "traffic_density",
-                      "occupancy",
-                      "criticality"
+                    "anyOf": [
+                      {
+                        "type": "boolean",
+                        "const": false
+                      },                      
+                      {
+                        "enum": [
+                          "traffic_density",
+                          "occupancy",
+                          "criticality"
+                        ]
+                      }
                     ]
                   },
 
                   "level": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high"
+                    "anyOf": [
+                      {
+                        "type": "boolean",
+                        "const": false
+                      },
+                      {
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high"
+                        ]
+                      }
                     ]
                   }
                 },

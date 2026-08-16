@@ -1,0 +1,43 @@
+# =============================================================================
+# Exposed Site Type Collection Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the structure of a collection of Exposed Site Types.
+#
+# Used by
+# -------
+# - Repository collection responses
+# - Repository entity responses
+# - Engineering calculation responses
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Collection of Exposed Site Types (ES-Types) defined within the 
+  authoritative AASTP engineering repository.
+
+properties:
+
+  metadata:
+    $ref: "#/components/schemas/ResponseMetadata"
+
+  data:
+    type: array
+    format:
+    description: >
+      Array of Exposed Site Type summary objects representing the
+      collection of Exposed Site Types defined within the authoritative
+      AASTP engineering repository.
+    example:
+    minimum:
+    maximum:
+    enum:
+    default:
+
+required:
+  - metadata
+  - data

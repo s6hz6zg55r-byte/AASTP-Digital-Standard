@@ -1,0 +1,38 @@
+# =============================================================================
+# Exposed Site Type Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the summary representation of an Exposed Site Type used when
+# browsing the Exposed Site Type collection.
+#
+# Used by
+# -------
+# - Exposed Site Type collection responses
+# - Exposed Site Type selection interfaces
+# - Repository browsing clients
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Summary representation of an Exposed Site Type containing the stable
+  identifier and human-readable name required for repository browsing
+  and selection.
+
+properties:
+
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Exposed Site Type.
+    example: "Public Road"
+
+required:
+  - id
+  - name

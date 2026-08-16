@@ -216,3 +216,38 @@ Repository Categories
 - Examples include Distance Rules, Formulas and Interactions.
 ### Engineering Principle
 Repository complexity should reflect engineering complexity. Simple reference repositories should remain structurally simple, while engineering repositories should explicitly model engineering behaviour and decision logic.
+## Engineering Object Identification
+The digital AASTP engineering model separates object identification from object definition and engineering behaviour.
+The Structures repository defines the engineering characteristics required to uniquely identify a structure for assessment. Rather than defining permissible values, it specifies which engineering discriminators (for example ECM protection rating, barricading, roof type or exposure classification) are required for each structure type.
+The corresponding ES and PES repositories provide the governed values for those discriminators, while the Interactions repository consumes the fully defined engineering objects to determine the applicable engineering rules.
+This separation of responsibilities ensures that engineering characteristics are defined only once, avoids duplication of engineering knowledge, and allows future editions of AASTP to introduce new structure properties or engineering discriminators without altering the overall architecture.
+## Engineering Discriminator Model
+The digital AASTP engineering model separates applicability from state.
+The Structures repository defines which engineering discriminator groups (for example construction and exposure) and which individual discriminator properties are applicable to a particular Structure. It therefore establishes the engineering information required to uniquely identify an engineering object.
+The ES Types and PES Types repositories do not redefine applicability. Instead, they provide the engineering state of each applicable discriminator. If a discriminator group is not applicable to the referenced Structure, the corresponding group (construction or exposure) shall be represented as null. Where a discriminator group is applicable, individual discriminator properties may themselves be null where they are not relevant to that particular Structure, or populated with the appropriate engineering value where required.
+This separation ensures that engineering applicability is defined once, avoids duplication between repositories, and allows Engineering Object repositories to describe engineering state without redefining engineering capability.
+The engineering discriminator model distinguishes between applicability and state at both the discriminator group and individual discriminator property levels.
+A discriminator group is represented as null when the referenced Structure declares that the group is not applicable.
+Within an applicable discriminator group, an individual discriminator property is represented as null when the Structure declares that property is not applicable.
+Where a discriminator property is applicable, it shall always be present. A value of false indicates that no engineering state has been selected, while a governed value indicates the applicable engineering state.
+| Structure | ES/PES | Meaning |
+|-----------|---------|---------|
+| discriminator group = `false` | group = `null` | Group not applicable |
+| discriminator property = `false` | property = `null` | Property not applicable |
+| discriminator property = `true` | property = `false` | Applicable, but no value selected |
+| discriminator property = `true` | property = governed value | Applicable, value selected |
+## Controlled Engineering Vocabularies
+The AASTP Digital Engineering Architecture distinguishes between structural validation and engineering validation.
+JSON Schemas (Layer 1) are responsible for validating the structural integrity of repositories, including object structure, data types, mandatory properties and schema conformance. They should not become repositories of engineering knowledge.
+Engineering vocabularies (for example Effect Categories, Structure Categories, Roof Types and other governed engineering terms) shall be defined once as controlled engineering data and validated within the Engineering Assurance Framework (Layer 2).
+This approach establishes a single authoritative source of engineering vocabulary, eliminating duplication between schemas and validators while ensuring that engineering concepts remain governed independently of repository structure.
+The principle supports:
+- separation of structural and engineering concerns;
+- a single source of truth for controlled vocabularies;
+- simplified schema maintenance;
+- easier support for future AASTP editions;
+- improved support for national tailoring;
+- consistent engineering governance throughout the digital service.
+This principle reinforces the architectural model in which schemas define how engineering data is structured, while the Engineering Assurance Framework validates whether the engineering content is valid.
+## Diferentiating repository identifiers from engineering designations
+Repository identifiers (id) and engineering designations (e.g. code) serve distinct architectural purposes. Repository identifiers provide stable, implementation-specific references used to maintain relationships between digital objects. They shall be unique, stable and devoid of engineering meaning. Engineering designations represent authoritative identifiers defined by AASTP or other governing standards. They shall preserve the terminology and hierarchy of the source standard and shall be validated according to engineering conventions rather than repository integrity rules. Repository implementations shall never infer engineering meaning from repository identifiers.

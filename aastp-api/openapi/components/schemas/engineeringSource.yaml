@@ -1,0 +1,39 @@
+# =============================================================================
+# Engineering Source Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the source reference associated with an engineering resource.
+#
+# Used by
+# -------
+# - Exposed Site Type schemas
+# - Potential Explosion Site Type schemas
+# - Engineering calculation traceability
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Identifies the source document and paragraph associated with an engineering
+  resource definition.
+
+properties:
+
+  document:
+    type: string
+    description: >
+      Identifier of the source document containing the engineering definition.
+    example: "AASTP-1"
+
+  para:
+    type: string
+    description: >
+      Paragraph or section reference within the source document.
+    example: "Part 2, Magazine Design"
+
+required:
+  - document
+  - para

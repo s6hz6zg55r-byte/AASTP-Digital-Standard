@@ -1,8 +1,7 @@
 import { repositoryService } from "@aastp/core-data";
+import * as resourceResolver from "../resolvers/resourceResolver.js";
 
-const fields = [
-    "pesType",
-    "esType",
+const requiredFields = [
     "hazardId",
     "pesOrientation",
     "esOrientation"
@@ -31,6 +30,8 @@ class ValidationService {
 
         this.validateEmptyStrings(request, result);
 
+        this.validateResourceSelections(request, result);
+
         this.validateAssessmentModel(request, context, result);
 
         this.validateNumericValues(request, context, result);
@@ -56,28 +57,69 @@ class ValidationService {
         return  result;
     }
 
-    buildContext(request, context, result) {
-
-        this.resolveReferences(request, context, result);
-
+    buildContext(
+    request,
+    context,
+    result
+    ) {
+        /*
+        --------------------------------------------------------------------------
+        Resolve simple authoritative references
+        --------------------------------------------------------------------------
+        */
+        this.resolveHazard(
+            request,
+            context,
+            result
+        );
         if (result.errors.length > 0) {
             return;
         }
-
-        this.resolveStructures(context, result);
-
+        /*
+        --------------------------------------------------------------------------
+        Resolve PES / ES engineering resources
+        --------------------------------------------------------------------------
+        */
+        resourceResolver.resolve(
+            context,
+            result
+        );
         if (result.errors.length > 0) {
             return;
         }
-
-        this.resolveOrientationTypes(context, result);
-
-        this.validateOrientationSelections(request, context, result);
-
+        /*
+        --------------------------------------------------------------------------
+        Resolve Structures
+        --------------------------------------------------------------------------
+        */
+        this.resolveStructures(
+            context,
+            result
+        );
+        if (result.errors.length > 0) {
+            return;
+        }
+        /*
+        --------------------------------------------------------------------------
+        Resolve and validate orientations
+        --------------------------------------------------------------------------
+        */
+        this.resolveOrientationTypes(
+            context,
+            result
+        );
+        if (result.errors.length > 0) {
+            return;
+        }
+        this.validateOrientationSelections(
+            request,
+            context,
+            result
+        );
     }
 
     validateRequiredFields(request, result) {
-        for (const field of fields) {
+        for (const field of requiredFields) {
             if (
                 request[field] === undefined ||
                 request[field] === null
@@ -88,7 +130,7 @@ class ValidationService {
     }
 
     validateFieldTypes(request, result) {
-        for (const field of fields) {
+        for (const field of requiredFields) {
             if (
                 request[field] !== undefined &&
                 request[field] !== null &&
@@ -100,7 +142,7 @@ class ValidationService {
     }
 
     validateEmptyStrings(request, result) {
-        for (const field of fields) {
+        for (const field of requiredFields) {
             if (typeof request[field] === "string" &&
                 request[field].trim() === "") {
                 this.addError(result, field, "FIELD_EMPTY", `'${field}' cannot be empty`);
@@ -151,26 +193,7 @@ class ValidationService {
 
 
     // Confirm that the objects referenced in the request actually exist
-    resolveReferences(request, context, result) {
-        context.resolvedEntities.pesType =
-            this.resolve(
-                "pesType",
-                repositoryService.findPesTypeById(request.pesType),
-                "UNKNOWN_PES",
-                `Unknown PES Type '${request.pesType}'`,
-                result
-            );
-
-        context.resolvedEntities.esType =
-            this.resolve(
-                "esType",
-                repositoryService.findEsTypeById(request.esType),
-                "UNKNOWN_ES",
-                `Unknown ES Type '${request.esType}'`,
-                result
-            );
-
-
+    resolveHazard(request, context, result) {
         context.resolvedEntities.hazard =
             this.resolve(
                 "hazardId",
@@ -280,7 +303,138 @@ class ValidationService {
             message
         });
     }
+
+    validateResourceSelections(
+        request,
+        result
+    ) {
+        this.validateResourceSelection(
+            request,
+            {
+                idField: "pesType",
+                configurationField: "pes",
+                site: "PES"
+            },
+            result
+        );
+        this.validateResourceSelection(
+            request,
+            {
+                idField: "esType",
+                configurationField: "es",
+                site: "ES"
+            },
+            result
+        );
+    }
+
+    validateResourceSelection(
+        request,
+        {
+            idField,
+            configurationField,
+            site
+        },
+        result
+    ) {
+        const hasId =
+            request[idField] !== undefined &&
+            request[idField] !== null;
+        const hasConfiguration =
+            request[configurationField] !== undefined &&
+            request[configurationField] !== null;
+        /*
+        --------------------------------------------------------------------------
+        Exactly one selection method is required
+        --------------------------------------------------------------------------
+        */
+        if (
+            !hasId &&
+            !hasConfiguration
+        ) {
+            this.addError(
+                result,
+                configurationField,
+                "RESOURCE_SELECTION_REQUIRED",
+                `${site} must be defined using either '${idField}' or '${configurationField}'.`
+            );
+            return;
+        }
+        if (
+            hasId &&
+            hasConfiguration
+        ) {
+            this.addError(
+                result,
+                configurationField,
+                "MULTIPLE_RESOURCE_SELECTIONS",
+                `${site} must be defined using either '${idField}' or '${configurationField}', not both.`
+            );
+            return;
+        }
+        /*
+        --------------------------------------------------------------------------
+        Direct ID
+        --------------------------------------------------------------------------
+        */
+        if (hasId) {
+            if (
+                typeof request[idField] !== "string"
+            ) {
+                this.addError(
+                    result,
+                    idField,
+                    "INCORRECT_FIELD_TYPE",
+                    `Field '${idField}' must be a string.`
+                );
+                return;
+            }
+            if (
+                request[idField].trim() === ""
+            ) {
+                this.addError(
+                    result,
+                    idField,
+                    "FIELD_EMPTY",
+                    `'${idField}' cannot be empty.`
+                );
+                return;
+            }
+            return;
+        }
+        /*
+        --------------------------------------------------------------------------
+        Configuration
+        --------------------------------------------------------------------------
+        */
+        if (
+            typeof request[configurationField] !== "object" ||
+            Array.isArray(
+                request[configurationField]
+            )
+        ) {
+            this.addError(
+                result,
+                configurationField,
+                "INCORRECT_FIELD_TYPE",
+                `Field '${configurationField}' must be an object.`
+            );
+            return;
+        }
+        if (
+            typeof request[configurationField].structureId !== "string" ||
+            request[configurationField].structureId.trim() === ""
+        ) {
+            this.addError(
+                result,
+                `${configurationField}.structureId`,
+                "STRUCTURE_REQUIRED",
+                `${site} configuration requires a valid 'structureId'.`
+            );
+            return;
+        }
+
+    }
 }
 
-//module.exports = new ValidationService();
 export default new ValidationService();

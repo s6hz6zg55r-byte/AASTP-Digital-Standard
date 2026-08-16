@@ -38,8 +38,16 @@ export function resolve(assessment) {
         return assessment;
     }
 
+    if (!assessment.direction) {
+        throw new Error(
+            "calculationResolver requires assessment.direction."
+        )
+    }
+
     const direction =
-        assessment.request.direction;
+        assessment.direction;
+
+    
 
     const formula = resolveFormula(distanceRule);
     const solvable = resolveSolvable(formula, direction);

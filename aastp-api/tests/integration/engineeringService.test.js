@@ -20,10 +20,10 @@ describe("engineeringService", () => {
                 }
             },
             request: {
-                direction: "forward",
-                explosiveHazard: "HD001",
+                hazardId: "HD001",
                 neq: 2000
-            }
+            },
+            resolvedEntities: { mode:"FORWARD" }
         };
 
     }
@@ -78,9 +78,9 @@ describe("engineeringService", () => {
 
         test("Processes a simple BD assessment in reverse", () => {
             const context = createContext();
-            context.request.direction = "reverse";
             delete context.request.neq;
             context.request.distance = 35;
+            context.resolvedEntities.mode = "REVERSE";
             engineeringService.process(context);
             
             const assessment = context.assessments[0];
@@ -106,10 +106,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 3000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -137,10 +137,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     distance: 100
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
 
             engineeringService.process(context);
@@ -171,10 +171,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD004",
+                    hazardId: "HD004",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -202,16 +202,15 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD004",
+                    hazardId: "HD004",
                     distance: 100
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
 
             engineeringService.process(context);
             
             const assessment = context.assessments[0];
-            //console.log(assessment);
             expect(assessment.result.status).toBe(AssessmentStatus.NOT_SOLVABLE);
             expect(assessment.calculation).toBeUndefined();
         });
@@ -234,10 +233,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -260,16 +259,15 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD002",
+                    hazardId: "HD002",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
             
             const assessment = context.assessments[0];
-            console.log(assessment);
             expect(assessment.result.status).toBe(AssessmentStatus.NOT_APPLICABLE);
         });
 
@@ -388,10 +386,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -453,10 +451,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -572,14 +570,13 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
-            console.log(context.assessments);
             
             expect(context.assessments).toHaveLength(2);
             expect(context.assessments[0].effectId).toBe("EFF001");
@@ -698,10 +695,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD004",
+                    hazardId: "HD004",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -748,10 +745,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             expect(() => {
@@ -778,10 +775,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 1
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
             engineeringService.process(context);
 
@@ -810,10 +807,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 500000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -841,10 +838,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 500001
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -870,10 +867,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     distance: 2
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -901,10 +898,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     distance: 88
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -932,10 +929,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     distance: 1
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -961,10 +958,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "reverse",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     distance: 89
-                }
+                },
+                resolvedEntities: { mode:"REVERSE" }
             };
             engineeringService.process(context);
             expect(context.assessments).toHaveLength(1);
@@ -992,10 +989,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             expect(() => {
@@ -1020,10 +1017,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             expect(() => {
@@ -1048,10 +1045,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             expect(() => {
@@ -1078,10 +1075,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -1112,10 +1109,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -1146,10 +1143,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD002",
+                    hazardId: "HD002",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -1179,10 +1176,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD004",
+                    hazardId: "HD004",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             engineeringService.process(context);
@@ -1211,10 +1208,10 @@ describe("engineeringService", () => {
                     }
                 },
                 request: {
-                    direction: "forward",
-                    explosiveHazard: "HD001",
+                    hazardId: "HD001",
                     neq: 2000
-                }
+                },
+                resolvedEntities: { mode:"FORWARD" }
             };
 
             const original = structuredClone(context.request);
