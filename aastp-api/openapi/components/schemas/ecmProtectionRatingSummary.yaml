@@ -1,0 +1,44 @@
+# =============================================================================
+# ECM Protection Rating Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the concise public representation of an ECM Protection Rating used
+# where the complete resource representation is not required.
+#
+# Used by
+# -------
+# - ECM Protection Rating collection responses
+# - Public relationships requiring concise ECM Protection Rating identification
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Concise public representation of a validated ECM Protection Rating. The
+  summary provides sufficient information to identify and display the
+  protection rating without reproducing its complete description or
+  authoritative source reference.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the ECM Protection Rating.
+    example: "7BAR"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the ECM Protection Rating.
+    example: "7-Bar"
+
+required:
+  - id
+  - code
+  - name

@@ -80,6 +80,12 @@ components:
     EcmProtectionRating:
       $ref: "./components/schemas/ecmProtectionRating.yaml"
 
+    EcmProtectionRatingSummary:
+      $ref: "./components/schemas/ecmProtectionRatingSummary.yaml"
+
+    EcmProtectionRatingCollection:
+      $ref: "./components/schemas/ecmProtectionRatingCollection.yaml"
+
     PotentialExplosionSiteConstruction:
       $ref: "./components/schemas/potentialExplosionSiteConstruction.yaml"
 

@@ -1,0 +1,38 @@
+# =============================================================================
+# ECM Protection Rating Collection Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the public collection response containing ECM Protection Rating
+# summaries and common response metadata.
+#
+# Used by
+# -------
+# - ECM Protection Rating collection responses
+# - GET /ecm-protection-ratings
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public collection response containing validated ECM Protection Rating
+  summaries and metadata identifying the API and authoritative data release
+  from which the collection was produced.
+
+properties:
+  metadata:
+    $ref: "#/components/schemas/ResponseMetadata"
+
+  data:
+    type: array
+    description: >
+      ECM Protection Ratings available in the applicable validated data
+      release, represented using the concise public summary projection.
+    items:
+      $ref: "#/components/schemas/EcmProtectionRatingSummary"
+
+required:
+  - metadata
+  - data
