@@ -1,0 +1,38 @@
+# =============================================================================
+# Structure Collection Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the public collection response containing Structure summaries and
+# common response metadata.
+#
+# Used by
+# -------
+# - Structure collection responses
+# - GET /structures
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public collection response containing validated Structure summaries and
+  metadata identifying the API and authoritative data release from which the
+  collection was produced.
+
+properties:
+  metadata:
+    $ref: "#/components/schemas/ResponseMetadata"
+
+  data:
+    type: array
+    description: >
+      Structures available in the applicable validated data release,
+      represented using the concise public summary projection.
+    items:
+      $ref: "#/components/schemas/StructureSummary"
+
+required:
+  - metadata
+  - data

@@ -71,6 +71,12 @@ components:
     Structure:
       $ref: "./components/schemas/structure.yaml"
 
+    StructureSummary:
+      $ref: "./components/schemas/structureSummary.yaml"
+
+    StructureCollection:
+      $ref: "./components/schemas/structureCollection.yaml"
+
     EcmProtectionRating:
       $ref: "./components/schemas/ecmProtectionRating.yaml"
 

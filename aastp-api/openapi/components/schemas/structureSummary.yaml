@@ -1,0 +1,51 @@
+# =============================================================================
+# Structure Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the concise public representation of an AASTP Structure used where
+# the complete Structure representation is not required.
+#
+# Used by
+# -------
+# - Structure collection responses
+# - Public relationships requiring concise Structure identification
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Concise public representation of a validated AASTP Structure. The summary
+  provides sufficient information to identify, classify and browse the
+  Structure without reproducing its complete construction, exposure or
+  orientation applicability framework.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the Structure.
+    example: "ECM"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Structure.
+    example: "Earth Covered Magazine"
+
+  category:
+    type: string
+    description: >
+      Governed classification associated with the Structure.
+    example: "explosives_facility"
+
+required:
+  - id
+  - code
+  - name
+  - category
