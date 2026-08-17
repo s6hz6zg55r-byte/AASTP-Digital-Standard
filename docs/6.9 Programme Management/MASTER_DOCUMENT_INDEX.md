@@ -176,6 +176,7 @@ The assessments below establish the proposed disposition of existing documents a
 | AASTP-API-004 | Error Code Registry | Draft | Reconcile with the API Contract and implemented error behaviour. Clarify its relationship to validation diagnostic codes. |
 | AASTP-API-005 | API Change Management Framework | Planned | Required to govern compatibility, deprecation and version evolution. |
 | AASTP-API-006 | API Security Standard | Planned | Defines authentication, authorisation, transport, deployment and operational security controls. |
+| AASTP-API-007 | API Security Standard | Draft v0.1.0 | Provides a catalogue of reusable OpenAPI schema components planned for AASTP Digital Engineering API. |
 
 ### 6.6 Publication Documents
 

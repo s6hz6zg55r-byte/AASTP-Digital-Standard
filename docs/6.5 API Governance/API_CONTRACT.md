@@ -3,10 +3,10 @@
 | Attribute | Value |
 | --- | --- |
 | Document status | Draft — governing design document |
-| Contract version | 0.4.0 |
+| Contract version | 0.4.3 |
 | API major version | v1 (proposed) |
 | Milestone | 5.2 — API Contract |
-| Last updated | 2026-08-14 |
+| Last updated | 2026-08-17 |
 
 ## 1. Purpose
 
@@ -208,6 +208,7 @@ Public engineering resources have stable resource representations that are carri
 - A **PES type** is an authoritative resolved engineering resource associated with a Structure. It represents one governed combination of applicable PES construction characteristics.
 - A **hazard category** is the authoritative hazard-related resource and encompasses Hazard Division and SsD.
 - A **resource selection** is the client-facing definition used to identify a PES or ES resource. A selection may be supplied either as a direct authoritative resource identifier or as a complete Structure-led engineering configuration.
+- An **ECM Protection Rating** is a public engineering reference resource representing a governed construction characteristic where applicable to an AASTP Structure.
 - A **calculation request** identifies PES and ES resources either by stable authoritative resource ID or by complete Structure-led engineering configuration, together with the Hazard Category, applicable orientation selections and required engineering inputs. Configuration-based PES/ES selections are resolved to authoritative resources during validation before interaction processing.
 
 The API returns relationships as resource IDs or embedded, explicitly versioned information only where doing so is necessary to make a resource independently useful. It must not duplicate authoritative information merely for convenience.
@@ -237,6 +238,8 @@ For each ES selection, exactly one of the following is provided:
 A configuration identifies its Structure and contains only the applicable selectable engineering properties required to define that resource. Informational or derived properties are not independently supplied unless the governing data model explicitly permits them.
 
 Direct-ID and configuration-based selections converge on the same authoritative resolved PES/ES representation before interaction processing.
+
+**PES Structure applicability**: A Structure used in a Structure-led PES configuration shall be an authoritative Structure whose governed classification permits use as a Potential Explosion Site. For the current validated AASTP-1 data model, PES applicability is identified by Structure category explosives_facility.
 
 ### 7.6 Property applicability and semantics
 
@@ -275,13 +278,15 @@ All endpoints below are relative to `/api/v1`. The initial MVP is read-only exce
 | `GET` | `/pes-types/{pesTypeId}` | Retrieve one authoritative Potential Explosion Site Type and its governed engineering characteristics. |
 | `GET` | `/hazard-categories` | List validated Hazard Categories. |
 | `GET` | `/hazard-categories/{hazardCategoryId}` | Retrieve one authoritative Hazard Category. |
+| `GET` | `/ecm-protection-ratings` | List validated ECM Protection Ratings for browsing and Structure-led engineering selection. |
+| `GET` | `/ecm-protection-ratings/{ecmProtectionRatingId}` | Retrieve one authoritative ECM Protection Rating and its governed engineering characteristics. |
 | `POST` | `/calculations` | Perform a governed engineering assessment using direct IDs or complete Structure-led PES/ES configurations. |
 
 ### 8.1 Resource browsing
 
 Collection endpoints return validated public engineering resources using a common response envelope. Resource browsing supports discovery, navigation, reference and client-side selection workflows; it does not itself resolve a PES or ES configuration or establish a calculation context.
 
-The MVP collection endpoints include Structures, Exposed Site Types, Potential Explosion Site Types and Hazard Categories.
+The MVP collection endpoints include Structures, Exposed Site Types, Potential Explosion Site Types, ECM Protection Ratings and Hazard Categories.
 
 Collection responses contain:
 
@@ -364,7 +369,7 @@ The Structure entity does not contain permissible construction or exposure value
       "ecmProtectionRating": true,
       "headwall": true,
       "barricaded": true,
-      "roofType": true,
+      "roofType": false,
       "aperture": false
     },
     "supportedExposureProperties": {
@@ -429,18 +434,18 @@ The PES Type entity does not contain orientation information. Valid orientation 
     "structure": "STR002",
     "construction": {
       "aperture": false,
-      "barricaded": null,
       "roofType": "Protective"
     },
     "notes": "",
     "source": {
-      "document": "AASTP-1",
-      "note": "authoritative-source-reference"
+      "standard": "AASTP-1",
+      "edition": "Edition D Version 1",
+      "reference": "governed-source-reference"
     }
   }
 }
 ```
-The public `source` representation will be standardised during OpenAPI schema reconciliation. Differences in source-reference representation within authoritative datasets must not result in inconsistent public API contracts.
+Public provenance uses the governed `SourceReference` representation. Differences in source-reference representation within authoritative datasets must not result in inconsistent public API contracts.
 
 **Exposed Site (ES) Type retrieval**
 `GET /es-types/{esTypeId}` returns the complete public representation of one validated Exposed Site Type.
@@ -485,16 +490,13 @@ The Exposed Site Type entity does not contain orientation information. Valid ori
       "ecmProtectionRating": "PR003",
       "headwall": true,
       "barricaded": false,
-      "roofType": null
     },
-    "exposure": {
-      "category": false,
-      "level": false
-    },
+    "exposure": null,
     "notes": "",
     "source": {
-      "document": "AASTP-1",
-      "para": "authoritative-source-reference"
+      "standard": "AASTP-1",
+      "edition": "Edition D Version 1",
+      "reference": "authoritative-source-reference"
     }
   }
 }
@@ -1006,8 +1008,8 @@ Before MVP implementation is considered contract-complete, the OpenAPI specifica
 - path parameters and their required representations;
 - the common successful-response envelope;
 - the common response metadata schema;
-- collection summary schemas for Structures, PES Types, ES Types and Hazard Categories;
-- complete individual-resource schemas for Structures, PES Types, ES Types and Hazard Categories;
+- collection summary schemas for Structures, PES Types, ES Types, ECM Protection Ratings and Hazard Categories;
+- complete individual-resource schemas for Structures, PES Types, ES Types, ECM Protection Ratings and Hazard Categories;
 - the hybrid PES and ES resource-selection schemas;
 - Structure-led PES and ES configuration schemas;
 - orientation inputs;
@@ -1608,7 +1610,7 @@ Acceptance criteria:
 ⬜ - Calculation request and response schemas reflect the approved API Contract.
 ⬜ - Common metadata includes authenticationStatus and all other approved provenance fields.
 ⬜ - Common error schemas and governed error responses are represented.
-⬜ - Collection and individual-resource operations are represented for Structures, PES Types, ES Types and Hazard Categories.
+⬜ - Collection and individual-resource operations are represented for Structures, PES Types, ES Types, ECM Protection Ratings and Hazard Categories.
 ⬜ - POST /calculations is represented using the approved calculation contract.
 ⬜ - OpenAPI examples use combinations verified against authoritative repository data.
 ⬜ - The complete modular OpenAPI document resolves and validates successfully.
@@ -1620,12 +1622,12 @@ Acceptance criteria:
 
 Milestone 5.2 is complete when:
 
-⬜ - API Contract v0.4.0 is reviewed and accepted as the governing human-readable public interface specification;
-⬜ - the modular OpenAPI 3.1 specification is consistent with API Contract v0.4.0;
+⬜ - API Contract v0.4.3 is reviewed and accepted as the governing human-readable public interface specification;
+⬜ - the modular OpenAPI 3.1 specification is consistent with API Contract v0.4.3;
 ⬜ - the OpenAPI specification validates successfully;
 ⬜ - representative valid and invalid requests demonstrate conformance between the API Contract, OpenAPI specification and existing service-layer behaviour;
 ⬜ - unresolved engineering-source limitations are documented and have not been replaced by unsupported API assumptions;
-⬜ - the Error Code Registry is reconciled with API Contract v0.4.0;
+⬜ - the Error Code Registry is reconciled with API Contract v0.4.3;
 ⬜ - implementation-affecting decisions are reflected in the applicable governing documentation; and
 ⬜ - the approved OpenAPI specification is accepted as the implementation contract for Milestone 5.3.
 
@@ -1655,6 +1657,9 @@ Completion of Milestone 5.2 establishes the public interface baseline. Subsequen
 
 | Date | Contract version | Change | Author / approval |
 | --- | --- | --- | --- |
+| 2026-08-17 | 0.4.3 | Minor update in response to development of API Schema reflecting work completed. | Draft |
+| 2026-08-17 | 0.4.2 | Minor update to Resource Selection Governance identifying valid PES structures as those with a category of `explosives_facility`. | Draft |
+| 2026-08-16 | 0.4.1 | Minor update to include ECM Protection Ratings as an OpenAPI endpoint. | Draft |
 | 2026-08-15 | 0.4.0 | Major contract revision aligned with the completed Structure-led service architecture. Defined hybrid direct-ID/configuration PES and ES selection; validation-stage resource resolution and resolution evidence; complete public Structure, PES Type, ES Type and Hazard Category representations; unified calculation request and response behaviour; common response metadata and provenance; separation of engineering validation from release authentication; expanded security and integrity requirements; governed future extension principles for additional AASTP content, localisation, offline integration and national tailoring; strengthened OpenAPI conformance requirements; and revised Milestone 5.2 acceptance criteria. | Draft |
 | 2026-08-10 | 0.3.1 | Replaced direction-specific calculation endpoints with a unified calculation service. The service determines the applicable calculation direction from the submitted authoritative input value and unit, allowing future supported input types without endpoint proliferation. | Draft |
 | 2026-08-10 | 0.3.0 | Elevated Structure to a public engineering resource; distinguished resource browsing from engineering resource selection and resolution; added Structure MVP endpoints; defined the structure-led selection workflow and resolved-resource calculation semantics; and reaffirmed single-authority governance for controlled engineering values. | Draft |

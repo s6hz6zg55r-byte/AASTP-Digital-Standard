@@ -4,35 +4,45 @@
 #
 # Purpose
 # -------
-# Defines the summary representation of an Exposed Site Type used when
-# browsing the Exposed Site Type collection.
+# Defines the concise public representation of an Exposed Site Type used where
+# the complete resource representation is not required.
 #
 # Used by
 # -------
 # - Exposed Site Type collection responses
-# - Exposed Site Type selection interfaces
-# - Repository browsing clients
+# - Public relationships requiring concise Exposed Site Type identification
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Summary representation of an Exposed Site Type containing the stable
-  identifier and human-readable name required for repository browsing
-  and selection.
+  Concise public representation of a validated Exposed Site Type. The summary
+  provides sufficient information to identify and display the resource and
+  its associated Structure without reproducing its complete construction,
+  exposure, provenance or supporting engineering detail.
 
 properties:
-
   id:
     $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the Exposed Site Type.
+    example: "PTR-LOW"
 
   name:
     type: string
     description: >
       Human-readable name of the Exposed Site Type.
-    example: "Public Road"
+    example: "Low Density Public Traffic Route"
+
+  structure:
+    $ref: "#/components/schemas/Identifier"
 
 required:
   - id
+  - code
   - name
+  - structure

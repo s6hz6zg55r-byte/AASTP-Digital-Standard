@@ -1,0 +1,38 @@
+# =============================================================================
+# Potential Explosion Site Type Collection Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the public collection response containing Potential Explosion Site
+# Type summaries and common response metadata.
+#
+# Used by
+# -------
+# - Potential Explosion Site Type collection responses
+# - GET /pes-types
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public collection response containing validated Potential Explosion Site
+  Type summaries and metadata identifying the API and authoritative data
+  release from which the collection was produced.
+
+properties:
+  data:
+    type: array
+    description: >
+      Potential Explosion Site Types available in the applicable validated
+      data release, represented using the concise public summary projection.
+    items:
+      $ref: "#/components/schemas/PotentialExplosionSiteTypeSummary"
+
+  metadata:
+    $ref: "#/components/schemas/ResponseMetadata"
+
+required:
+  - data
+  - metadata

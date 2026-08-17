@@ -1,0 +1,23 @@
+# =============================================================================
+# Identifier Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the structure of a stable identifier for an API resource.
+#
+# Used by
+# -------
+# - Engineering resource schemas
+# - Repository resource references
+# - Engineering calculation requests and responses
+#
+# =============================================================================
+
+type: string
+
+description: >
+  Stable identifier allocated to an engineering resource within the
+  authoritative AASTP engineering repository.
+
+example: "ES001"

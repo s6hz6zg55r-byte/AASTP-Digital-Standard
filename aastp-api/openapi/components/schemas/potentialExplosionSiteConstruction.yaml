@@ -1,0 +1,48 @@
+# =============================================================================
+# Potential Explosion Site Construction Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the governed construction characteristics associated with a
+# Potential Explosion Site Type.
+#
+# Used by
+# -------
+# - Potential Explosion Site Type resources
+# - PES configuration workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public representation of the governed construction characteristics
+  associated with a Potential Explosion Site Type. Only construction
+  properties applicable to the associated Structure and relevant to the
+  PES resource are represented. Permitted engineering values are derived
+  from the applicable validated data release and are not independently
+  defined by OpenAPI.
+
+properties:
+  aperture:
+    type: boolean
+    description: >
+      Indicates the governed aperture characteristic of the Potential
+      Explosion Site Type where aperture is applicable to that resource.
+    example: false
+
+  barricaded:
+    type: boolean
+    description: >
+      Indicates the governed barricade characteristic of the Potential
+      Explosion Site Type where barricade status is applicable to that
+      resource.
+    example: true
+
+  roofType:
+    type: string
+    description: >
+      Governed roof-type value associated with the Potential Explosion Site
+      Type where roof type is applicable to that resource.
+    example: "Protective"

@@ -1,15 +1,15 @@
 openapi: 3.1.0
 
 info:
-  title: AASTP REST API
+  title: AASTP Engineering Service API
   version: 1.0.0
   description: >
-    REST API providing access to AASTP reference data
+    REST API providing access to governed AASTP engineering resources
     and quantity-distance assessment services.
   contact:
     name: AASTP Project
-    email:
-  licence:
+    email: christopher.harbet@defence.gov.au
+  license:
     name: NATO
 
 servers:
@@ -21,648 +21,90 @@ servers:
 
 tags:
   - name: Reference Data
-    description: Static AASTP reference datasets
+    description: Governed AASTP engineering reference resources.
   
   - name: Assessment
-    description: Quantity-distance assessments
+    description: Quantity-distance assessment operations.
   
-  - name: Metadata
-    description: API information
+  - name: Service Metadata
+    description: Service status and release information.
 
 paths:
 
-  /pes-types:
-
-    get:
-
-      summary: Retrieve all PES Types
-
-      description: >
-        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
-      
-      operationId: getPesTypes
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /pes-types/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
+  /structures:
+    $ref: "./paths/structures.yaml"
   
+  /pes-types:
+    $ref: "./paths/pes-types.yaml"
+
   /es-types:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:  
-
-  /es-types/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
+    $ref: "./paths/es-types.yaml"
 
   /hazard-categories:
+    $ref: "./paths/hazard-categories.yaml"
 
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /hazard-categories/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /structures:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /structures/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /protection-levels:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /protection-levels/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /interaction-rules/:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /interaction-rules/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /distance-rules:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /distance-rules/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /constraints:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /constraints/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /formulas:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /formulas/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /transformations:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /transformations/{id}:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Reference Data
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /assessment:
-
-    get:
-
-      summary: 
-
-      description: >
-        Description
-      
-      operationId:
-
-      tags: 
-        - Assessment
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /health:
-
-    get:
-
-      summary: Retrieve all PES Types
-
-      description: >
-        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
-      
-      operationId: getPesTypes
-
-      tags: 
-        - Metadata
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /version:
-
-    get:
-
-      summary: Retrieve all PES Types
-
-      description: >
-        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
-      
-      operationId: getPesTypes
-
-      tags: 
-        - Metadata
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
-
-  /datasets:
-
-    get:
-
-      summary: Retrieve all PES Types
-
-      description: >
-        Returns every Potential Explosion Site (PES) type defined by the AASTP reference data.
-      
-      operationId: getPesTypes
-
-      tags: 
-        - Metadata
-      
-      responses:
-
-        "200":
-
-          description: Successful response
-
-          content:
-            application/json:
-              schema:
+  /calculations:
+    $ref: "./paths/calculations.yaml"
 
 components:
 
   schemas:
 
-    ResponseEnvelope:
-      type: object
-      properties:
-        data:
-          description: Payload returned by the request.
+    Identifier:
+      $ref: "./components/schemas/identifier.yaml"
 
-    ErrorResponse:
-      type: object
-      properties:
-        httpStatus:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-        authority:
-          $ref: "#/components/schemas/Authority"
-        traceId:
-          type: string
+    SourceReference:
+      $ref: "./components/schemas/sourceReference.yaml"
 
-    Metadata:
-      type: object
-      properties:
-        data:
-          description: Payload returned by the request.
+    ResponseMetadata:
+      $ref: "./components/schemas/responseMetadata.yaml"
 
-    ReferenceObject:
-      type: object
-      properties:
-        data:
-          description: Payload returned by the request.
+    SupportedConstructionProperties:
+      $ref: "./components/schemas/supportedConstructionProperties.yaml"
 
-    DomainObjects:
-      type: object
-      properties:
-        data:
-          description: Payload returned by the request.
+    SupportedExposureProperties:
+      $ref: "./components/schemas/supportedExposureProperties.yaml"
 
-    Authority:
-      type: object
-      properties:
-        standard:
-          type: string
-        edition:
-          type: string
-        reference:
-          type: string
+    OrientationType:
+      $ref: "./components/schemas/orientationType.yaml"
 
-  responses:
+    Structure:
+      $ref: "./components/schemas/structure.yaml"
 
-  parameters:
+    EcmProtectionRating:
+      $ref: "./components/schemas/ecmProtectionRating.yaml"
 
-  examples:
+    PotentialExplosionSiteConstruction:
+      $ref: "./components/schemas/potentialExplosionSiteConstruction.yaml"
 
-  securitySchemes:
+    PotentialExplosionSiteType:
+      $ref: "./components/schemas/potentialExplosionSiteType.yaml"
+
+    PotentialExplosionSiteTypeSummary:
+      $ref: "./components/schemas/potentialExplosionSiteTypeSummary.yaml"
+
+    PotentialExplosionSiteTypeCollection:
+      $ref: "./components/schemas/potentialExplosionSiteTypeCollection.yaml"
+
+    ExposedSiteConstruction:
+      $ref: "./components/schemas/exposedSiteConstruction.yaml"
+
+    ExposedSiteExposure:
+      $ref: "./components/schemas/exposedSiteExposure.yaml"
+
+    ExposedSiteType:
+      $ref: "./components/schemas/exposedSiteType.yaml"
+
+    ExposedSiteTypeSummary:
+      $ref: "./components/schemas/exposedSiteTypeSummary.yaml"
+
+    ExposedSiteTypeCollection:
+      $ref: "./components/schemas/exposedSiteTypeCollection.yaml"
+
+  responses: {}
+
+  parameters: {}
+
+  examples: {}
+
+  securitySchemes: {}

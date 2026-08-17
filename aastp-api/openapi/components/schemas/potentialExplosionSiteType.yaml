@@ -1,0 +1,67 @@
+# =============================================================================
+# Potential Explosion Site Type Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the complete public representation of an authoritative Potential
+# Explosion Site Type.
+#
+# Used by
+# -------
+# - Potential Explosion Site Type entity responses
+# - Potential Explosion Site Type collection responses
+# - PES selection and resource-resolution workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Complete public representation of a validated Potential Explosion Site Type.
+  A Potential Explosion Site Type is an authoritative resolved engineering
+  resource associated with a Structure and represents one governed combination
+  of applicable PES construction characteristics. Structure-level
+  applicability and orientation remain governed by the associated Structure.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the Potential Explosion Site Type.
+    example: "HWM-P"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Potential Explosion Site Type.
+    example: "Heavy Walled Magazine - Protective Roof"
+
+  structure:
+    $ref: "#/components/schemas/Identifier"
+
+  construction:
+    $ref: "#/components/schemas/PotentialExplosionSiteConstruction"
+
+  notes:
+    type: string
+    description: >
+      Supporting engineering notes associated with the Potential Explosion
+      Site Type. An empty string indicates that no supporting note is
+      recorded for the resource.
+    example: ""
+
+  source:
+    $ref: "#/components/schemas/SourceReference"
+
+required:
+  - id
+  - code
+  - name
+  - structure
+  - construction
+  - notes
+  - source

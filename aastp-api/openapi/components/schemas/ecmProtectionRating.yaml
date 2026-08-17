@@ -1,0 +1,56 @@
+# =============================================================================
+# ECM Protection Rating Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the complete public representation of an ECM Protection Rating.
+#
+# Used by
+# -------
+# - ECM Protection Rating entity responses
+# - ECM Protection Rating collection responses
+# - Structure-led PES configuration workflows
+# - Structure-led Exposed Site configuration workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Complete public representation of a validated ECM Protection Rating.
+  An ECM Protection Rating identifies a governed construction classification
+  applicable to Earth Covered Magazines where that construction property is
+  supported by the selected Structure.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the ECM Protection Rating.
+    example: "7BAR"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the ECM Protection Rating.
+    example: "7-Bar"
+
+  description:
+    type: string
+    description: >
+      Human-readable description of the ECM Protection Rating.
+    example: "This ECM is constructed to 7-Bar standards"
+
+  source:
+    $ref: "#/components/schemas/SourceReference"
+
+required:
+  - id
+  - code
+  - name
+  - description
+  - source

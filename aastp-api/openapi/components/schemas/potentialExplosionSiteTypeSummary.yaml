@@ -1,0 +1,48 @@
+# =============================================================================
+# Potential Explosion Site Type Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the concise public representation of a Potential Explosion Site Type
+# used where the complete resource representation is not required.
+#
+# Used by
+# -------
+# - Potential Explosion Site Type collection responses
+# - Public relationships requiring concise PES Type identification
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Concise public representation of a validated Potential Explosion Site Type.
+  The summary provides sufficient information to identify and display the
+  resource without reproducing its complete construction, provenance or
+  supporting engineering detail.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Engineering code associated with the Potential Explosion Site Type.
+    example: "HWM-P"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Potential Explosion Site Type.
+    example: "Heavy Walled Magazine - Protective Roof"
+
+  structure:
+    $ref: "#/components/schemas/Identifier"
+
+required:
+  - id
+  - code
+  - name
+  - structure

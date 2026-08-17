@@ -1,0 +1,68 @@
+# =============================================================================
+# Supported Construction Properties Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the construction-property dimensions applicable to an AASTP
+# Structure.
+#
+# Used by
+# -------
+# - Structure resources
+# - PES configuration workflows
+# - Exposed Site configuration workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Applicability indicators identifying which construction-property dimensions
+  apply to a Structure. A value of true indicates that the property is
+  applicable to the Structure; a value of false indicates that it is not.
+  These indicators do not define or prescribe the permitted engineering
+  values for an applicable property.
+
+properties:
+  ecmProtectionRating:
+    type: boolean
+    description: >
+      Indicates whether ECM protection rating is an applicable construction
+      property for the Structure.
+    example: true
+
+  headwall:
+    type: boolean
+    description: >
+      Indicates whether headwall configuration is an applicable construction
+      property for the Structure.
+    example: true
+
+  barricaded:
+    type: boolean
+    description: >
+      Indicates whether barricaded configuration is an applicable construction
+      property for the Structure.
+    example: true
+
+  roofType:
+    type: boolean
+    description: >
+      Indicates whether roof type is an applicable construction property for
+      the Structure.
+    example: false
+
+  aperture:
+    type: boolean
+    description: >
+      Indicates whether aperture configuration is an applicable construction
+      property for the Structure.
+    example: false
+
+required:
+  - ecmProtectionRating
+  - headwall
+  - barricaded
+  - roofType
+  - aperture

@@ -4,34 +4,35 @@
 #
 # Purpose
 # -------
-# Defines the complete public representation of a Structure and the
-# engineering selection dimensions applicable to that Structure.
+# Defines the complete public representation of an AASTP Structure used to
+# support configuration-based PES and Exposed Site selection.
 #
 # Used by
 # -------
 # - Structure entity responses
-# - Exposed Site Type selection workflows
-# - Potential Explosion Site Type selection workflows
+# - PES configuration workflows
+# - Exposed Site configuration workflows
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Complete representation of a Structure defined within the authoritative
-  AASTP engineering repository. The Structure identifies the engineering
-  characteristics that are applicable when resolving an Exposed Site Type
-  or Potential Explosion Site Type.
+  Complete public representation of a validated AASTP Structure. A Structure
+  identifies the construction and exposure dimensions applicable to
+  configuration-based PES and Exposed Site selection and identifies the
+  orientation type governing valid orientation selections. It does not
+  resolve a PES Type or Exposed Site Type or prescribe construction or
+  exposure values.
 
 properties:
-
   id:
     $ref: "#/components/schemas/Identifier"
 
   code:
     type: string
     description: >
-      Engineering code identifying the Structure.
+      Engineering code associated with the Structure.
     example: "ECM"
 
   name:
@@ -43,7 +44,7 @@ properties:
   category:
     type: string
     description: >
-      Engineering category used to classify the Structure.
+      Governed classification associated with the Structure.
     example: "explosives_facility"
 
   supportedConstructionProperties:
@@ -53,7 +54,7 @@ properties:
     $ref: "#/components/schemas/SupportedExposureProperties"
 
   orientation:
-    $ref: "#/components/schemas/Orientation"
+    $ref: "#/components/schemas/OrientationType"
 
 required:
   - id

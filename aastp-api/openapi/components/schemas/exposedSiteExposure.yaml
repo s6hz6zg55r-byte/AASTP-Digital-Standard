@@ -4,46 +4,36 @@
 #
 # Purpose
 # -------
-# Defines the exposure characteristics applicable to an Exposed Site Type.
+# Defines the governed exposure characteristics associated with an
+# Exposed Site Type.
 #
 # Used by
 # -------
-# - Exposed Site Type schemas
-# - Engineering calculation request schemas
+# - Exposed Site Type resources
+# - Exposed Site configuration workflows
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Defines the exposure category and level applicable to an Exposed Site Type.
-  Exposure values may be represented by an approved engineering term or
-  explicitly indicate that exposure is not applicable to the particular
-  Exposed Site Type.
+  Public representation of the governed exposure characteristics associated
+  with an Exposed Site Type. Exposure is represented by a category and level
+  whose permitted engineering values are derived from the applicable
+  validated data release and are not independently defined by OpenAPI.
 
 properties:
-
   category:
-    type:
-      - string
-      - boolean
-      - "null"
+    type: string
     description: >
-      Category used to classify the exposure characteristic of the Exposed
-      Site Type. A value of false indicates that exposure category does not
-      apply to the particular Exposed Site Type.
-    example: "criticality"
+      Governed exposure-category value associated with the Exposed Site Type.
+    example: "traffic_density"
 
   level:
-    type:
-      - string
-      - boolean
-      - "null"
+    type: string
     description: >
-      Level within the applicable exposure category for the Exposed Site Type.
-      A value of false indicates that exposure level does not apply to the
-      particular Exposed Site Type.
-    example: "high"
+      Governed exposure-level value associated with the Exposed Site Type.
+    example: "low"
 
 required:
   - category

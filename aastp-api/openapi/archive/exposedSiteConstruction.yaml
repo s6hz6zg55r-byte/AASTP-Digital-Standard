@@ -1,0 +1,62 @@
+# =============================================================================
+# Exposed Site Construction Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the construction characteristics applicable to an Exposed Site Type.
+#
+# Used by
+# -------
+# - Exposed Site Type schemas
+# - Engineering calculation request schemas
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Defines the construction characteristics of an Exposed Site Type where
+  construction properties are applicable.
+
+properties:
+
+  ecmProtectionRating:
+    type:
+      - string
+      - "null"
+    description: >
+      Engineering construction material protection rating applicable to the
+      Exposed Site Type.
+    example: "PR003"
+
+  headwall:
+    type:
+      - boolean
+      - "null"
+    description: >
+      Indicates whether a headwall is present for the Exposed Site Type.
+    example: true
+
+  barricaded:
+    type:
+      - boolean
+      - "null"
+    description: >
+      Indicates whether the relevant construction feature is barricaded for
+      the Exposed Site Type.
+    example: true
+
+  roofType:
+    type:
+      - string
+      - "null"
+    description: >
+      Type of roof applicable to the Exposed Site Type.
+    example: "Protective"
+
+required:
+  - ecmProtectionRating
+  - headwall
+  - barricaded
+  - roofType

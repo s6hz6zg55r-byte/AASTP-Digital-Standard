@@ -4,40 +4,35 @@
 #
 # Purpose
 # -------
-# Defines the structure of a collection of Exposed Site Types.
+# Defines the public collection response containing Exposed Site Type summaries
+# and common response metadata.
 #
 # Used by
 # -------
-# - Repository collection responses
-# - Repository entity responses
-# - Engineering calculation responses
+# - Exposed Site Type collection responses
+# - GET /es-types
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Collection of Exposed Site Types (ES-Types) defined within the 
-  authoritative AASTP engineering repository.
+  Public collection response containing validated Exposed Site Type summaries
+  and metadata identifying the API and authoritative data release from which
+  the collection was produced.
 
 properties:
+  data:
+    type: array
+    description: >
+      Exposed Site Types available in the applicable validated data release,
+      represented using the concise public summary projection.
+    items:
+      $ref: "#/components/schemas/ExposedSiteTypeSummary"
 
   metadata:
     $ref: "#/components/schemas/ResponseMetadata"
 
-  data:
-    type: array
-    format:
-    description: >
-      Array of Exposed Site Type summary objects representing the
-      collection of Exposed Site Types defined within the authoritative
-      AASTP engineering repository.
-    example:
-    minimum:
-    maximum:
-    enum:
-    default:
-
 required:
-  - metadata
   - data
+  - metadata

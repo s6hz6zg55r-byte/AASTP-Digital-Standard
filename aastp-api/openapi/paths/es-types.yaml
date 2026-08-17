@@ -1,0 +1,36 @@
+# =============================================================================
+# ES Types Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines <the identifiable engineering or API concept represented>.
+#
+# Used by
+# -------
+# - <principal consumer or contract location>
+#
+# Authoring notes
+# ---------------
+# - Remove or resolve every angle-bracketed prompt before review.
+# - Add optional keywords only where the governed concept requires them.
+# - Do not duplicate a controlled engineering vocabulary as an enum or default.
+# - Prefer an approved $ref when the property represents a reusable concept.
+#
+# =============================================================================
+
+type: object
+
+description: >
+  <Clear, complete statement of the concept represented by this schema.>
+
+properties:
+  propertyName:
+    type: string
+    description: >
+      <Clear, complete statement of the information represented by this
+      property.>
+    example: "representative-value"
+
+required:
+  - propertyName

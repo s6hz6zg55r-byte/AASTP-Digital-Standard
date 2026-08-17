@@ -1,0 +1,52 @@
+# =============================================================================
+# Orientation Type Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the orientation type associated with an AASTP Structure and the
+# permitted orientation values available for selection.
+#
+# Used by
+# -------
+# - Structure resources
+# - PES orientation selection workflows
+# - Exposed Site orientation selection workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public representation of the governed orientation type associated with an
+  AASTP Structure. The orientation type identifies the permitted orientation
+  values available for explicit PES or Exposed Site orientation selection.
+  Permitted values are derived from the applicable validated data release and
+  are not independently defined by OpenAPI.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the orientation type.
+    example: "Directional"
+
+  values:
+    type: array
+    description: >
+      Permitted orientation values associated with the orientation type in
+      the applicable validated data release.
+    items:
+      type: string
+    example:
+      - "front"
+      - "side"
+      - "rear"
+
+required:
+  - id
+  - name
+  - values

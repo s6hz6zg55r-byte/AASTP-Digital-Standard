@@ -4,60 +4,63 @@
 #
 # Purpose
 # -------
-# Defines the complete public representation of an Exposed Site Type.
+# Defines the complete public representation of an authoritative Exposed Site
+# Type.
 #
 # Used by
 # -------
 # - Exposed Site Type entity responses
-# - Engineering calculation services
-# - Repository browsing clients
+# - Exposed Site Type collection responses
+# - Exposed Site selection and resource-resolution workflows
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Complete representation of an Exposed Site Type defined within the
-  authoritative AASTP engineering repository.
+  Complete public representation of a validated Exposed Site Type. An Exposed
+  Site Type is an authoritative resolved engineering resource associated with
+  a Structure and represents one governed combination of applicable
+  construction and exposure characteristics. Structure-level applicability
+  and orientation remain governed by the associated Structure.
 
 properties:
-
   id:
     $ref: "#/components/schemas/Identifier"
 
   code:
     type: string
     description: >
-      Engineering code identifying the Exposed Site Type.
-    example: "ECM-7BAR"
+      Engineering code associated with the Exposed Site Type.
+    example: "PTR-LOW"
 
   name:
     type: string
     description: >
       Human-readable name of the Exposed Site Type.
-    example: "Earth Covered Magazine - 7 Bar"
+    example: "Low Density Public Traffic Route"
 
   structure:
-    type: string
-    description: >
-      Stable identifier of the structure definition associated with the
-      Exposed Site Type.
-    example: "STR001"
+    $ref: "#/components/schemas/Identifier"
 
   construction:
     $ref: "#/components/schemas/ExposedSiteConstruction"
 
   exposure:
-    $ref: "#/components/schemas/ExposedSiteExposure"
+    oneOf:
+      - $ref: "#/components/schemas/ExposedSiteExposure"
+      - type: "null"
 
   notes:
     type: string
     description: >
-      Additional information associated with the Exposed Site Type.
+      Supporting engineering notes associated with the Exposed Site Type.
+      An empty string indicates that no supporting note is recorded for the
+      resource.
     example: ""
 
   source:
-    $ref: "#/components/schemas/EngineeringSource"
+    $ref: "#/components/schemas/SourceReference"
 
 required:
   - id

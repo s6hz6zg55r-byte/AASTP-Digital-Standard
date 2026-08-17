@@ -4,20 +4,24 @@
 #
 # Purpose
 # -------
-# Defines the structure of a stable identifier for an API resource.
+# Defines the stable identifier used for public AASTP engineering resources.
 #
 # Used by
 # -------
-# - Engineering resource schemas
-# - Repository resource references
-# - Engineering calculation requests and responses
+# - Structure resources
+# - Potential Explosion Site Type resources
+# - Exposed Site Type resources
+# - Hazard Category resources
+# - Other public engineering resources exposing stable identifiers
 #
 # =============================================================================
 
 type: string
 
 description: >
-  Stable identifier allocated to an engineering resource within the
-  authoritative AASTP engineering repository.
+  Stable opaque identifier for a public AASTP engineering resource. Consumers
+  may store and submit the identifier but shall not infer engineering meaning
+  from its internal form. The identifier is derived from the applicable
+  validated data release.
 
-example: "ES001"
+example: "STR001"

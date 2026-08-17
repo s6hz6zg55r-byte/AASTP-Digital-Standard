@@ -1,0 +1,50 @@
+# =============================================================================
+# Source Reference Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the public reference to authoritative source material associated
+# with an AASTP engineering resource or governed engineering decision.
+#
+# Used by
+# -------
+# - Public engineering resource representations
+# - Engineering calculation provenance
+# - Governed engineering error responses
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Structured reference identifying the authoritative source material from
+  which a public AASTP engineering resource or governed engineering decision
+  is derived. Values are derived from governed engineering provenance and
+  shall not be fabricated by the API implementation.
+
+properties:
+  standard:
+    type: string
+    description: >
+      Authoritative standard or publication containing the referenced
+      engineering information.
+    example: "AASTP-1"
+
+  edition:
+    type: string
+    description: >
+      Edition and version of the authoritative standard or publication
+      applicable to the referenced engineering information.
+    example: "Edition D Version 1"
+
+  reference:
+    type: string
+    description: >
+      Governed location or citation within the authoritative source material,
+      where a more specific source reference is available.
+    example: "Part 1, Annex 1-A, Table 1"
+
+required:
+  - standard
+  - edition

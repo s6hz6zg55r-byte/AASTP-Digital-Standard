@@ -1,10 +1,13 @@
 # OpenAPI Schema Standard
 
-**Document ID:** AASTP-OAS-STD-001  
-**Version:** 1.1  
-**Status:** Revised issue  
-**Applies to:** AASTP Digital Engineering API OpenAPI 3.1 specification  
-**Owner:** AASTP Digital Engineering Project
+| Attribute | Value |
+|---|---|
+| Document ID | AASTP-API-002 |
+| Document status | Draft |
+| Version | 0.4.0 |
+| Applies to | API Contract v0.4.0 |
+| Owner | AASTP Digital Engineering Project |
+| Last updated | 2026-08-16 |
 
 ## 1. Purpose
 

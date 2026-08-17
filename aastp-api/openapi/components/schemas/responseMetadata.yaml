@@ -4,45 +4,63 @@
 #
 # Purpose
 # -------
-# Defines metadata accompanying successful API responses.
+# Defines the common metadata accompanying governed API responses.
 #
 # Used by
 # -------
 # - Repository collection responses
 # - Repository entity responses
 # - Engineering calculation responses
+# - Error responses
 #
 # =============================================================================
+
 type: object
 
 description: >
-  Metadata describing an API response and the authoritative engineering
-  repository from which its data was derived.
+  Common metadata identifying the public API version, authoritative data
+  release and assurance state associated with a governed API response.
 
 properties:
-
-  repositoryVersion:
+  apiVersion:
     type: string
     description: >
-      Version of the authoritative AASTP engineering repository used to
+      Version of the public API contract applicable to the response.
+    example: "v1"
+
+  dataVersion:
+    type: string
+    description: >
+      Identifier of the authoritative validated AASTP data release used to
       produce the response.
-    example: "AASTP-1 Edition 3"
+    example: "AASTP-1-D-1"
+
+  validationStatus:
+    type: string
+    description: >
+      Validation status of the authoritative data release used to produce
+      the response. Validation status is independent of release
+      authentication status.
+    example: "validated"
+
+  authenticationStatus:
+    type: string
+    description: >
+      Authentication status of the authoritative data release used to
+      produce the response. Authentication status is independent of
+      engineering validation status.
+    example: "unauthenticated"
 
   generatedAt:
     type: string
     format: date-time
     description: >
       UTC timestamp indicating when the API response was generated.
-    example: "2026-08-10T08:35:14Z"
-
-  itemCount:
-    type: integer
-    description: >
-      Number of resources contained within the response data element when
-      the response represents a collection.
-    example: 12
-    minimum: 0
+    example: "2026-08-16T21:30:00Z"
 
 required:
-  - repositoryVersion
+  - apiVersion
+  - dataVersion
+  - validationStatus
+  - authenticationStatus
   - generatedAt

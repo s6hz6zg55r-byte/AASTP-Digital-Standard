@@ -1,8 +1,13 @@
 # AASTP Digital Engineering Platform — Programme Roadmap
 
-**Document status:** Living programme-management document  
-**Version:** 2.1  
-**Purpose:** Single source of truth for delivery planning, milestone tracking and major programme decisions.
+| Attribute | Value |
+|---|---|
+| Document ID | AASTP-PROG-001 |
+| Document status | Living programme-management document |
+| Version | 2.1.0 |
+| Applies to | Single source of truth for delivery planning, milestone tracking and major programme decisions. |
+| Owner | AASTP Digital Engineering Project |
+| Last updated | 2026-08-16 |
 
 ---
 
@@ -35,9 +40,9 @@ Present a complete governance model that demonstrates the sustainability, mainta
 | Foundation and repository architecture | ✅ Complete | Structured repository and repository-service approach established. |
 | Digital knowledge base | 🔄 In progress | Narrative knowledge remains an evolving layer. |
 | Engineering core | ✅ Complete | MVP service pipeline established from validation and governed resource resolution through interaction resolution and engineering assessment. |
-| Validation and quality assurance | 🔄 In progress | Validation reporting is complete and service integration suites pass; API conformance and wider assurance remain planned. |
-| Phase 5 — Demonstrator | 🔄 In progress | Service-layer baseline complete. Governing-document reconciliation and OpenAPI contract completion are now the critical path. |
-| Governance and standardisation | ⬜ Not started | December governance package and adoption case pending. |
+| Validation and quality assurance | 🔄 In progress | Validation Framework exists, but Engineering Assurance Framework implementation remains. |
+| Phase 5 — Demonstrator | 🔄 In progress | API/OpenAPI/deployment remain critical path. |
+| Governance and standardisation | 🔄 In progress | Significant governance work is complete: Engineering Calculation Model, MDI, API governance suite updates, assurance framework groundwork. |
 
 ### Current focus
 
@@ -84,6 +89,9 @@ Key achievements:
 - Assessment/engineering pipeline integrated so downstream services consume the same authoritative PES/ES representation regardless of input route.
 - Direct-ID compatibility, configuration matching, governed canonicalisation, invalid-configuration rejection, forward/reverse calculation and request immutability covered by passing tests.
 - Reported passing suites include `validationService` (36/36), `resourceResolver` (16/16) and `engineeringService` integration (31/31), together with the subsequently confirmed overall service-pipeline integration.
+- Engineering Calculation Model v0.3.0 locked.
+- Engineering Resource Resolution Model baseline.
+- API Contract alignment.
 
 Known limitation:
 - Orientation-data limitations remain a governed source-data issue for AC/326 and future scenario selection. No unsupported orientation rule is introduced by this roadmap.
@@ -210,18 +218,21 @@ Dates are programme targets, not commitments to change controlled engineering co
 
 | Done | Task | Status | Evidence / notes |
 |---:|---|---:|---|
-| [ ] | Reconcile API Design Principles with API Contract v0.4.0 | ⬜ Not started | Remove obsolete assumptions and align terminology and architectural principles. |
-| [ ] | Reconcile Error Code Registry with API Contract v0.4.0 | ⬜ Not started | **Already identified as required follow-on action.** Include resource resolution, applicability, authentication and common metadata behaviour. |
+| [ ] | Reconcile API Design Principles with API Contract v0.4.0 | 🔄 In Progress | The document review process has begun. The API governance suite structure is now understood. |
+| [x] | Reconcile Error Code Registry with API Contract v0.4.0 | ✅ Complete | Error Code Registry has been aligned with API Contract v0.4.0 |
 | [ ] | Establish API Change Management Framework | ⬜ Not started | Define proposal, classification, impact assessment, approval, implementation, verification and release process. |
-| [ ] | Confirm normative-document responsibilities | ⬜ Not started | Ensure API Contract, OpenAPI, Design Principles, Error Code Registry and Change Management Framework have non-overlapping authorities. |
-| [ ] | Confirm governance suite consistency | ⬜ Not started | No unresolved contradictions before OpenAPI baseline is completed. |
+| [ ] | Confirm normative-document responsibilities | 🔄 In Progress | The MDI and document hierarchy established has addressed this issue at the wider governance level. |
+| [ ] | Confirm governance suite consistency | 🔄 In Progress | This has been occuring throught document reconciliation. |
+| [x] | Documentation and repository governance frameworks | ✅ Complete | Established Master Document Index and associated governance rules. |
+| [ ] | Complete Engineering Assurance Framework | 🔄 In Progress | The framework exists conceptually and has been incorporated into the governance suite. |
 
 #### Work package 3 — OpenAPI schema reconciliation
 **Objective:** Translate the approved API Contract into complete, reusable OpenAPI 3.1 schemas without introducing new engineering semantics. 
 
 | Done | Task | Status | Evidence / notes |
 |---:|---|---:|---|
-| [ ] | Reconcile common response metadata schema | ⬜ Not started | Include `apiVersion`, `dataVersion`, `validationStatus`, `authenticationStatus` and `generatedAt`; calculation metadata additionally includes `calculationMethodVersion`. |
+| [ ] | Confirm final public terminology register | 🔄 In Progress | Ensure API Contract, OpenAPI, Engineering Calculation Model and Error Code Registry use consistent terminology. |
+| [ ] | Reconcile common response metadata schema | 🔄 In Progress | Include `apiVersion`, `dataVersion`, `validationStatus`, `authenticationStatus` and `generatedAt`; calculation metadata additionally includes `calculationMethodVersion`. |
 | [ ] | Complete Structure public schemas | ⬜ Not started | Represent the approved Structure entity and summary contracts; Structure remains the entry point for configuration-based selection. |
 | [ ] | Complete PES Type public schemas | ⬜ Not started | Represent the approved resolved PES Type entity and summary contracts without redefining Structure-level applicability. |
 | [ ] | Complete Exposed Site Type public schemas | ⬜ Not started | Represent the approved resolved ES Type entity and summary contracts without redefining Structure-level applicability. |
@@ -296,6 +307,7 @@ Dates are programme targets, not commitments to change controlled engineering co
 | [x] | Implement engineering resolver services | ✅ Complete | Includes governed resource, interaction and assessment resolution. |
 | [x] | Implement service-layer validation | ✅ Complete | `validationService` validates and resolves requests before downstream processing. |
 | [x] | Implement engineering calculation service | ✅ Complete | Existing forward/reverse engineering pipeline retained with passing integration tests. |
+| [x] | Consolidate project repository structure | ✅ Complete | Root repository established. API, data, common, demo and documentation layers separated. |
 
 #### API implementation and testing work package
 
@@ -396,7 +408,6 @@ These items are deliberately deferred because they do not block the September de
 | [ ] | Cross-dataset and AASTP table completeness validation | ⏸ Deferred | Resume during source-to-data reconciliation. |
 | [ ] | Engineering assurance and scenario validation | ⏸ Deferred | Resume for demonstrator hardening and the December package. |
 | [ ] | Extended regression and service-level validation | ⏸ Deferred | Resume before controlled releases and hosted-service operation. |
-| [ ] | Complete Engineering Assurance Framework | ⏸ Deferred | Resume for the December governance package. |
 | [ ] | Standardise validator documentation and consistency | ⏸ Deferred | Resume before a controlled validation release. |
 
 ### Presentation and publications
@@ -414,7 +425,6 @@ These items are deliberately deferred because they do not block the September de
 
 | Done | Work item | Status | Rationale / trigger to resume |
 |---:|---|---:|---|
-| [ ] | Documentation and repository governance frameworks | ⏸ Deferred | Resume for the December governance package. |
 | [ ] | Document lifecycle, maintenance and contributor workflows | ⏸ Deferred | Resume as publication and contribution workflows mature. |
 | [ ] | Controlled public-release policy | ⏸ Deferred | Resume before public API release; API versioning strategy itself is already agreed. |
 | [ ] | Engineering vocabulary and metadata review | ⏸ Deferred | Establish controlled terminology and dataset-edition metadata. |
@@ -451,6 +461,8 @@ These items are deliberately deferred because they do not block the September de
 | AD-010 | Resource selection and resolution are validation-stage responsibilities. | Locked | Interaction and engineering services receive authoritative PES/ES resources regardless of whether the request used IDs or configurations. | Material change to the public selection contract or validation boundary. |
 | AD-011 | The original client request is preserved; normalisation and canonicalisation are recorded as resolved resources and evidence. | Locked | Supports traceability, auditability and engineering assurance. | A governed audit or privacy requirement requires a different evidence model. |
 | AD-012 | Engineering Service is the governed architectural name for the service responsible for executing the validated engineering assessment pipeline. | Locked | Establishes consistent terminology across architecture, API governance, OpenAPI and implementation documentation. |
+| AD-013 | The Git repository structure shall represent the complete digital engineering platform rather than a single technical layer. | Locked | The authoritative capability consists of data, validation, service, applications and governance documentation. |
+| AD-014 | Governance documentation shall be maintained as controlled artefacts within the digital standard repository. | Locked | Ensures architecture, assurance and implementation remain aligned. |
 
 ---
 

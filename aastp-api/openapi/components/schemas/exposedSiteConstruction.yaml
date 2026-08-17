@@ -4,59 +4,47 @@
 #
 # Purpose
 # -------
-# Defines the construction characteristics applicable to an Exposed Site Type.
+# Defines the governed construction characteristics associated with an
+# Exposed Site Type.
 #
 # Used by
 # -------
-# - Exposed Site Type schemas
-# - Engineering calculation request schemas
+# - Exposed Site Type resources
+# - Exposed Site configuration workflows
 #
 # =============================================================================
 
 type: object
 
 description: >
-  Defines the construction characteristics of an Exposed Site Type where
-  construction properties are applicable.
+  Public representation of the governed construction characteristics
+  associated with an Exposed Site Type. Only construction properties
+  applicable to the associated Structure and relevant to the Exposed Site
+  resource are represented. Permitted engineering values are derived from
+  the applicable validated data release and are not independently defined
+  by OpenAPI.
 
 properties:
-
   ecmProtectionRating:
-    type:
-      - string
-      - "null"
-    description: >
-      Engineering construction material protection rating applicable to the
-      Exposed Site Type.
-    example: "PR003"
+    $ref: "#/components/schemas/Identifier"
 
   headwall:
-    type:
-      - boolean
-      - "null"
+    type: boolean
     description: >
-      Indicates whether a headwall is present for the Exposed Site Type.
+      Indicates the governed headwall characteristic of the Exposed Site Type
+      where headwall configuration is applicable to that resource.
     example: true
 
   barricaded:
-    type:
-      - boolean
-      - "null"
+    type: boolean
     description: >
-      Indicates whether the relevant construction feature is barricaded for
-      the Exposed Site Type.
-    example: true
+      Indicates the governed barricade characteristic of the Exposed Site Type
+      where barricade status is applicable to that resource.
+    example: false
 
   roofType:
-    type:
-      - string
-      - "null"
+    type: string
     description: >
-      Type of roof applicable to the Exposed Site Type.
+      Governed roof-type value associated with the Exposed Site Type where
+      roof type is applicable to that resource.
     example: "Protective"
-
-required:
-  - ecmProtectionRating
-  - headwall
-  - barricaded
-  - roofType
