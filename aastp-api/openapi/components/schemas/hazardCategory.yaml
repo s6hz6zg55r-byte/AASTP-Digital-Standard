@@ -1,0 +1,112 @@
+# =============================================================================
+# Hazard Category Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the complete public representation of an authoritative Hazard
+# Category.
+#
+# Used by
+# -------
+# - Hazard Category entity responses
+# - Hazard Category selection workflows
+# - Engineering calculation workflows
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Complete public representation of a validated Hazard Category. A Hazard
+  Category represents an authoritative hazard classification used within the
+  governed engineering context and identifies its associated engineering
+  effects and supported quantity bases. Controlled engineering values and
+  relationships are derived from the applicable validated data release and
+  are not independently defined by OpenAPI.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Authoritative hazard code associated with the Hazard Category.
+    example: "1.2.1"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Hazard Category.
+    example: "Fragment Producing Hazard"
+
+  description:
+    type: string
+    description: >
+      Human-readable description of the engineering hazard represented by the
+      Hazard Category.
+    example: >
+      Explosive substances and articles which have a projection hazard
+      producing dangerous fragments.
+
+  parentDivision:
+    type:
+      - string
+      - "null"
+    description: >
+      Governed parent Hazard Division code where the Hazard Category is a
+      subdivision of a broader Hazard Division. A null value indicates that no
+      parent division is defined for the Hazard Category.
+    example: "1.2"
+
+  type:
+    type: string
+    description: >
+      Governed classification identifying the type of Hazard Category.
+    example: "storage_subdivision"
+
+  active:
+    type: boolean
+    description: >
+      Indicates whether the Hazard Category is active in the applicable
+      validated data release.
+    example: true
+
+  source:
+    $ref: "#/components/schemas/SourceReference"
+
+  effects:
+    type: array
+    description: >
+      Stable identifiers of the governed engineering effects associated with
+      the Hazard Category.
+    items:
+      $ref: "#/components/schemas/Identifier"
+    example:
+      - "EFF001"
+      - "EFF002"
+      - "EFF003"
+
+  supportedQuantityBasis:
+    type: array
+    description: >
+      Governed quantity bases supported by the Hazard Category in the
+      applicable validated data release.
+    items:
+      type: string
+    example:
+      - "NEQ"
+      - "MCE"
+
+required:
+  - id
+  - code
+  - name
+  - description
+  - parentDivision
+  - type
+  - active
+  - source
+  - effects
+  - supportedQuantityBasis

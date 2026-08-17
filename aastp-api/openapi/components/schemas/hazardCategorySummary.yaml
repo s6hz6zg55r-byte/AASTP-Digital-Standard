@@ -1,0 +1,70 @@
+# =============================================================================
+# Hazard Category Summary Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the concise public representation of a Hazard Category used where
+# the complete resource representation is not required.
+#
+# Used by
+# -------
+# - Hazard Category collection responses
+# - Public relationships requiring concise Hazard Category identification
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Concise public representation of a validated Hazard Category. The summary
+  provides sufficient information to identify, classify and browse the
+  resource without reproducing its complete engineering characteristics,
+  provenance or supported quantity bases.
+
+properties:
+  id:
+    $ref: "#/components/schemas/Identifier"
+
+  code:
+    type: string
+    description: >
+      Authoritative hazard code associated with the Hazard Category.
+    example: "1.2.1"
+
+  name:
+    type: string
+    description: >
+      Human-readable name of the Hazard Category.
+    example: "Fragment Producing Hazard"
+
+  parentDivision:
+    type:
+      - string
+      - "null"
+    description: >
+      Governed parent Hazard Division code where the Hazard Category is a
+      subdivision of a broader Hazard Division. A null value indicates that no
+      parent division is defined for the Hazard Category.
+    example: "1.2"
+
+  type:
+    type: string
+    description: >
+      Governed classification identifying the type of Hazard Category.
+    example: "storage_subdivision"
+
+  active:
+    type: boolean
+    description: >
+      Indicates whether the Hazard Category is active in the applicable
+      validated data release.
+    example: true
+
+required:
+  - id
+  - code
+  - name
+  - parentDivision
+  - type
+  - active

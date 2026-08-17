@@ -101,6 +101,15 @@ components:
     ExposedSiteTypeCollection:
       $ref: "./components/schemas/exposedSiteTypeCollection.yaml"
 
+    HazardCategory:
+      $ref: "./components/schemas/hazardCategory.yaml"
+
+    HazardCategorySummary:
+      $ref: "./components/schemas/hazardCategorySummary.yaml"
+
+    HazardCategoryCollection:
+      $ref: "./components/schemas/hazardCategoryCollection.yaml"
+
   responses: {}
 
   parameters: {}

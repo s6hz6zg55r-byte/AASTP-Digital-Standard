@@ -1,0 +1,38 @@
+# =============================================================================
+# Hazard Category Collection Schema
+# =============================================================================
+#
+# Purpose
+# -------
+# Defines the public collection response containing Hazard Category summaries
+# and common response metadata.
+#
+# Used by
+# -------
+# - Hazard Category collection responses
+# - GET /hazard-categories
+#
+# =============================================================================
+
+type: object
+
+description: >
+  Public collection response containing validated Hazard Category summaries
+  and metadata identifying the API and authoritative data release from which
+  the collection was produced.
+
+properties:
+  metadata:
+    $ref: "#/components/schemas/ResponseMetadata"
+
+  data:
+    type: array
+    description: >
+      Hazard Categories available in the applicable validated data release,
+      represented using the concise public summary projection.
+    items:
+      $ref: "#/components/schemas/HazardCategorySummary"
+
+required:
+  - metadata
+  - data
